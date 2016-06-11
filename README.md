@@ -26,16 +26,16 @@ feel free to use/adapt just bits and pieces from the package.
 
 The following is a quick synopsis of the functions available in the package. Column `Group` provides a category for each function and helps to identify where to find the code and documentation. Column `Function` shows the function names. 
 
-| Group | Function | Description |
-| -- | -- | -- |
-| messages | msg | log and output a message |
-| messages | newmsg | create message logger |
-| files | rtht | read tables from files |
-| files | wtht | write tables to files |
-| utils | grepv | pattern matching |
-| utils | mtrx | creating matrices |
-| utils | newv | creating empty, named vectors |
-| utils | p0 | paste0 |
+ Group | Function | Description 
+ --- | --- | --- 
+ messages | msg | log and output a message 
+ messages | newmsg | create message logger 
+ files | rtht | read tables from files 
+ files | wtht | write tables to files 
+ utils | grepv | pattern matching 
+ utils | mtrx | creating matrices 
+ utils | newv | creating empty, named vectors 
+ utils | p0 | paste0 
 
 
 
