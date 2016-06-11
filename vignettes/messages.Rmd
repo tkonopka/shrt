@@ -1,0 +1,78 @@
+# `shrt`: Logging and messaging functions
+
+This vignette demonstrate functions in the `messages` range. 
+
+```{r, echo=FALSE}
+library(shrt)
+msg(action="reset")
+```
+
+
+&nbsp;
+## msg
+
+`msg` displays messages on the console and records them for later use. In contrast to many other function in the `shrt` package, this function provides interesting functionality that is not directly provided by base R functions. 
+
+A common way to output a message onto the console is with `cat`
+
+```{r}
+cat("hello")
+```
+
+The `msg` function performs a similar role, except that it also outputs a date and time
+
+```{r}
+msg("hello")
+msg("hello again")
+```
+
+An interesting feature is that `msg` internally records all the messages so that they can be retrieved at a later date. 
+
+```{r}
+msg(action="show")
+```
+
+It is also possible to retrieve the messages without displaying them
+
+```{r}
+mm = msg(action="get")
+mm
+```
+
+The is handy if the messages require further processing, for example saving into a log file. 
+
+When the log is no longer needed, it can be reset 
+
+```{r}
+msg(action="reset")
+msg(action="show")
+```
+
+
+&nbsp;
+## newmsg
+
+`newmsg` is factory function that creates a new message log. For example, we can create a silent log that does not include the call date. 
+
+```{r}
+silent.msg = newmsg(verbose=FALSE, date=FALSE)
+class(silent.msg)
+```
+
+The new object is a function that works analogously to `msg` above. 
+
+```{r}
+silent.msg("hi 123")
+silent.msg("hi 456")
+```
+
+The messages can again be displayed as above. 
+
+```{r}
+silent.msg(action="show")
+```
+
+
+
+
+

@@ -4,10 +4,13 @@
 \alias{rtht}
 \title{Read table from file}
 \usage{
-rtht(f, header = TRUE, sep = "\\t", stringsAsFactors = FALSE, ...)
+rtht(f, rowid.column = NULL, header = TRUE, sep = "\\t",
+  stringsAsFactors = FALSE, ...)
 }
 \arguments{
 \item{f}{filename}
+
+\item{rowid.column}{character name of column to use as rownames}
 
 \item{header}{logical, determines if to read the header}
 

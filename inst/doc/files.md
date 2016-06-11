@@ -1,0 +1,100 @@
+# `shrt`: Input and output with files 
+
+This vignette demonstrates functions in the `files` range.
+
+
+
+
+It will be handy to work with a small table
+
+
+```r
+d1 = mtrx(letters[1:8], col.names=LETTERS[1:4], row.names=c("R1", "R2"))
+d1
+```
+
+```
+##    A   B   C   D  
+## R1 "a" "c" "e" "g"
+## R2 "b" "d" "f" "h"
+```
+	
+	
+&nbsp;	
+## wtht	
+
+`wtht` is a wrapper for `write.table` which by default has `row.names=FALSE`, `col.names=TRUE`, `quote=FALSE`, and `sep='\t'`. The basic usage save a table into a specified file
+
+
+```r
+wtht(d1, file="test.1.tsv")
+```
+
+`wtht` also provides a way to record row names in a named column. In this mode, the function creates a temporary data structure with a new column, and save this new structure to disk. 
+
+
+```r
+wtht(d1, file="test.2.tsv", rowid.column="rowid")
+```
+
+Refer to the next section to see the result from these commands.
+
+
+
+
+&nbsp;
+## rtht
+
+`rtht` is a wrapper for `read.table` which by default sets `header=TRUE`, `sep='\t'`, and `stringsAsFactors=FALSE`. 
+
+We can use this function to see the files saved above. We can read the first table
+
+
+```r
+d2 = rtht("test.1.tsv")
+d2
+```
+
+```
+##   A B C D
+## 1 a c e g
+## 2 b d f h
+```
+
+Note that row names are absent in this object - they are not recorded in the file. 
+
+The second file we created was meant to contain row names in a new column. We can verify this by reading the file with the same syntax as above
+
+
+```r
+d3 = rtht("test.2.tsv")
+d3
+```
+
+```
+##    rowid A B C D
+## R1    R1 a c e g
+## R2    R2 b d f h
+```
+
+Note here that the table contains a column `rowid` that did not appear in the original dataset. We can optionally eliminate this column whilst reading the data
+
+
+```r
+d4 = rtht("test.2.tsv", rowid.column="rowid")
+d4
+```
+
+```
+##    A B C D
+## R1 a c e g
+## R2 b d f h
+```
+
+This result is now almost equivalent to the orignal data. (Note `d1` was a matrix, but reading a table from disk always returns a data frame.)
+
+
+
+
+
+
