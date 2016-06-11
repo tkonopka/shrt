@@ -24,15 +24,48 @@ grepv = function(pattern, x, value=T, ...) {
 
 
 
-##' Concatenate strings
+##' Creates a matrix with row and column names
 ##'
-##' This is an exact copy of paste0, just the name is shorter
+##' Compared to matrix(), this function has simpler syntax
+##' for creating a matrix with names, especially only 
+##' column names.
 ##'
-##' @param ... passed on to paste0
+##' The name mtrx is short for (m)a(tr)i(x).
+##'
+##' @param data data vector, contents of the matrix
+##' @param row.names character vector, row names
+##' @param col.names character vector, column names
+##' @param nrow integer, number of rows
+##' @param ncol integer, number of columns
+##' @param byrow logical, determines fill direction
 ##'
 ##' @export
-p0 = function(...) {
-  base::paste0(...)
+mtrx = function(data=NA, row.names=NULL, col.names=NULL, 
+  nrow=NULL, ncol=NULL, byrow=FALSE) {
+
+  if (!is.null(nrow) & !is.null(row.names)) {
+    if (length(row.names)!=nrow) {
+      stop("mtrx: number of rows do not match\n")
+    }
+  }
+  if (!is.null(ncol) & !is.null(col.names)) {
+    if (length(col.names)!=ncol) {
+      stop("mtrx: number of cols do not match\n")
+    }
+  }
+
+  if (is.null(ncol)) {
+    ncol = length(col.names)
+  }
+  if (is.null(nrow)) {
+    nrow = length(row.names)
+  }
+  
+  ans = matrix(data, nrow=nrow, ncol=ncol, byrow=byrow)
+  colnames(ans) = col.names
+  rownames(ans) = row.names
+  
+  ans
 }
 
 
@@ -72,6 +105,21 @@ newv = function(mode="list", length=0, names=NULL) {
   
   ans
 }
+
+
+
+
+##' Concatenate strings
+##'
+##' This is an exact copy of paste0, just the name is shorter
+##'
+##' @param ... passed on to paste0
+##'
+##' @export
+p0 = function(...) {
+  base::paste0(...)
+}
+
 
 
 

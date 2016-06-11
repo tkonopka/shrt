@@ -2,6 +2,7 @@
 
 export(grepv)
 export(msg)
+export(mtrx)
 export(newmsg)
 export(newv)
 export(p0)

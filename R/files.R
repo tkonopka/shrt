@@ -14,16 +14,31 @@
 ##' The name is short for: (r)ead (t)able with (h)eader and (t)ab separated
 ##' 
 ##' @param f filename
+##' @param rowid.column character name of column to use as rownames 
 ##' @param header logical, determines if to read the header
 ##' @param sep character, column separator
 ##' @param stringsAsFactors logical, determines whether strings are
 ##' converted into factors
+##' 
 ##' @param ... other parameters passed on to read.table
 ##' 
 ##' @export
-rtht = function(f, header=TRUE, sep="\t", stringsAsFactors=FALSE, ...) {
-  utils::read.table(f, header=header, sep=sep,
-                    stringsAsFactors=stringsAsFactors, ...)  
+rtht = function(f, rowid.column=NULL, header=TRUE,
+  sep="\t", stringsAsFactors=FALSE, ...) {
+  
+  ans = utils::read.table(f, header=header, sep=sep,
+    stringsAsFactors=stringsAsFactors, ...)
+  
+  ## handle row names from a column
+  if (!is.null(rowid.column)) {
+    if (!rowid.column %in% colnames(ans)) {
+      stop("rtht: rowid.column does not exist in table\n")
+    }
+    rownames(ans) = ans[, rowid.column]
+    ans = ans[, colnames(ans) != rowid.column, drop=FALSE]
+  }
+
+  ans
 }
 
 
@@ -53,7 +68,12 @@ rtht = function(f, header=TRUE, sep="\t", stringsAsFactors=FALSE, ...) {
 ##' @export
 wtht = function(x, file, rowid.column=NULL, row.names=FALSE,
   col.names=TRUE, quote=FALSE, sep="\t", ...) {
-  
+
+  ## when rowid.column is specified, no need to set row.names
+  if (!is.null(rowid.column)) {
+    row.names=TRUE
+  }
+
   ## perhaps modify the table to incorporate the row names
   if (row.names & !is.null(rowid.column)) {
     if (is.null(rownames(x))) {
