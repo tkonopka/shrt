@@ -16,7 +16,7 @@ msg(action="reset")
 A common way to output a message onto the console is with `cat`
 
 ```{r}
-cat("hello")
+cat("hello world")
 ```
 
 The `msg` function performs a similar role, except that it also outputs a date and time
@@ -26,20 +26,20 @@ msg("hello")
 msg("hello again")
 ```
 
-An interesting feature is that `msg` internally records all the messages so that they can be retrieved at a later date. 
+An interesting feature is that `msg` internally records all the messages so that they can be retrieved later. 
 
 ```{r}
 msg(action="show")
 ```
 
-It is also possible to retrieve the messages without displaying them
+Note the output here consists of all the previous `msg` messages. It is also possible to retrieve the messages without displaying them
 
 ```{r}
 mm = msg(action="get")
 mm
 ```
 
-The is handy if the messages require further processing, for example saving into a log file. 
+This handy if the messages require further processing, for example saving into a log file. 
 
 When the log is no longer needed, it can be reset 
 
@@ -47,6 +47,8 @@ When the log is no longer needed, it can be reset
 msg(action="reset")
 msg(action="show")
 ```
+
+The output from the last command is not empty. 
 
 
 &nbsp;
@@ -62,8 +64,8 @@ class(silent.msg)
 The new object is a function that works analogously to `msg` above. 
 
 ```{r}
-silent.msg("hi 123")
-silent.msg("hi 456")
+silent.msg("hi")
+silent.msg("hi again")
 ```
 
 The messages can again be displayed as above. 
@@ -72,6 +74,7 @@ The messages can again be displayed as above.
 silent.msg(action="show")
 ```
 
+We see all the recorded messages, here without date because of `date=FALSE` in the constructor. 
 
 
 

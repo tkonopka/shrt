@@ -14,11 +14,11 @@ A common way to output a message onto the console is with `cat`
 
 
 ```r
-cat("hello")
+cat("hello world")
 ```
 
 ```
-## hello
+## hello world
 ```
 
 The `msg` function performs a similar role, except that it also outputs a date and time
@@ -29,7 +29,7 @@ msg("hello")
 ```
 
 ```
-## [2016-06-11 17:54:49]	hello
+## [2016-06-12 10:21:06]	hello
 ```
 
 ```r
@@ -37,10 +37,10 @@ msg("hello again")
 ```
 
 ```
-## [2016-06-11 17:54:49]	hello again
+## [2016-06-12 10:21:06]	hello again
 ```
 
-An interesting feature is that `msg` internally records all the messages so that they can be retrieved at a later date. 
+An interesting feature is that `msg` internally records all the messages so that they can be retrieved later. 
 
 
 ```r
@@ -48,11 +48,11 @@ msg(action="show")
 ```
 
 ```
-## [2016-06-11 17:54:49]	hello 
-## [2016-06-11 17:54:49]	hello again
+## [2016-06-12 10:21:06]	hello 
+## [2016-06-12 10:21:06]	hello again
 ```
 
-It is also possible to retrieve the messages without displaying them
+Note the output here consists of all the previous `msg` messages. It is also possible to retrieve the messages without displaying them
 
 
 ```r
@@ -61,11 +61,11 @@ mm
 ```
 
 ```
-## [1] "[2016-06-11 17:54:49]\thello \n"      
-## [2] "[2016-06-11 17:54:49]\thello again \n"
+## [1] "[2016-06-12 10:21:06]\thello \n"      
+## [2] "[2016-06-12 10:21:06]\thello again \n"
 ```
 
-The is handy if the messages require further processing, for example saving into a log file. 
+This handy if the messages require further processing, for example saving into a log file. 
 
 When the log is no longer needed, it can be reset 
 
@@ -74,6 +74,8 @@ When the log is no longer needed, it can be reset
 msg(action="reset")
 msg(action="show")
 ```
+
+The output from the last command is not empty. 
 
 
 &nbsp;
@@ -95,8 +97,8 @@ The new object is a function that works analogously to `msg` above.
 
 
 ```r
-silent.msg("hi 123")
-silent.msg("hi 456")
+silent.msg("hi")
+silent.msg("hi again")
 ```
 
 The messages can again be displayed as above. 
@@ -107,10 +109,11 @@ silent.msg(action="show")
 ```
 
 ```
-## hi 123 
-## hi 456
+## hi 
+## hi again
 ```
 
+We see all the recorded messages, here without date because of `date=FALSE` in the constructor. 
 
 
 

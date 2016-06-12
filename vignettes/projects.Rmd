@@ -4,6 +4,7 @@ This vignette demonstrate function in the `projects` range.
 
 ```{r, echo=FALSE}
 library(shrt)
+msg(action="reset")
 ```
 
 
@@ -16,7 +17,15 @@ library(shrt)
 wp = initp("MyProjects")
 ```
 
-The returned object is a simple list with all the directories
+The returned object is a simple list with all the directories.
+
+Note that the messages displayed by `initp` are output via function `msg`. This means they are logged and can be retrieved
+
+```{r}
+msg(action="show")
+```
+
+See documentation for `msg` for further details. 
 
 ```{r, echo=FALSE}
 unlink("MyProjects", recursive=TRUE)

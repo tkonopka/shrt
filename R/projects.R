@@ -21,14 +21,14 @@ initp = function(workdir,
 
   ## some subdirectories will not be allowed ("work" and "version")
   if ("work" %in% subdirs) {
-    stop("nproj: subdirectory 'work' is not permitted\n")
+    stop("initp: subdirectory 'work' is not permitted\n")
   }
   
   ## helper function, check for a directory
   makeDir = function(dd, ...) {
     if (!file.exists(dd)) {
       if (verbose) {
-        msg("nproj is creating: ",dd)
+        msg("Creating: ",dd)
       }
       dir.create(dd, ...)
     }
