@@ -32,16 +32,18 @@ The following is a quick synopsis of the functions available in the package. Col
  messages | newmsg | create message logger 
  files | rtht | read tables from files 
  files | wtht | write tables to files 
+ projects | initp | initiate directories/folders for a project
  utils | grepv | pattern matching 
  utils | mtrx | creating matrices 
  utils | newv | creating empty, named vectors 
  utils | p0 | paste0 
 
+*Note:* Some of these functions overlap and supersede content from package [Rpipelines](ttps://github.com/tkonopka/Rpipelines).
 
 
 ## Documentation
 
-The goal is to provide some documentation on each function (or each family of functions) through markdown [vignettes](https://github.com/tkonopka/shrt/tree/master/inst/doc).
+Documentation on each function (or each family of functions) is available through markdown [vignettes](https://github.com/tkonopka/shrt/tree/master/inst/doc).
 
 
 ## License

@@ -1,0 +1,28 @@
+# `shrt`: Project management
+
+This vignette demonstrate function in the `projects` range.
+
+```{r, echo=FALSE}
+library(shrt)
+```
+
+
+&nbsp;
+## initp
+
+`initp` creates a new directory and some subdirectories. 
+
+```{r}
+wp = initp("MyProjects")
+```
+
+The returned object is a simple list with all the directories
+
+```{r, echo=FALSE}
+unlink("MyProjects", recursive=TRUE)
+```
+
+
+
+
+
