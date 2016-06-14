@@ -2,6 +2,7 @@
 
 export(grepv)
 export(initp)
+export(load1)
 export(msg)
 export(mtrx)
 export(newmsg)

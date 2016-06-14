@@ -5,6 +5,32 @@
 
 
 
+##' Load one R object from an Rda file
+##'
+##' This functions loads an object from an Rda file. In contrast to
+##' standard load(), this function does not put the loaded object
+##' in the current environment. Rather, this function returns the loaded
+##' data as an object. It is thus possible to save an object x using
+##' save(x, file=myfile), and then retrieve it using y = load1(myfile). 
+##'
+##' The name is short for: (load 1) object
+##'
+##' @param file filename with Rda object
+##'
+##' @export
+load1 = function(file) {
+  ## load from file into weird-name variable to avoid overwriting data
+  tempAJIDPJSJXFOPP238Q = load(file)
+  if (length(tempAJIDPJSJXFOPP238Q)>1) {
+    stop("load1: loading file creates more than one object\n")
+  }
+  tempAJIDPJSJXFOPP238Q = paste0("return(", tempAJIDPJSJXFOPP238Q[1], ")")
+  eval(parse(text=tempAJIDPJSJXFOPP238Q))
+}
+
+
+
+
 ##' Read table from file
 ##'
 ##' This is a wrapper for read.table. By default it assumes the file
@@ -18,8 +44,7 @@
 ##' @param header logical, determines if to read the header
 ##' @param sep character, column separator
 ##' @param stringsAsFactors logical, determines whether strings are
-##' converted into factors
-##' 
+##' converted into factors 
 ##' @param ... other parameters passed on to read.table
 ##' 
 ##' @export
@@ -97,8 +122,6 @@ wtht = function(x, file, rowid.column=NULL, row.names=FALSE,
   utils::write.table(x, file=file, col.names=col.names, row.names=row.names,
                      quote=quote, sep=sep, ...)  
 }
-
-
 
 
 

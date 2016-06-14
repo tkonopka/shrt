@@ -97,4 +97,106 @@ This result is now almost equivalent to the orignal data. (Note `d1` was a matri
 
 
 
+&nbsp;
+## load1
 
+`load1` retrieves data from a file on disk in a similar way to `load`. However, `load1` is specialized to loading single objects from a file. This is handy in situations such as demonstrated below.
+
+Let's save our matrix into an Rda file
+
+
+```r
+save(d1, file="test.Rda")
+```
+
+The best way to check that the data is really saved would be to load it into
+a new R session. Here, we can achieve a similar effect by removing the variable from the environment and then loading it from the file. 
+
+
+```r
+rm(d1)
+d1
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'd1' not found
+```
+
+As expected, this returned an error. But we can now load the data from the saved file
+
+
+```r
+load("test.Rda")
+d1
+```
+
+```
+##    A   B   C   D  
+## R1 "a" "c" "e" "g"
+## R2 "b" "d" "f" "h"
+```
+
+A 'feature' of the standard `load` function is that data is associated with the same object names as at the time of `save`. In this case, the matrix appears in the object called `d1`. 
+
+However, this behavior is not always desirable. If we already have an object `d1` in the environment, loading from file would over-write our data
+
+
+```r
+d1 = "Important"
+d1
+```
+
+```
+## [1] "Important"
+```
+
+```r
+load("test.Rda")
+d1
+```
+
+```
+##    A   B   C   D  
+## R1 "a" "c" "e" "g"
+## R2 "b" "d" "f" "h"
+```
+
+Thus, we can loose important information through loading of external data. This is where `load1` can be useful
+
+
+```r
+d1 = "Important"
+d1
+```
+
+```
+## [1] "Important"
+```
+
+```r
+dfile = load1("test.Rda")
+d1
+```
+
+```
+## [1] "Important"
+```
+
+```r
+dfile
+```
+
+```
+##    A   B   C   D  
+## R1 "a" "c" "e" "g"
+## R2 "b" "d" "f" "h"
+```
+
+Thus, we keep all objects in our environment intact and assign the new data into a variable of our choice. 
+
+
+
+
+
+
+&nbsp;
