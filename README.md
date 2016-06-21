@@ -30,6 +30,7 @@ The following is a quick synopsis of the functions available in the package. Col
  --- | --- | --- 
  messages | msg | log and output a message 
  messages | newmsg | create message logger 
+ files | load1 | load from Rdata file into a named object
  files | rtht | read tables from files 
  files | wtht | write tables to files 
  projects | initp | initiate directories/folders for a project
