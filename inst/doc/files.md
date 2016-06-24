@@ -72,9 +72,9 @@ d3
 ```
 
 ```
-##    rowid A B C D
-## R1    R1 a c e g
-## R2    R2 b d f h
+##   rowid A B C D
+## 1    R1 a c e g
+## 2    R2 b d f h
 ```
 
 Note here that the table contains a column `rowid` that did not appear in the original dataset. We can optionally eliminate this column whilst reading the data

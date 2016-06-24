@@ -13,10 +13,9 @@ wtht(x, file, rowid.column = NULL, row.names = FALSE, col.names = TRUE,
 \item{file}{detstination file}
 
 \item{rowid.column}{character, determines name of column that will hold
-row names. This is only relevant for row.names=TRUE. Leave NULL to
-use R's standard system, i.e. header with one fewer element than table
-body. Set to something, e.g. "rowname" to create a new column called
-"rowname" with the actual row names}
+row names. Leave NULL to use R's standard system, i.e. header with one
+fewer element than table body. Set to something, e.g. "rowname" to create
+a new column called "rowname" with the actual row names}
 
 \item{row.names}{logical, determines whether to write row names}
 
