@@ -1,6 +1,8 @@
 # shrt
 Functions for shorter R code
 
+![Status](https://travis-ci.org/tkonopka/shrt.svg?branch=master)
+
 
 ## Introduction
 
