@@ -80,10 +80,9 @@ rtht = function(f, rowid.column=NULL, header=TRUE,
 ##' @param x data frame or matrix
 ##' @param file detstination file
 ##' @param rowid.column character, determines name of column that will hold
-##' row names. This is only relevant for row.names=TRUE. Leave NULL to
-##' use R's standard system, i.e. header with one fewer element than table
-##' body. Set to something, e.g. "rowname" to create a new column called
-##' "rowname" with the actual row names
+##' row names. Leave NULL to use R's standard system, i.e. header with one
+##' fewer element than table body. Set to something, e.g. "rowname" to create
+##' a new column called "rowname" with the actual row names
 ##' @param row.names logical, determines whether to write row names
 ##' @param col.names logical, determines whether to write column names
 ##' @param quote logical, determines quotation marks
@@ -94,17 +93,11 @@ rtht = function(f, rowid.column=NULL, header=TRUE,
 wtht = function(x, file, rowid.column=NULL, row.names=FALSE,
   col.names=TRUE, quote=FALSE, sep="\t", ...) {
 
-  ## when rowid.column is specified, no need to set row.names
+  ## when rowid.column is specified, change the input table x with new column
   if (!is.null(rowid.column)) {
-    row.names=TRUE
-  }
-
-  ## perhaps modify the table to incorporate the row names
-  if (row.names & !is.null(rowid.column)) {
     if (is.null(rownames(x))) {
       rownames(x) = as.character(seq_len(nrow(x)))
     }
-    
     ## what happens if the desired rowid column already
     ## exists in the table? Either forgive or complain
     if (rowid.column %in% colnames(x)) {
