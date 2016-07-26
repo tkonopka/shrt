@@ -6,5 +6,5 @@ Author: Tomasz Konopka <tokonopka@gmail.com>
 Maintainer: Tomasz Konopka <tokonopka@gmail.com>
 Description: Collection of shorthand functions to streamline R code
 Depends: R (>= 3.1.2)
-License: MIT
+License: MIT + file LICENSE
 LazyData: true
