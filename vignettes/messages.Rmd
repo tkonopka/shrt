@@ -39,7 +39,7 @@ mm = msg(action="get")
 mm
 ```
 
-This handy if the messages require further processing, for example saving into a log file. 
+This is handy if the messages require further processing, for example saving into a log file. 
 
 When the log is no longer needed, it can be reset 
 
@@ -48,13 +48,13 @@ msg(action="reset")
 msg(action="show")
 ```
 
-The output from the last command is not empty. 
+The output from the last command is now empty. 
 
 
 &nbsp;
 ## newmsg
 
-`newmsg` is factory function that creates a new message log. For example, we can create a silent log that does not include the call date. 
+`newmsg` is factory function that creates a new message log/logger. For example, we can create a silent log that does not include the call date. 
 
 ```{r}
 silent.msg = newmsg(verbose=FALSE, date=FALSE)

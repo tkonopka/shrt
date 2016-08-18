@@ -123,3 +123,68 @@ p0 = function(...) {
 
 
 
+##' Get element names in a vector that hold given values
+##'
+##' The name is short for: (names) of elements with given (V)alues 
+##' 
+##' @param x vector 
+##' @param v vector of value within x to look for
+##' 
+##' @export
+namesV = function(x, v) {    
+    if (is.null(names(x))) {
+        stop("namesV: input does not have names\n")
+    }    
+    names(x[x %in% v])
+}
+
+
+
+
+##' Get element names in a vector that hold value TRUE
+##'
+##' This function is a derivative of namesV
+##' 
+##' @param x logical vector
+##'
+##' @export
+namesT = function(x) {
+    if (class(x)!="logical") {
+        stop("namesT: input x must be logical, instead it is of class ", class(x), "\n")
+    } 
+    namesV(x, TRUE)
+}
+
+
+
+
+##' Get element names in a vector that hold value FALSE
+##'
+##' This function is a derivative of namesV
+##' 
+##' @param x logical vector
+##'
+##' @export
+namesF = function(x) {
+    if (class(x)!="logical") {
+        stop("namesT: input x must be logical, instead it is of class ", class(x), "\n")
+    } 
+    namesV(x, FALSE)
+}
+
+
+
+
+##' Get element names in a vector that are NA
+##'
+##' This function is a derivative of namesV
+##' 
+##' @param x vector
+##'
+##' @export
+namesNA = function(x) {    
+    namesV(x, NA)
+}
+
+
+
