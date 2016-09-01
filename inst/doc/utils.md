@@ -1,4 +1,4 @@
-# `shrt`: General purpose functions
+# `shrt`: General-purpose functions
 
 This vignette demonstrates functions in the `utils` range.
 
@@ -94,6 +94,115 @@ Note how the number of columns is automatically determined by the specified name
 
 
 &nbsp;
+## namesF, namesNA, namesT, namesV
+
+The four functions `namesF`, `namesNA`, `namesT`, and `namesV` are variations on a theme. They act on a vector and provide the names of elements that match particular values. 
+
+Consider a named vector with boolean values
+
+
+```r
+foo.boolean = setNames((1:10)%%2==0, letters[1:10])
+foo.boolean
+```
+
+```
+##     a     b     c     d     e     f     g     h     i     j 
+## FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE
+```
+
+If we want to know which of letters is associated with a true value, we can match the pattern and fetch the names.
+
+
+```r
+names(foo.boolean)[foo.boolean==TRUE]
+```
+
+```
+## [1] "b" "d" "f" "h" "j"
+```
+
+With the `namesT` function, we can instead write
+
+
+```r
+namesT(foo.boolean)
+```
+
+```
+## [1] "b" "d" "f" "h" "j"
+```
+
+Note how we avoid writing the vector twice! The function `namesF` behaves similarly but returns the names of elements that are marked as false. 
+
+Consider now that the vector contains numbers or strings.
+
+
+```r
+foo.integer = setNames(c(2,4,NA,0,-1,3,NA,7,3,NA), LETTERS[1:10])
+foo.integer
+```
+
+```
+##  A  B  C  D  E  F  G  H  I  J 
+##  2  4 NA  0 -1  3 NA  7  3 NA
+```
+
+Suppose we want to know the names that match a certain value, say 3. Finding these is not hard, but it is important to handle NAs carefully. 
+
+
+```r
+names(foo.integer)[foo.integer==3]
+```
+
+```
+## [1] NA  "F" NA  "I" NA
+```
+
+```r
+names(foo.integer)[foo.integer %in% 3]
+```
+
+```
+## [1] "F" "I"
+```
+
+The function `namesV` provides the latter implementation with a simple syntax.
+
+
+```r
+namesV(foo.integer, 3)
+```
+
+```
+## [1] "F" "I"
+```
+
+Finally, `namesNA` provides element names that hold NAs.
+
+
+```r
+names(foo.integer)[is.na(foo.integer)]
+```
+
+```
+## [1] "C" "G" "J"
+```
+
+```r
+namesNA(foo.integer)
+```
+
+```
+## [1] "C" "G" "J"
+```
+
+
+
+
+
+
+&nbsp;
 ## newv
 
 `newv` creates a new vector of specified length, possibly containing names. 
@@ -173,7 +282,6 @@ Note that the length of the output object is determined by the names.
 
 
 
-
 &nbsp;
 ## p0
 
@@ -181,18 +289,18 @@ Note that the length of the output object is determined by the names.
 
 
 ```r
-paste0(greek)
+paste0(greek[1], greek[2])
 ```
 
 ```
-## [1] "alpha" "beta"  "gamma" "delta"
+## [1] "alphabeta"
 ```
 
 ```r
-p0(greek)
+p0(greek[1], greek[2])
 ```
 
 ```
-## [1] "alpha" "beta"  "gamma" "delta"
+## [1] "alphabeta"
 ```
 
