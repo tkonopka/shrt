@@ -13,28 +13,28 @@
 ##' The names is short for: (ap)ply (w)ith (i)terator
 ##' 
 ##' @param x vector or list
-##' @param FUN function. The structure of the function should be function(i, x)
+##' @param fun function. The structure of the function should be function(i, x)
 ##' where 'i' is an index variable and 'x' is the data.
 ##' @param ... parameters passed on to FUN
 ##'
 ##' @export
-apwi = function(X, FUN, ...) {
+apwi = function(x, fun, ...) {
 
     ## get the iterator names or indexes.
     ## Defaults to integers, but uses names(x) if available
-    APWI.INDEXES = seq_len(length(X))
-    if (!is.null(names(X))) {
-        APWI.INDEXES = names(X)
+    apwi.indexes = seq_len(length(x))
+    if (!is.null(names(x))) {
+        apwi.indexes = names(x)
     }
 
     ## perform a loop over the input data, and apply the FUN
-    APWI.RESULT = list()
-    for (APWI.I in APWI.INDEXES) {
-        APWI.RESULT[[APWI.I]] = FUN(APWI.I, X[[APWI.I]], ...)
+    apwi.result = list()
+    for (apwi.i in apwi.indexes) {
+        apwi.result[[apwi.i]] = fun(apwi.i, x[[apwi.i]], ...)
     }
 
     ## return the result in a quiet way
-    invisible(APWI.RESULT)
+    invisible(apwi.result)
 }
 
 
@@ -49,12 +49,12 @@ apwi = function(X, FUN, ...) {
 ##'
 ##' The name is short for: s(ap)ply with (i)invisible (o)utput
 ##'
-##' @param X vector or list
-##' @param FUN function
+##' @param x vector or list
+##' @param fun function
 ##' @param ... parameters passed on to FUN
 ##'
 ##' @export
-apio = function(X, FUN, ...) {
-    invisible(sapply(X, FUN, ...))
+apio = function(x, fun, ...) {
+    invisible(sapply(x, fun, ...))
 }
 

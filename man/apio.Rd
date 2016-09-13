@@ -4,12 +4,12 @@
 \alias{apio}
 \title{Apply function with invisible output}
 \usage{
-apio(X, FUN, ...)
+apio(x, fun, ...)
 }
 \arguments{
-\item{X}{vector or list}
+\item{x}{vector or list}
 
-\item{FUN}{function}
+\item{fun}{function}
 
 \item{...}{parameters passed on to FUN}
 }

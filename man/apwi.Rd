@@ -4,15 +4,15 @@
 \alias{apwi}
 \title{Apply function with an iterator}
 \usage{
-apwi(X, FUN, ...)
+apwi(x, fun, ...)
 }
 \arguments{
-\item{FUN}{function. The structure of the function should be function(i, x)
+\item{x}{vector or list}
+
+\item{fun}{function. The structure of the function should be function(i, x)
 where 'i' is an index variable and 'x' is the data.}
 
 \item{...}{parameters passed on to FUN}
-
-\item{x}{vector or list}
 }
 \description{
 Performs a loop over a vector or a list, performing an action on each element.
