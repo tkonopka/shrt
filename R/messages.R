@@ -27,7 +27,11 @@ newmsg = function(verbose=TRUE, date=TRUE) {
     if (is.null(x) & action=="log") {
       action="show"
     }
-    x = paste(x, ..., "\n", collapse=" ")
+
+    if (length(list(...))>0) {
+        x = paste(x, ..., collapse=" ")
+    }
+    x = paste0(x, "\n")
     if (date) {
       x = paste0("[", Sys.time(), "]\t", x)
     }
