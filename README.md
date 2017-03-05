@@ -8,14 +8,14 @@ Functions for shorter R code
 
 It is important for code to be legible - this helps in understanding
 and maintaining previous work. However, some commands or sequences of 
-commands sometimes occur so often that one can wish for shorthand notation. 
+commands occur so often that one can wish for shorthand notation. 
 This package is a collection of such shorthand functions that trade some
 expressivity in function names for typing convenience.
 
-For example, I personally write tables to files using options set 
-`quote=F, col.names=T, row.names=F, sep='\t'`. This package thus implements
-a function `wtht()` that achieves these common settings by default and thus 
-shortens code substantially. 
+For example, writing tab-separated tables to files requires calling `write.table()` 
+with options `quote=F, col.names=T, row.names=F, sep='\t'`. This package thus 
+implements a function `wtht()` that achieves these common settings by default 
+and thus shortens code substantially. 
 
 Many of the function in this package are similar to `wtht()` in that they 
 are relatively simple wrappers for existing R functions. Some of the functions, 
@@ -35,9 +35,11 @@ to find the code and documentation. Column `Function` shows the function names.
 
  Group | Function | Description 
  --- | --- | --- 
+ colors | x2hex | map values into a hex transparency code
+ colors | x2col | map vectors or matrices onto a 2-color scale
  messages | msg | log and output a message 
  messages | newmsg | create message logger 
- files | load1 | load from Rdata file into a named object
+ files | load1 | load from Rdata file into one named object
  files | rtht | read tables from files 
  files | wtht | write tables to files 
  projects | initp | initiate directories/folders for a project
@@ -50,8 +52,6 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | newv | creating empty, named vectors 
  utils | p0 | paste0 
 
-*Note:* Some of these functions overlap and supersede content from package 
-[Rpipelines](https://github.com/tkonopka/Rpipelines).
 
 
 ## Documentation
