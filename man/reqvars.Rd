@@ -7,9 +7,9 @@
 reqvars(varnames, halt = TRUE)
 }
 \arguments{
-\item{halt}{logical determines whether stop() is called (stop is reserved)}
+\item{varnames}{vector with variable names}
 
-\item{vars}{vector with variable names}
+\item{halt}{logical determines whether stop() is called (stop is reserved)}
 }
 \value{
 logical vector, indicates whether each variable in vars

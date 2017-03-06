@@ -12,6 +12,7 @@ x2hex(x, type = "x")
 \item{type}{use "x" for lowercase hex and "X" for uppercase hex}
 }
 \description{
-This is useful when converting into transparency levels.
+The names is short for: convert (x) (to) a (hex) value. Useful for
+generating transparency levels.
 }
 

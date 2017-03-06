@@ -55,7 +55,7 @@ initp = function(workdir,
 ##'
 ##' The name is short for: (req)uire (var)iable(s)
 ##'
-##' @param vars vector with variable names
+##' @param varnames vector with variable names
 ##' @param halt logical determines whether stop() is called (stop is reserved)
 ##'
 ##' @return logical vector, indicates whether each variable in vars

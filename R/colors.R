@@ -7,7 +7,8 @@
 
 ##' Convert numbers [0,1] into two-digit hex [00,ff]
 ##'
-##' This is useful when converting into transparency levels.
+##' The names is short for: convert (x) (to) a (hex) value. Useful for
+##' generating transparency levels.
 ##'
 ##' @param x numeric vector
 ##' @param type use "x" for lowercase hex and "X" for uppercase hex
@@ -30,6 +31,9 @@ x2hex = function (x, type="x") {
 
 
 ##' Convert numbers or matrices into colors with transparency
+##'
+##' The name is short for: convert (x) (to) a (col)or with transparency
+##' shading. Useful for generating heatmaps.
 ##' 
 ##' @param x numeric vector or matrix.
 ##' @param col vector of two colors in #XXXXXX format.

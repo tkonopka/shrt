@@ -19,6 +19,7 @@ Second element determines color associated with positive values}
 will be replaced with this bg color instead.}
 }
 \description{
-Convert numbers or matrices into colors with transparency
+The name is short for: convert (x) (to) a (col)or with transparency
+shading. Useful for generating heatmaps.
 }
 
