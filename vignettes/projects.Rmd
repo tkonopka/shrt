@@ -28,10 +28,24 @@ msg(action="show")
 See documentation for `msg` for further details. 
 
 ```{r, echo=FALSE}
+## this block makes sure the directory is cleaned up
 unlink("MyProjects", recursive=TRUE)
 ```
 
 
+
+&nbsp;
+## reqvars
+
+`reqvars` checks that a set of variable names are defined.
+
+```{r}
+a1 = 3
+a4 = 0
+reqvars(c("a1", "a2", "a3", "a4"))
+```
+
+The call prints out messages about variable names that are expected, but not defined. When there are missing variables in the environment, the default action is to call `stop()`. (Argument `halt` can be set to `FALSE` to prevent this behavior.)
 
 
 

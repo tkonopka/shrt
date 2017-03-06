@@ -43,6 +43,7 @@ to find the code and documentation. Column `Function` shows the function names.
  files | rtht | read tables from files 
  files | wtht | write tables to files 
  projects | initp | initiate directories/folders for a project
+ projects | reqvars | check whether variables are defined
  utils | grepv | pattern matching 
  utils | mtrx | creating matrices 
  utils | namesF | get elements with value FALSE

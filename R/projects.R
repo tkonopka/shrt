@@ -4,6 +4,7 @@
 
 
 
+
 ##' Initialize a directory structure for a project
 ##'
 ##' The name is short for: (init)ialize a new (p)roject
@@ -46,4 +47,37 @@ initp = function(workdir,
   invisible(ans)
 }
 
+
+
+
+
+##' Check that variables are defined
+##'
+##' The name is short for: (req)uire (var)iable(s)
+##'
+##' @param vars vector with variable names
+##' @param halt logical determines whether stop() is called (stop is reserved)
+##'
+##' @return logical vector, indicates whether each variable in vars
+##' is defined
+##' 
+##' @export
+reqvars = function(varnames, halt=TRUE) {
+
+    ## check that each variable exists in parent environment
+    varexists = sapply(as.character(varnames), function(x) {
+        xe = exists(x, parent.frame())
+        if (!xe) {
+            cat("Missing variable: ", x, "\n")
+        }
+        xe
+    })
+    
+    if (halt & sum(!varexists)>0) {
+        stop("Missing variables\n", call.=FALSE)
+    }
+
+    ## output is a vector with existence values for each variable
+    invisible(varexists)
+}
 
