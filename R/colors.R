@@ -15,12 +15,26 @@
 ##' 
 ##' @export
 x2hex = function (x, type="x") {
+    ## deal with edge case where x is a single NA value
+    ## This case causes errors in the sprintf below
+    ## (cases with NA inside a vector are handled correctly below)
+    if (length(x)==1) {
+        if (!is.finite(x)) {
+            return(NA)
+        }
+    }
     ## deal with x in [0,1] only
     x[x>1] = 1
     x[x<0] = 0
     ## get a first conversion into hex
     ans = sprintf(paste0("%02",type), round(x * 255))
-    names(ans) = names(x)
+    if (class(x)=="matrix") {
+        ans = matrix(ans, ncol=ncol(x))
+        rownames(ans) = rownames(x)
+        colnames(ans) = colnames(x)
+    } else {
+        names(ans) = names(x)
+    }
     ## but above changes NA into text "NA" -> restore real NA
     badx = !is.finite(x)
     ans[badx] = x[badx]

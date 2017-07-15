@@ -5,6 +5,8 @@ This vignette demonstrates functions in the `utils` range.
 
 
 
+
+
 &nbsp;
 ## grepv
 
@@ -36,6 +38,7 @@ grepv("a[lm]", greek)
 ```
 ## [1] "alpha" "gamma"
 ```
+
 
 
 
@@ -200,8 +203,6 @@ namesNA(foo.integer)
 
 
 
-
-
 &nbsp;
 ## newv
 
@@ -281,7 +282,6 @@ Note that the length of the output object is determined by the names.
 
 
 
-
 &nbsp;
 ## p0
 
@@ -304,3 +304,21 @@ p0(greek[1], greek[2])
 ## [1] "alphabeta"
 ```
 
+
+
+
+&nbsp;
+## lenu
+
+`lenu` is equivalent to `unique` followed by `length`. It returns the
+number of unique elements in a vector.
+
+
+```r
+foo = c("f", "o", "o")
+lenu(foo)
+```
+
+```
+## [1] 2
+```

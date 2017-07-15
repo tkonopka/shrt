@@ -7,6 +7,8 @@ library(shrt)
 ```
 
 
+
+
 &nbsp;
 ## grepv
 
@@ -27,6 +29,21 @@ The `grepv` function syntax is
 ```{r}
 grepv("a[lm]", greek) 
 ```
+
+
+
+
+&nbsp;
+## lenu
+
+`lenu` is equivalent to `unique` followed by `length`. It returns the
+number of unique elements in a vector.
+
+```{r}
+foo = c("f", "o", "o")
+lenu(foo)
+```
+
 
 
 
@@ -119,8 +136,6 @@ namesNA(foo.integer)
 
 
 
-
-
 &nbsp;
 ## newv
 
@@ -154,7 +169,6 @@ newv("list", names=greek)
 ```
 
 Note that the length of the output object is determined by the names. 
-
 
 
 

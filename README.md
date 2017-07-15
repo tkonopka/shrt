@@ -51,6 +51,7 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | namesT | get elements with value TRUE
  utils | namesV | get elements with given value(s)
  utils | newv | creating empty, named vectors 
+ utils | lenu | number of unique elements
  utils | p0 | paste0 
 
 

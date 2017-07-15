@@ -188,3 +188,17 @@ namesNA = function(x) {
 
 
 
+
+##' Get number of unique elements in a vector
+##'
+##' The name is short for: (len)th of (u)nique(x)
+##' 
+##' @param x vector
+##'
+##' @export
+lenu = function(x) {    
+    length(unique(x))
+}
+
+
+

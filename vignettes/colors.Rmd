@@ -10,7 +10,7 @@ library(shrt)
 It will be handy to have a vector and a matrix with numbers
 
 ```{r}
-x = c(-0.2, 0, 0.04, 0.5, 1, NA, 1.2)
+x = c(-0.2, 0, 0.04, 0.5, 1, NA, 1.2, 0.8)
 names(x) = letters[1:length(x)]
 x
 y = mtrx(seq(-4, 4, length=9), row.names=letters[1:3], col.names=LETTERS[1:3])
@@ -37,6 +37,17 @@ The function provides useful behavior in special cases:
  - `NA` and other non-numbers are preserved as in the original input
  - names associated to the original data are preserved in the output
 
+The function also works when the input is a matrix.
+
+```{r}
+xmat = matrix(x, ncol=2)
+colnames(xmat) = LETTERS[1:2]
+rownames(xmat) = letters[1:4]
+xmat
+x2hex(xmat)
+```
+
+Note the column and row names are preserved under the transformation.
 
 
 &nbsp;	

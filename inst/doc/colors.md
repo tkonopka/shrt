@@ -9,14 +9,14 @@ It will be handy to have a vector and a matrix with numbers
 
 
 ```r
-x = c(-0.2, 0, 0.04, 0.5, 1, NA, 1.2)
+x = c(-0.2, 0, 0.04, 0.5, 1, NA, 1.2, 0.8)
 names(x) = letters[1:length(x)]
 x
 ```
 
 ```
-##     a     b     c     d     e     f     g 
-## -0.20  0.00  0.04  0.50  1.00    NA  1.20
+##     a     b     c     d     e     f     g     h 
+## -0.20  0.00  0.04  0.50  1.00    NA  1.20  0.80
 ```
 
 ```r
@@ -45,8 +45,8 @@ x
 ```
 
 ```
-##     a     b     c     d     e     f     g 
-## -0.20  0.00  0.04  0.50  1.00    NA  1.20
+##     a     b     c     d     e     f     g     h 
+## -0.20  0.00  0.04  0.50  1.00    NA  1.20  0.80
 ```
 
 ```r
@@ -54,8 +54,8 @@ x2hex(x)
 ```
 
 ```
-##    a    b    c    d    e    f    g 
-## "00" "00" "0a" "80" "ff"   NA "ff"
+##    a    b    c    d    e    f    g    h 
+## "00" "00" "0a" "80" "ff"   NA "ff" "cc"
 ```
 
 The function provides useful behavior in special cases:
@@ -65,6 +65,37 @@ The function provides useful behavior in special cases:
  - `NA` and other non-numbers are preserved as in the original input
  - names associated to the original data are preserved in the output
 
+The function also works when the input is a matrix.
+
+
+```r
+xmat = matrix(x, ncol=2)
+colnames(xmat) = LETTERS[1:2]
+rownames(xmat) = letters[1:4]
+xmat
+```
+
+```
+##       A   B
+## a -0.20 1.0
+## b  0.00  NA
+## c  0.04 1.2
+## d  0.50 0.8
+```
+
+```r
+x2hex(xmat)
+```
+
+```
+##   A    B   
+## a "00" "ff"
+## b "00" NA  
+## c "0a" "ff"
+## d "80" "cc"
+```
+
+Note the column and row names are preserved under the transformation.
 
 
 &nbsp;	
@@ -78,8 +109,8 @@ x
 ```
 
 ```
-##     a     b     c     d     e     f     g 
-## -0.20  0.00  0.04  0.50  1.00    NA  1.20
+##     a     b     c     d     e     f     g     h 
+## -0.20  0.00  0.04  0.50  1.00    NA  1.20  0.80
 ```
 
 ```r
@@ -89,8 +120,8 @@ x2col(x)
 ```
 ##           a           b           c           d           e           f 
 ## "#0000ff33"   "#ffffff" "#ff00000a" "#ff000080" "#ff0000ff"          NA 
-##           g 
-## "#ff0000ff"
+##           g           h 
+## "#ff0000ff" "#ff0000cc"
 ```
 
 The function provides the following behavior:
