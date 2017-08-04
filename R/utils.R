@@ -209,6 +209,7 @@ lenu = function(x) {
 ##' generating transparency levels.
 ##'
 ##' @param x object, could be a matrix, data.table, etc. 
+##' @param stringsAsFactors logical, convert character-columns to factors or not
 ##'
 ##' @export
 x2df = function(x, stringsAsFactors=F) {

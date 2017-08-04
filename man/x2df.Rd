@@ -8,6 +8,8 @@ x2df(x, stringsAsFactors = F)
 }
 \arguments{
 \item{x}{object, could be a matrix, data.table, etc.}
+
+\item{stringsAsFactors}{logical, convert character-columns to factors or not}
 }
 \description{
 The names is short for: convert (x) (to) a (d)ata (f)frame. Useful for
