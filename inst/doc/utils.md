@@ -43,6 +43,25 @@ grepv("a[lm]", greek)
 
 
 &nbsp;
+## lenu
+
+`lenu` is equivalent to `unique` followed by `length`. It returns the
+number of unique elements in a vector.
+
+
+```r
+foo = c("f", "o", "o")
+lenu(foo)
+```
+
+```
+## [1] 2
+```
+
+
+
+
+&nbsp;
 ## mtrx
 
 `mtrx` creates a matrix from input data. Compared to the usual `matrix`, it provides some new possibilities in naming rows and columns.
@@ -308,17 +327,69 @@ p0(greek[1], greek[2])
 
 
 &nbsp;
-## lenu
+## x2df
 
-`lenu` is equivalent to `unique` followed by `length`. It returns the
-number of unique elements in a vector.
+`x2df` is a conversion function that coerces an input object into a data frame. It is shorthand notations for calls to `data.frame`. For example, let's start with a matrix of characters.
 
 
 ```r
-foo = c("f", "o", "o")
-lenu(foo)
+charmat = mtrx(letters[1:9], col.names=c("x", "y", "z"), nrow=3)
+charmat
 ```
 
 ```
-## [1] 2
+##      x   y   z  
+## [1,] "a" "d" "g"
+## [2,] "b" "e" "h"
+## [3,] "c" "f" "i"
+```
+
+The conversion produces a related object
+
+
+```r
+chardf = x2df(charmat)
+chardf
+```
+
+```
+##   x y z
+## 1 a d g
+## 2 b e h
+## 3 c f i
+```
+
+The difference from the input is the class.
+
+
+```r
+class(chardf)
+```
+
+```
+## [1] "data.frame"
+```
+
+```r
+apply(chardf, 2, class)
+```
+
+```
+##           x           y           z 
+## "character" "character" "character"
+```
+
+The default behavior is to convert characters into characters, but it is also possible to set `stringsAsFactors` to true during the function call.
+
+In addition to such simple conversion, the function can also convert vectors into a data frame.
+
+
+```r
+myvec = setNames(1:4, letters[1:4])
+x2df(myvec)
+```
+
+```
+##   a b c d
+## 1 1 2 3 4
 ```

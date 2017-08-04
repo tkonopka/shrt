@@ -13,6 +13,7 @@ Imports:
 License: MIT + file LICENSE
 LazyData: true
 Suggests:
-    knitr
+    knitr,
+    testthat
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1

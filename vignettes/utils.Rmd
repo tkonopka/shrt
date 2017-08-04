@@ -183,3 +183,38 @@ paste0(greek[1], greek[2])
 p0(greek[1], greek[2])
 ```
 
+
+
+
+&nbsp;
+## x2df
+
+`x2df` is a conversion function that coerces an input object into a data frame. It is shorthand notations for calls to `data.frame`. For example, let's start with a matrix of characters.
+
+```{r}
+charmat = mtrx(letters[1:9], col.names=c("x", "y", "z"), nrow=3)
+charmat
+```
+
+The conversion produces a related object
+
+```{r}
+chardf = x2df(charmat)
+chardf
+```
+
+The difference from the input is the class.
+
+```{r}
+class(chardf)
+apply(chardf, 2, class)
+```
+
+The default behavior is to convert characters into characters, but it is also possible to set `stringsAsFactors` to true during the function call.
+
+In addition to such simple conversion, the function can also convert vectors into a data frame.
+
+```{r}
+myvec = setNames(1:4, letters[1:4])
+x2df(myvec)
+```

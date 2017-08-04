@@ -202,3 +202,34 @@ lenu = function(x) {
 
 
 
+
+##' convert an object to a data.frame
+##'
+##' The names is short for: convert (x) (to) a (d)ata (f)frame. Useful for
+##' generating transparency levels.
+##'
+##' @param x object, could be a matrix, data.table, etc. 
+##'
+##' @export
+x2df = function(x, stringsAsFactors=F) {
+    if (class(x)=="data.frame") {
+        return(x)
+    }
+    saf = stringsAsFactors
+    ## special cases
+    ## perhaps convert a named vector into a one-row data frame
+    if (class(x) %in% c("numeric", "integer", "logical", "character", "factor")) {
+        if (!is.null(names(x))) {
+            if (length(names(x))==length(x)) {
+                result = matrix(x, ncol=length(x))
+                colnames(result) = names(x)
+                rownames(result) = NULL
+                return(x2df(result, saf))
+            }
+        }
+    }
+    ## the default behavior is to apply data.frame() 
+    data.frame(x, stringsAsFactors=saf)        
+}
+
+
