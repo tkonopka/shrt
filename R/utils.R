@@ -213,13 +213,14 @@ lenu = function(x) {
 ##'
 ##' @export
 x2df = function(x, stringsAsFactors=F) {
-    if (class(x)=="data.frame") {
+    cx = class(x)[1]
+    if (cx=="data.frame") {
         return(x)
     }
     saf = stringsAsFactors
     ## special cases
     ## perhaps convert a named vector into a one-row data frame
-    if (class(x) %in% c("numeric", "integer", "logical", "character", "factor")) {
+    if (cx %in% c("numeric", "integer", "logical", "character", "factor")) {
         if (!is.null(names(x))) {
             if (length(names(x))==length(x)) {
                 result = matrix(x, ncol=length(x))
