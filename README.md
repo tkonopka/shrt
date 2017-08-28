@@ -37,6 +37,7 @@ to find the code and documentation. Column `Function` shows the function names.
  --- | --- | --- 
  colors | x2hex | map values into a hex transparency code
  colors | x2col | map vectors or matrices onto a 2-color scale
+ data | setsummary | summary of set membership
  messages | msg | log and output a message 
  messages | newmsg | create message logger 
  files | load1 | load from Rdata file into one named object
@@ -52,7 +53,8 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | namesV | get elements with given value(s)
  utils | newv | creating empty, named vectors 
  utils | lenu | number of unique elements
- utils | p0 | paste0 
+ utils | p0 | paste0
+ utils | x2df | transform objects into data frames
 
 
 

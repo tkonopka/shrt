@@ -14,7 +14,7 @@
 ##' @param type use "x" for lowercase hex and "X" for uppercase hex
 ##' 
 ##' @export
-x2hex = function (x, type="x") {
+x2hex = function(x, type="x") {
     ## deal with edge case where x is a single NA value
     ## This case causes errors in the sprintf below
     ## (cases with NA inside a vector are handled correctly below)

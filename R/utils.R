@@ -109,20 +109,6 @@ newv = function(mode="list", length=0, names=NULL) {
 
 
 
-##' Concatenate strings
-##'
-##' This is an exact copy of paste0, just the name is shorter
-##'
-##' @param ... passed on to paste0
-##'
-##' @export
-p0 = function(...) {
-  base::paste0(...)
-}
-
-
-
-
 ##' Get element names in a vector that hold given values
 ##'
 ##' The name is short for: (names) of elements with given (V)alues 
@@ -198,6 +184,20 @@ namesNA = function(x) {
 ##' @export
 lenu = function(x) {    
     length(unique(x))
+}
+
+
+
+
+##' Concatenate strings
+##'
+##' This is an exact copy of paste0, just the name is shorter
+##'
+##' @param ... passed on to paste0
+##'
+##' @export
+p0 = function(...) {
+  base::paste0(...)
 }
 
 
