@@ -75,3 +75,28 @@ test_that("df conversion (vector to df)" , {
 
 
 
+## Tests for pluck family
+
+plist1 = list(A=1:5, B=101:105)
+plist2 = list(A=setNames(11:15, letters[1:5]),
+              B=setNames(201:203, letters[3:5]))
+
+test_that("pluck element by integer 1", {
+    expected1 = setNames(c(1, 101), c("A", "B"))
+    expect_equal( sapply(plist1, pluck1), expected1)
+    expected2 = setNames(c(2, 102), c("A", "B"))
+    expect_equal( sapply(plist1, pluck2), expected2)
+})
+test_that("pluck element by integer 2", {
+    expected1 = setNames(c(11, 201), c("A.a", "B.c"))
+    expect_equal( sapply(plist2, pluck1), expected1)
+    expected2 = setNames(c(12, 202), c("A.b", "B.d"))
+    expect_equal( sapply(plist2, pluck2), expected2)
+})
+test_that("pluck element by name", {
+    expected1 = setNames(c(13, 201), c("A.c", "B.c"))
+    expect_equal( sapply(plist2, pluck, "c"), expected1)
+    expected2 = setNames(c(14, 202), c("A.d", "B.d"))
+    expect_equal( sapply(plist2, pluck, "d"), expected2)
+})
+

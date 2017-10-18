@@ -203,6 +203,58 @@ p0 = function(...) {
 
 
 
+##' Extract a component from an object
+##'
+##' @param x object - either vector, list, matrix, etc
+##' @param n integer or string that identifies a part of x
+##' @param type string, identifies 
+##'
+##' @export
+pluck = function(x, n, type=c("auto", "character", "integer", "numeric", "logical",
+                              "list", "matrix", "data.frame")) {
+    type = match.arg(type)
+    if (type=="auto") {
+        pluck(x, n, class(x))
+    } else if (type %in% c("vector", "character", "integer", "numeric", "logical")) {
+        return(x[n])
+    } else if (type=="list") {
+        return(x[[n]])
+    } else if (type=="matrix" | type=="data.frame") {
+        return(x[n,])
+    } else {
+        stop("unsupported class of object x ", class(x), "\n")
+    }
+}
+
+
+
+
+##' Extract the first component from an object
+##'
+##' @param x object - either vector, list, matrix, etc
+##' @param type string, see pluck() for details
+##'
+##' @export
+pluck1 = function(x, type=class(x)) {
+    pluck(x, 1, type)
+}
+
+
+
+
+##' Extract the second component from an object
+##'
+##' @param x object - either vector, list, matrix, etc
+##' @param type string, see pluck() for details
+##'
+##' @export
+pluck2 = function(x, type=class(x)) {
+    pluck(x, 2, type)
+}
+
+
+
+
 ##' convert an object to a data.frame
 ##'
 ##' The names is short for: convert (x) (to) a (d)ata (f)frame. Useful for
