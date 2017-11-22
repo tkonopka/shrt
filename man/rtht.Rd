@@ -5,7 +5,7 @@
 \title{Read table from file}
 \usage{
 rtht(f, rowid.column = NULL, header = TRUE, sep = "\\t",
-  stringsAsFactors = FALSE, ...)
+  comment.char = "#", stringsAsFactors = FALSE, ...)
 }
 \arguments{
 \item{f}{filename}
@@ -15,6 +15,8 @@ rtht(f, rowid.column = NULL, header = TRUE, sep = "\\t",
 \item{header}{logical, determines if to read the header}
 
 \item{sep}{character, column separator}
+
+\item{comment.char}{character denoting line-to-ignore (comment)}
 
 \item{stringsAsFactors}{logical, determines whether strings are
 converted into factors}

@@ -8,6 +8,7 @@ Description: Collection of shorthand functions to streamline R code.
 Depends:
     R (>= 3.1.2)
 Imports:
+    jsonlite,
     stats,
     utils
 License: MIT + file LICENSE

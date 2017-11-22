@@ -7,7 +7,7 @@
 
 ##' Load one R object from an Rda file
 ##'
-##' This functions loads an object from an Rda file. In contrast to
+##' This function loads an object from an Rda file. In contrast to
 ##' standard load(), this function does not put the loaded object
 ##' in the current environment. Rather, this function returns the loaded
 ##' data as an object. It is thus possible to save an object x using
@@ -31,6 +31,68 @@ load1 = function(file) {
 
 
 
+##' Load contents of directory (from multiple files of different types)
+##'
+##' Scans a directory and loads data from all files,
+##' using an appropriate loader for each file extension type.
+##'
+##' @param dirpath path for input directory
+##' @param extensions vector of extensions to try to load
+##' @param verbose logical, prints filenames as it is loading them
+##' @param ... other parameters passed on to rtht
+##'
+##' @export
+loaddir = function(dirpath, extensions=c("Rda", "txt", "txt.gz",
+                                         "json", "json.gz",
+                                         "tsv", "tsv.gz", "csv", "csv.gz"),
+                   verbose=FALSE,
+                   ...) {
+
+  ## identify content of directory with acceptabel extensions
+  extpattern = paste(paste0(extensions, "$"), collapse="|")
+  allfiles = list.files(dirpath, full.names=TRUE, pattern=extpattern)  
+
+  ## helper for converting a filename with special characters into an R name
+  safeName = function(f) {
+    if (endsWith(f, "csv") | endsWith(f, "tsv") | endsWith(f, "txt") | endsWith(f, "Rda")) {
+      f = substr(f, 1, nchar(f)-4)
+    } else if (endsWith(f, "csv.gz") | endsWith(f, "tsv.gz") | endsWith(f, "txt.gz")) {
+      f = substr(f, 1, nchar(f)-7)
+    } else if (endsWith(f, "json")) {
+      f = substr(f, 1, nchar(f)-5)
+    } else if (endsWith(f, "json.gz")) {
+      f = substr(f, 1, nchar(f)-8)
+    }
+    gsub("-| ", "_", f)
+  }
+  
+  ## loop through files and load each one in turn
+  result = vector("list", length(allfiles))
+  names(result) = sapply(basename(allfiles), safeName)
+  for (onefile in allfiles) {
+    x = basename(onefile)
+    if (verbose) {
+      cat(x, "\n")
+    }
+    if (endsWith(x, "Rda")) {
+      xdata = load1(onefile)
+    } else if (endsWith(x, "json") | endsWith(x, "json.gz")) {
+      xdata = fromJSON(onefile)
+    } else if (endsWith(x, "csv") | endsWith(x, "tsv")  | endsWith(x, "txt") |
+                 endsWith(x, "csv.gz") | endsWith(x, "tsv.gz") | endsWith(x, "txt.gz")) {
+      xdata = rtht(onefile, ...)
+    } else {
+      stop("unsupported extension for file ", x, "\n")
+    }
+    result[[safeName(x)]] = xdata
+  }
+  
+  result
+}
+
+
+
+
 ##' Read table from file
 ##'
 ##' This is a wrapper for read.table. By default it assumes the file
@@ -43,16 +105,18 @@ load1 = function(file) {
 ##' @param rowid.column character name of column to use as rownames 
 ##' @param header logical, determines if to read the header
 ##' @param sep character, column separator
+##' @param comment.char character denoting line-to-ignore (comment)
 ##' @param stringsAsFactors logical, determines whether strings are
 ##' converted into factors 
 ##' @param ... other parameters passed on to read.table
 ##' 
 ##' @export
 rtht = function(f, rowid.column=NULL, header=TRUE,
-  sep="\t", stringsAsFactors=FALSE, ...) {
+                sep="\t", comment.char="#", stringsAsFactors=FALSE, ...) {
   
-  ans = utils::read.table(f, header=header, sep=sep,
-    stringsAsFactors=stringsAsFactors, ...)
+  ans = utils::read.delim(f, header=header, sep=sep,
+                          comment.char=comment.char,
+                          stringsAsFactors=stringsAsFactors, ...)
   
   ## handle row names from a column
   if (!is.null(rowid.column)) {
@@ -62,7 +126,7 @@ rtht = function(f, rowid.column=NULL, header=TRUE,
     rownames(ans) = ans[, rowid.column]
     ans = ans[, colnames(ans) != rowid.column, drop=FALSE]
   }
-
+  
   ans
 }
 
