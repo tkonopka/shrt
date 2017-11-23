@@ -10,7 +10,7 @@ load1(file)
 \item{file}{filename with Rda object}
 }
 \description{
-This function loads an object from an Rda file. In contrast to
+Loads an object from an Rda file. In contrast to
 standard load(), this function does not put the loaded object
 in the current environment. Rather, this function returns the loaded
 data as an object. It is thus possible to save an object x using

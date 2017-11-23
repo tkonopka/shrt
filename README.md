@@ -34,13 +34,17 @@ Column `Group` provides a category for each function and helps to identify where
 to find the code and documentation. Column `Function` shows the function names. 
 
  Group | Function | Description 
- --- | --- | --- 
+ --- | --- | ---
+ cache | cache | set a directory to act as a disk cache
+ cache | rmc | remove an object from environment and from cache
+ cache | savec | save an oject into disk cache
  colors | x2hex | map values into a hex transparency code
  colors | x2col | map vectors or matrices onto a 2-color scale
  data | setsummary | summary of set membership
  messages | msg | log and output a message 
  messages | newmsg | create message logger 
  files | load1 | load from Rdata file into one named object
+ files | loaddir | load content from a directory
  files | rtht | read tables from files 
  files | wtht | write tables to files 
  projects | initp | initiate directories/folders for a project

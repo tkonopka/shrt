@@ -24,7 +24,7 @@ converted into factors}
 \item{...}{other parameters passed on to read.table}
 }
 \description{
-This is a wrapper for read.table. By default it assumes the file
+A wrapper for read.table. By default, it assumes the file
 has a header row, is tab separated. By default it does not
 convert strings into factors.
 }

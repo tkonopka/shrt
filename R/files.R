@@ -7,7 +7,7 @@
 
 ##' Load one R object from an Rda file
 ##'
-##' This function loads an object from an Rda file. In contrast to
+##' Loads an object from an Rda file. In contrast to
 ##' standard load(), this function does not put the loaded object
 ##' in the current environment. Rather, this function returns the loaded
 ##' data as an object. It is thus possible to save an object x using
@@ -95,7 +95,7 @@ loaddir = function(dirpath, extensions=c("Rda", "txt", "txt.gz",
 
 ##' Read table from file
 ##'
-##' This is a wrapper for read.table. By default it assumes the file
+##' A wrapper for read.table. By default, it assumes the file
 ##' has a header row, is tab separated. By default it does not
 ##' convert strings into factors.
 ##'
@@ -135,7 +135,7 @@ rtht = function(f, rowid.column=NULL, header=TRUE,
 
 ##' Write a table to disk
 ##'
-##' This is a wrapper for write.table. By default this function:
+##' A wrapper for write.table. By default this function:
 ##' with column names; no row names; no quotation marks; tab
 ##' separated columns.
 ##'

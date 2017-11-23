@@ -28,7 +28,7 @@ a new column called "rowname" with the actual row names}
 \item{...}{other parameters passed on to write.table}
 }
 \description{
-This is a wrapper for write.table. By default this function:
+A wrapper for write.table. By default this function:
 with column names; no row names; no quotation marks; tab
 separated columns.
 }
