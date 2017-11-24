@@ -19,6 +19,9 @@
 ##'
 ##' @export
 load1 = function(file) {
+  if (!file.exists(file)) {
+    stop("file does not exist: ", file, "\n")
+  }
   ## load from file into weird-name variable to avoid overwriting data
   tempAJIDPJSJXFOPP238Q = load(file)
   if (length(tempAJIDPJSJXFOPP238Q)>1) {

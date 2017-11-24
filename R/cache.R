@@ -1,5 +1,4 @@
 ## Functions for working with a cache
-## (Experimental)
 ##
 
 
@@ -30,6 +29,9 @@ cache = function(dir=NULL) {
 ##'
 ##' Wrapper for rm(), which in addition attempts to remove a matched
 ##' file from disk cache (see cache())
+##'
+##' WARNING: This function will remove files from the file system;
+##' use with caution.
 ##'
 ##' @param x object to remove
 ##'
@@ -71,4 +73,31 @@ savec = function(x) {
 }
 
 
+
+
+##' Retrieve object from cache
+##'
+##' Look up content in the cache. By default, create or overwrite an
+##' object in calling environment with contents from cache
+##'
+##' @param x character, name of object to retrieve from cache
+##' @param envir logical, whether to assign cache value to an object
+##' in calling environment
+##'
+##' @export
+loadc = function(x, envir=TRUE) {
+  ## safety checks 
+  if (class(x)=="factor") {
+    x = as.character(x)
+  }
+  if (class(x)!="character") {
+    stop("x must be a character of factor\n")
+  }
+  ## load file from cache
+  xval = load1(file.path(cache(), paste0(x, ".Rda")))
+  if (envir) {
+    assign(x, xval, envir=parent.frame(n=1))
+  } 
+  invisible(xval)
+}
 

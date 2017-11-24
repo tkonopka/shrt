@@ -36,6 +36,7 @@ to find the code and documentation. Column `Function` shows the function names.
  Group | Function | Description 
  --- | --- | ---
  cache | cache | set a directory to act as a disk cache
+ cache | loadc | load object from cache
  cache | rmc | remove an object from environment and from cache
  cache | savec | save an oject into disk cache
  colors | x2hex | map values into a hex transparency code

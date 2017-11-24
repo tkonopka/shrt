@@ -13,3 +13,7 @@ rmc(x)
 Wrapper for rm(), which in addition attempts to remove a matched
 file from disk cache (see cache())
 }
+\details{
+WARNING: This function will remove files from the file system;
+use with caution.
+}
