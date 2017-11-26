@@ -327,6 +327,23 @@ p0(greek[1], greek[2])
 
 
 &nbsp;
+## today
+
+`today` returns a current date in a compact character string. 
+
+
+```r
+today()
+```
+
+```
+## [1] "20171126"
+```
+
+
+
+
+&nbsp;
 ## x2df
 
 `x2df` is a conversion function that coerces an input object into a data frame. It is shorthand notations for calls to `data.frame`. For example, let's start with a matrix of characters.

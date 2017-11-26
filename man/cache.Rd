@@ -7,7 +7,8 @@
 cache(dir = NULL)
 }
 \arguments{
-\item{dir}{character, path to cache directory.}
+\item{dir}{character, path to cache directory (will be created if
+not exists)}
 }
 \description{
 Set or query a cache directory

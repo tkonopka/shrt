@@ -35,7 +35,10 @@ to find the code and documentation. Column `Function` shows the function names.
 
  Group | Function | Description 
  --- | --- | ---
+ cache | assignc | assign to variable using value from cache
  cache | cache | set a directory to act as a disk cache
+ cache | cachefile | get path to a file in cache
+ cache | existsc | check if cache contains representation for a variable
  cache | loadc | load object from cache
  cache | rmc | remove an object from environment and from cache
  cache | savec | save an oject into disk cache
@@ -62,6 +65,7 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | pluck | extract a component from an object or list
  utils | pluck1 | extract first components from a list of objects
  utils | pluck2 | extract second components from a lit of objects
+ utils | today | create a string with current date
  utils | x2df | transform objects into data frames
 
 

@@ -20,23 +20,15 @@ test_that("set cache directory", {
 })
 
 
-test_that("file exists after save", {
+test_that("file exists after save, not after remove", {
   cache(datadir)
   myvec = testvec
   savec(myvec)
-  cachefile = file.path(datadir, "myvec.Rda")
-  expect_true(file.exists(cachefile))
+  vecfile = file.path(datadir, "myvec.Rda")
+  expect_equal(vecfile, cachefile("myvec"))
+  expect_true(existsc("myvec"))
   rmc(myvec)
-})
-
-
-test_that("remove files from cache", {
-  cache(datadir)
-  myvec = testvec
-  savec(myvec)
-  rmc(myvec)
-  cachefile = file.path(datadir, "myvec.Rda") 
-  expect_false(file.exists(cachefile))
+  expect_false(existsc("myvec"))
 })
 
 
@@ -50,25 +42,38 @@ test_that("remove warning when removing a file that is not there", {
 })
 
 
-test_that("retrieve simple cache object", {
+test_that("load cache object (without assign)", {
   cache(datadir)
   myvec = testvec
   savec(myvec)
   rm(myvec)
   ## now only exists in cache
-  loadc("myvec")
+  newvec = loadc("myvec")
+  expect_true(identical(testvec, newvec))
+  ## remove cache file, gives warning because myvec not loaded
+  expect_warning(rmc(myvec))
+})
+
+
+test_that("assign from simple cache object", {
+  cache(datadir)
+  myvec = testvec
+  savec(myvec)
+  rm(myvec)
+  ## now only exists in cache
+  assignc("myvec")
   expect_true("myvec" %in% ls())
   expect_true(identical(testvec, myvec))
   rmc(myvec)
 })
 
 
-test_that("retrieve larger cache object", {
+test_that("assign from larger cache object", {
   cache(datadir)
   myobj = testobj
   savec(myobj)
   rm(myobj)
-  loadc("myobj")
+  assignc("myobj")
   expect_true("myobj" %in% ls())
   expect_true(identical(testobj, myobj))
   rmc(myobj)
@@ -85,18 +90,30 @@ test_that("load error when object does not exist", {
 })
 
 
-test_that("retrieve cache object without assign", {
+test_that("assign from cache with/without overwrite", {
   cache(datadir)
   myvec = testvec
   savec(myvec)
   rm(myvec)
-  ## now only exists in cache
-  newvec = loadc("myvec", FALSE)
-  expect_false("myvec" %in% ls())
-  expect_true("newvec" %in% ls())
-  expect_true(identical(testvec, newvec))
-  ## to finish here, remove saved object, this should create a warning
-  ## because myvec does not exist in the environmnt at this stage
-  expect_warning(rmc(myvec))
+
+  ## assign without overwrite
+  myvec = c(testvec, testvec)
+  expect_false(identical(myvec, testvec))
+  acode = assignc("myvec")
+  expect_equal(acode, 2)
+  expect_false(identical(myvec, testvec))
+  
+  ## assign with overwrite
+  acode = assignc("myvec", overwrite=TRUE)
+  expect_equal(acode, 1)
+  expect_true(identical(myvec, testvec))
+  
+  ## cleanup
+  rmc(myvec)
+})
+
+
+test_that("assign with warning", {
+  expect_warning(assignc("notthere", warn=TRUE))
 })
 

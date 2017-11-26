@@ -255,6 +255,16 @@ pluck2 = function(x, type=class(x)) {
 
 
 
+##' Get a string with today's date, e.g. 20171126
+##'
+##' @export
+today = function() {
+  format(Sys.time(), "%Y%m%d")
+}
+
+
+
+
 ##' convert an object to a data.frame
 ##'
 ##' The names is short for: convert (x) (to) a (d)ata (f)frame. Useful for

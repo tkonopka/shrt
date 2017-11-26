@@ -4,15 +4,11 @@
 \alias{loadc}
 \title{Retrieve object from cache}
 \usage{
-loadc(x, envir = TRUE)
+loadc(x)
 }
 \arguments{
 \item{x}{character, name of object to retrieve from cache}
-
-\item{envir}{logical, whether to assign cache value to an object
-in calling environment}
 }
 \description{
-Look up content in the cache. By default, create or overwrite an
-object in calling environment with contents from cache
+Look up content from the cache.
 }
