@@ -18,7 +18,7 @@ library(shrt)
 greek = c("alpha", "beta", "gamma", "delta")
 ```
 
-If we need all items that contain the pattern `a[lm]`, we can use grep. 
+If we need all items that contain the pattern `a[lm]`, we can use grep,
 
 ```{r}
 grep("a[lm]", greek, value=T)

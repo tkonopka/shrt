@@ -1,5 +1,46 @@
 ## Functions for working with a cache
 ##
+## Many of these functions are inter-related and also use function load1
+
+
+
+
+##' Assign value to a variable using value from cache 
+##'
+##' @param x character, name of object to retrieve from cache
+##' @param overwrite logical, when TRUE, load from cache occurs regardless
+##' of whether object already exists; when FALSE, assign only happens
+##' @param warn logical, determine if show warning when assignment fails
+##'
+##' @return integer code:
+##' 0 when load failed;
+##' 1 when object loaded from cache;
+##' 2 when assign was aborted because object already exists
+##'
+##' @export
+assignc = function(x, overwrite=FALSE, warn=FALSE) {
+  ## look up if object exists
+  result = 0
+  if (!overwrite) {
+    xexists = exists(x, envir=parent.frame(n=1), inherits=FALSE)
+    if (xexists) {
+      result = 2
+    }
+  }
+  if (result==0) {
+    ## look up if file exists
+    xfile = cachefile(x)
+    if (file.exists(xfile)) {
+      assign(x, load1(xfile), envir=parent.frame(n=1))
+      result = 1
+    } 
+  }
+  ## be silent when success, perhaps send warning upon failure
+  if (result==0 & warn) {
+    warning("object ", x, " does not exist in cache")
+  }
+  invisible(result)
+}
 
 
 
@@ -47,6 +88,77 @@ cachefile = function(x) {
     stop("x must be a character of factor\n")
   }
   return(file.path(cache(), paste0(x, ".Rda")))
+}
+
+
+
+
+##' Check if an object exists in cache
+##'
+##' @param x character, name of object to lookup in cache
+##'
+##' @return logical, TRUE if matchin file exists in cache
+##'
+##' @export
+existsc = function(x) {
+  return(file.exists(cachefile(x)))
+}
+
+
+
+
+##' Retrieve object from cache
+##'
+##' Look up content from the cache. 
+##'
+##' @param x character, name of object to retrieve from cache
+##' 
+##' @export
+loadc = function(x) {
+  return(load1(cachefile(x)))
+}
+
+
+
+
+##' Make an object using a function and record in cache
+##'
+##' Similar logic to assignc(x), but 
+##'
+##' @param x character, name of target object; a side effect
+##' of the function is to add data into an object with this name
+##' @param constructor function, used to generate object x 
+##' @param ... additional arguments passed on to constructor
+##'
+##' @return integer code:
+##' 3 when object generated using contructor
+##' 2 when make aborted because object already exists
+##' 1 when object loaded from cache
+##' 0 (should not happen)
+##'
+##' @export
+makec = function(x, constructor, ...) {
+  ## look up if object already exists in environment
+  result = 0
+  xexists = exists(x, envir=parent.frame(n=1), inherits=FALSE)
+  if (xexists) {
+    result = 2
+  }
+  ## perhaps load from cache
+  if (result==0) {
+    xfile = cachefile(x)
+    if (file.exists(xfile)) {
+      assign(x, load1(xfile), envir=parent.frame(n=1))
+      result = 1
+    } 
+  }
+  ## perhaps construct from scratch and save into cache
+  if (result==0) {
+    assign(x, constructor(...), envir=parent.frame(n=1))
+    eval(parse(text=paste0("savec(", x, ")")), envir=parent.frame(n=1))
+    result = 3
+  }
+  invisible(result)
 }
 
 
@@ -100,69 +212,4 @@ savec = function(x) {
 }
 
 
-
-
-##' Retrieve object from cache
-##'
-##' Look up content from the cache. 
-##'
-##' @param x character, name of object to retrieve from cache
-##' 
-##' @export
-loadc = function(x) {
-  return(load1(cachefile(x)))
-}
-
-
-
-
-##' Check if an object exists in cache
-##'
-##' @param x character, name of object to lookup in cache
-##'
-##' @return logical, TRUE if matchin file exists in cache
-##'
-##' @export
-existsc = function(x) {
-  return(file.exists(cachefile(x)))
-}
-
-
-
-
-##' Assign value to a variable using value from cache 
-##'
-##' @param x character, name of object to retrieve from cache
-##' @param overwrite logical, when TRUE, load from cache occurs regardless
-##' of whether object already exists; when FALSE, assign only happens
-##' @param warn logical, determine if show warning when assignment fails
-##'
-##' @return integer code, 0 when load failed; 1 if object loaded from cache; 2 if assign
-##' was aborted because object already exists
-##'
-##' @export
-assignc = function(x, overwrite=FALSE, warn=FALSE) {
-  ## look up if object exists
-  result = 0
-  if (!overwrite) {
-    xexists = exists(x, envir=parent.frame(n=1), inherits=FALSE)
-    if (xexists) {
-      result = 2
-    }
-  }
-  if (result==0) {
-    ## look up if file exists
-    xfile = cachefile(x)
-    if (file.exists(xfile)) {
-      xval = load1(xfile)
-      assign(x, xval, envir=parent.frame(n=1))
-      result = 1
-    } 
-  }
-  ## be silent when success, explicit
-  if (result==0 & warn) {
-    warning("object ", x, " does not exist in cache")
-  }
-  invisible(result)
-}
 

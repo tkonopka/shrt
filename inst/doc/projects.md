@@ -1,6 +1,8 @@
 # `shrt`: Project management
 
-This vignette demonstrate function in the `projects` range.
+This vignette demonstrates function in the `projects` range.
+
+
 
 
 
@@ -16,13 +18,13 @@ wp = initp("MyProjects")
 ```
 
 ```
-## [2017-03-06 00:03:41]	Creating:  MyProjects
-## [2017-03-06 00:03:41]	Creating:  MyProjects/notes
-## [2017-03-06 00:03:41]	Creating:  MyProjects/figures
-## [2017-03-06 00:03:41]	Creating:  MyProjects/tables
-## [2017-03-06 00:03:41]	Creating:  MyProjects/Rda
-## [2017-03-06 00:03:41]	Creating:  MyProjects/data
-## [2017-03-06 00:03:41]	Creating:  MyProjects/code
+## [2017-11-27 08:14:28]	Creating:  MyProjects
+## [2017-11-27 08:14:28]	Creating:  MyProjects/notes
+## [2017-11-27 08:14:28]	Creating:  MyProjects/figures
+## [2017-11-27 08:14:28]	Creating:  MyProjects/tables
+## [2017-11-27 08:14:28]	Creating:  MyProjects/Rda
+## [2017-11-27 08:14:28]	Creating:  MyProjects/data
+## [2017-11-27 08:14:28]	Creating:  MyProjects/code
 ```
 
 The returned object is a simple list with all the directories.
@@ -35,16 +37,17 @@ msg(action="show")
 ```
 
 ```
-## [2017-03-06 00:03:41]	Creating:  MyProjects
-## [2017-03-06 00:03:41]	Creating:  MyProjects/notes
-## [2017-03-06 00:03:41]	Creating:  MyProjects/figures
-## [2017-03-06 00:03:41]	Creating:  MyProjects/tables
-## [2017-03-06 00:03:41]	Creating:  MyProjects/Rda
-## [2017-03-06 00:03:41]	Creating:  MyProjects/data
-## [2017-03-06 00:03:41]	Creating:  MyProjects/code
+## [2017-11-27 08:14:28]	Creating:  MyProjects
+## [2017-11-27 08:14:28]	Creating:  MyProjects/notes
+## [2017-11-27 08:14:28]	Creating:  MyProjects/figures
+## [2017-11-27 08:14:28]	Creating:  MyProjects/tables
+## [2017-11-27 08:14:28]	Creating:  MyProjects/Rda
+## [2017-11-27 08:14:28]	Creating:  MyProjects/data
+## [2017-11-27 08:14:28]	Creating:  MyProjects/code
 ```
 
 See documentation for `msg` for further details. 
+
 
 
 
@@ -72,6 +75,5 @@ reqvars(c("a1", "a2", "a3", "a4"))
 ```
 
 The call prints out messages about variable names that are expected, but not defined. When there are missing variables in the environment, the default action is to call `stop()`. (Argument `halt` can be set to `FALSE` to prevent this behavior.)
-
 
 

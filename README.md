@@ -6,21 +6,20 @@ Functions for shorter R code
 
 ## Introduction
 
-It is important for code to be legible - this helps in understanding
-and maintaining previous work. However, some commands or sequences of 
-commands occur so often that one can wish for shorthand notation. 
-This package is a collection of such shorthand functions that trade some
-expressivity in function names for typing convenience.
+Some commands or sequences of commands occur so often that one can wish for
+shorthand notation. This package is a collection of such shorthand functions
+that streamline such common sequences, in some cases trading some expressivity
+in function names for typing convenience.
 
-For example, writing tab-separated tables to files requires calling `write.table()` 
-with options `quote=F, col.names=T, row.names=F, sep='\t'`. This package thus 
+For example, writing tab-separated tables with headers requires calling `write.table()` 
+with options `quote=F, col.names=T, row.names=F, sep='\t'`. This package 
 implements a function `wtht()` that achieves these common settings by default 
 and thus shortens code substantially. 
 
 Many of the function in this package are similar to `wtht()` in that they 
 are relatively simple wrappers for existing R functions. Some of the functions, 
 including `wtht`, also include features that would otherwise have to be written 
-using two or more commands (see documentation)
+using two or more commands (see documentation).
 
 *Disclaimer:* Useful shorthand notation is subjective. Thus you might not 
 agree with all acronyms or design choices in these functions. So please 

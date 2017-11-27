@@ -20,6 +20,8 @@ y
 ```
 
 
+
+
 &nbsp;	
 ## x2hex	
 
@@ -50,6 +52,8 @@ x2hex(xmat)
 Note the column and row names are preserved under the transformation.
 
 
+
+
 &nbsp;	
 ## x2col	
 
@@ -76,4 +80,5 @@ The function also works on matrices
 y
 x2col(y, maxval=3)
 ```
+
 

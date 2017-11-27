@@ -5,6 +5,8 @@ This vignette demonstrate functions in the `messages` range.
 
 
 
+
+
 &nbsp;
 ## msg
 
@@ -29,7 +31,7 @@ msg("hello")
 ```
 
 ```
-## [2016-06-12 10:21:06]	hello
+## [2017-11-27 08:14:41]	hello
 ```
 
 ```r
@@ -37,7 +39,7 @@ msg("hello again")
 ```
 
 ```
-## [2016-06-12 10:21:06]	hello again
+## [2017-11-27 08:14:41]	hello again
 ```
 
 An interesting feature is that `msg` internally records all the messages so that they can be retrieved later. 
@@ -48,8 +50,8 @@ msg(action="show")
 ```
 
 ```
-## [2016-06-12 10:21:06]	hello 
-## [2016-06-12 10:21:06]	hello again
+## [2017-11-27 08:14:41]	hello
+## [2017-11-27 08:14:41]	hello again
 ```
 
 Note the output here consists of all the previous `msg` messages. It is also possible to retrieve the messages without displaying them
@@ -61,11 +63,11 @@ mm
 ```
 
 ```
-## [1] "[2016-06-12 10:21:06]\thello \n"      
-## [2] "[2016-06-12 10:21:06]\thello again \n"
+## [1] "[2017-11-27 08:14:41]\thello\n"      
+## [2] "[2017-11-27 08:14:41]\thello again\n"
 ```
 
-This handy if the messages require further processing, for example saving into a log file. 
+This is handy if the messages require further processing, for example saving into a log file. 
 
 When the log is no longer needed, it can be reset 
 
@@ -75,13 +77,15 @@ msg(action="reset")
 msg(action="show")
 ```
 
-The output from the last command is not empty. 
+The output from the last command is now empty. 
+
+
 
 
 &nbsp;
 ## newmsg
 
-`newmsg` is factory function that creates a new message log. For example, we can create a silent log that does not include the call date. 
+`newmsg` creates a new message log/logger. For example, we can create a silent log that does not include the call date. 
 
 
 ```r
@@ -109,7 +113,7 @@ silent.msg(action="show")
 ```
 
 ```
-## hi 
+## hi
 ## hi again
 ```
 

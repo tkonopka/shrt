@@ -19,7 +19,9 @@ d1
 ## R2 "b" "d" "f" "h"
 ```
 	
-	
+
+
+
 &nbsp;	
 ## wtht	
 
@@ -92,6 +94,8 @@ d4
 ```
 
 This result is now almost equivalent to the orignal data. (Note `d1` was a matrix, but reading a table from disk always returns a data frame.)
+
+
 
 
 
@@ -199,4 +203,3 @@ Thus, we keep all objects in our environment intact and assign the new data into
 
 
 
-&nbsp;

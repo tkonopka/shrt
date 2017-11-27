@@ -8,6 +8,8 @@ msg(action="reset")
 ```
 
 
+
+
 &nbsp;
 ## msg
 
@@ -51,10 +53,12 @@ msg(action="show")
 The output from the last command is now empty. 
 
 
+
+
 &nbsp;
 ## newmsg
 
-`newmsg` is factory function that creates a new message log/logger. For example, we can create a silent log that does not include the call date. 
+`newmsg` creates a new message log/logger. For example, we can create a silent log that does not include the call date. 
 
 ```{r}
 silent.msg = newmsg(verbose=FALSE, date=FALSE)

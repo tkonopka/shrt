@@ -34,6 +34,8 @@ y
 ```
 
 
+
+
 &nbsp;	
 ## x2hex	
 
@@ -98,6 +100,8 @@ x2hex(xmat)
 Note the column and row names are preserved under the transformation.
 
 
+
+
 &nbsp;	
 ## x2col	
 
@@ -158,4 +162,5 @@ x2col(y, maxval=3)
 ## b "#0000ffff" "#ffffff"   "#ff0000ff"
 ## c "#0000ffaa" "#ff000055" "#ff0000ff"
 ```
+
 

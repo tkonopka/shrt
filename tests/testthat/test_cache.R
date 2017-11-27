@@ -3,12 +3,23 @@
 ## objects used during test save/load
 testvec = 1:10
 testobj = list(a=10, b=letters[1:4])
+abcfun = function() {
+  letters
+}
+addTen = function(x) {
+  x+10
+}
+
 
 
 
 ## remember original working directory
 workdir = getwd()
 datadir = file.path(dirname(workdir), "testdata")
+
+## prep the tests by deleting all contents of the test directory
+file.remove(list.files(datadir, pattern="Rda", full.names=T))
+
 
 
 
@@ -116,4 +127,54 @@ test_that("assign from cache with/without overwrite", {
 test_that("assign with warning", {
   expect_warning(assignc("notthere", warn=TRUE))
 })
+
+
+test_that("makec a simple object", {
+  cache(datadir)
+
+  ## create an object
+  mcode = makec("abc", abcfun)
+  
+  ## check object was generated with function and has the alphabet
+  expect_equal(mcode, 3)
+  expect_true("abc" %in% ls())
+  expect_true(existsc("abc"))
+  expect_identical(abc, letters)
+  rmc(abc)
+})
+
+
+test_that("makec when object exists in environment", {
+  cache(datadir)
+  
+  ## create an object
+  myvec=testvec
+  mcode = makec("myvec", abcfun)
+  
+  ## check makec aborted because myvec already exists
+  expect_equal(mcode, 2)
+  expect_true("myvec" %in% ls())
+  expect_false(existsc("myvec"))
+  expect_identical(myvec, testvec)
+  rmc(myvec)
+})
+
+
+test_that("makec when object exists in cache", {
+  cache(datadir)
+  
+  ## create an object
+  myvec=testvec
+  savec(myvec)
+  rm(myvec)
+  mcode = makec("myvec", abcfun)
+
+  ## check makec aborted because myvec already exists
+  expect_equal(mcode, 1)
+  expect_true("myvec" %in% ls())
+  expect_true(existsc("myvec"))
+  expect_identical(myvec, testvec)
+  rmc(myvec)
+})
+
 

@@ -15,8 +15,10 @@ of whether object already exists; when FALSE, assign only happens}
 \item{warn}{logical, determine if show warning when assignment fails}
 }
 \value{
-integer code, 0 when load failed; 1 if object loaded from cache; 2 if assign
-was aborted because object already exists
+integer code:
+0 when load failed;
+1 when object loaded from cache;
+2 when assign was aborted because object already exists
 }
 \description{
 Assign value to a variable using value from cache

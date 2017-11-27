@@ -1,11 +1,13 @@
 # `shrt`: Project management
 
-This vignette demonstrate function in the `projects` range.
+This vignette demonstrates function in the `projects` range.
 
 ```{r, echo=FALSE}
 library(shrt)
 msg(action="reset")
 ```
+
+
 
 
 &nbsp;
@@ -34,6 +36,7 @@ unlink("MyProjects", recursive=TRUE)
 
 
 
+
 &nbsp;
 ## reqvars
 
@@ -46,6 +49,5 @@ reqvars(c("a1", "a2", "a3", "a4"))
 ```
 
 The call prints out messages about variable names that are expected, but not defined. When there are missing variables in the environment, the default action is to call `stop()`. (Argument `halt` can be set to `FALSE` to prevent this behavior.)
-
 
 

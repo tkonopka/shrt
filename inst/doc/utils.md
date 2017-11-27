@@ -17,7 +17,7 @@ This vignette demonstrates functions in the `utils` range.
 greek = c("alpha", "beta", "gamma", "delta")
 ```
 
-If we need all items that contain the pattern `a[lm]`, we can use grep. 
+If we need all items that contain the pattern `a[lm]`, we can use grep,
 
 
 ```r
@@ -337,7 +337,7 @@ today()
 ```
 
 ```
-## [1] "20171126"
+## [1] "20171127"
 ```
 
 
