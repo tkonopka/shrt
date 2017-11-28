@@ -8,9 +8,62 @@ This vignette demonstrates functions in the `utils` range.
 
 
 &nbsp;
+## catv
+
+`catv` is a wrapper for `cat` that prints messages to the console. Unlike the original, this wrapper can be active or silent depending on the value of a verbose setting.
+
+The usual way to control output depending on the value of a `verbose` variable is through an `if` statement, for example,
+
+
+```r
+verbose = TRUE
+if (verbose) {
+   catv("yes, verbose\n")
+}
+```
+
+```
+## yes, verbose
+```
+
+The `catv` wrapper accepts an explicit argument to toggle verbose mode,
+
+
+```r
+catv("no, not verbose\n", verbose=FALSE)
+catv("yes, verbose\n", verbose=TRUE)
+```
+
+```
+## yes, verbose
+```
+
+When the `verbose` argument is not specified, the verbosity status is inferred
+from parent environment or from the global options. Thus, it is possible to toggle
+verbosity independently of the function call to produce output.
+
+
+```r
+verbose=FALSE
+catv("this will not appear")
+catv("this will not appear either")
+verbose=TRUE
+catv("Now verbose mode is on, so this will appear\n")
+```
+
+```
+## Now verbose mode is on, so this will appear
+```
+
+Future `catv` statements will also produce output on the console.
+
+
+
+
+&nbsp;
 ## grepv
 
-`grepv` is a pattern matching function, a wrapper for `grep` that returns the actual matching values. For example, let's start with a vector of strings
+`grepv` is a pattern matching function, a wrapper for `grep`, that returns the actual matching values. For example, let's start with a vector of strings
 
 
 ```r
@@ -337,7 +390,7 @@ today()
 ```
 
 ```
-## [1] "20171127"
+## [1] "20171128"
 ```
 
 

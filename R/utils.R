@@ -3,6 +3,41 @@
 ##
 
 
+
+
+##' Write a message to the console, but only if in verbose mode
+##'
+##' The name is short for: (cat) when in (v)erbose mode
+##'
+##' @param ... arguments to write out
+##' @param verbose logical or NA, logical values turn verbose mode
+##' on and off; a value of NA implies that verbose mode is inferred
+##' from a "verbose" variable in a parent environment or from global
+##' options.
+##'
+##' @export
+catv = function(..., verbose=NA) {
+
+  if (is.na(verbose)) {
+    if (exists("verbose", envir=parent.frame(n=1))) {
+      verbose = get("verbose", envir=parent.frame(n=1))
+    } else {
+      verbose = getOption("verbose")
+    }
+  }
+
+  if (!is.null(verbose)) {
+    if (verbose) {
+      cat(...)
+    }
+  }
+
+  invisible()
+}
+
+
+
+
 ##' Pattern matching 
 ##'
 ##' This is a wrapper for grep. By default it returns the matching
