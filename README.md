@@ -54,6 +54,7 @@ to find the code and documentation. Column `Function` shows the function names.
  projects | reqvars | check whether variables are defined
  utils | catv | print to console, but only in verbose mode
  utils | grepv | pattern matching 
+ utils | h1, h2, h3 | head with preset n
  utils | mtrx | creating matrices 
  utils | namesF | get elements with value FALSE
  utils | namesNA | get elements with value NA

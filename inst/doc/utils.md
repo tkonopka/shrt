@@ -96,6 +96,39 @@ grepv("a[lm]", greek)
 
 
 &nbsp;
+## h1, h2, h3
+
+These three functions are wrappers for `head` with preset values for `n`. For example
+
+
+```r
+h1(letters)
+```
+
+```
+## [1] "a"
+```
+
+```r
+h2(letters)
+```
+
+```
+## [1] "a" "b"
+```
+
+```r
+h3(letters)
+```
+
+```
+## [1] "a" "b" "c"
+```
+
+
+
+
+&nbsp;
 ## lenu
 
 `lenu` is equivalent to `unique` followed by `length`. It returns the
@@ -390,7 +423,7 @@ today()
 ```
 
 ```
-## [1] "20171128"
+## [1] "20171206"
 ```
 
 

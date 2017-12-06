@@ -59,6 +59,54 @@ grepv = function(pattern, x, value=T, ...) {
 
 
 
+##' Return first element 
+##'
+##' The name is short for: (h)ead with n=(1)
+##'
+##' @param x vector, matrix, data-frame, or nany object that can be
+##' processed by head()
+##' @param ... parameters passed on to head
+##'
+##' @export
+h1 = function(x, ...) {
+  head(x, n=1, ...)
+}
+
+
+
+
+##' Return second element 
+##'
+##' The name is short for: (h)ead with n=(2)
+##'
+##' @param x vector, matrix, data-frame, or any object that can be
+##' processed by head()
+##' @param ... parameters passed on to head
+##'
+##' @export
+h2 = function(x, ...) {
+  head(x, n=2, ...)
+}
+
+
+
+
+##' Return third element 
+##'
+##' The name is short for: (h)ead with n=(3)
+##'
+##' @param x vector, matrix, data-frame, or any object that can be
+##' processed by head()
+##' @param ... parameters passed on to head
+##'
+##' @export
+h3 = function(x, ...) {
+  head(x, n=3, ...)
+}
+
+
+
+
 ##' Creates a matrix with row and column names
 ##'
 ##' Compared to matrix(), this function has simpler syntax
