@@ -40,8 +40,6 @@ apwi = function(x, fun, ...) {
 
 
 
-
-
 ##' Apply function with invisible output
 ##'
 ##' Performs a loop over a vector or a list, performing an action on each element.
