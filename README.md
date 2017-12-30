@@ -2,6 +2,7 @@
 Functions for shorter R code
 
 ![Status](https://travis-ci.org/tkonopka/shrt.svg?branch=master)
+[![codecov](https://codecov.io/gh/tkonopka/shrt/branch/master/graph/badge.svg)](https://codecov.io/gh/tkonopka/shrt)
 
 
 ## Introduction

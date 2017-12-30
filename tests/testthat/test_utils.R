@@ -1,4 +1,4 @@
-## Tests for utils.R
+## Tests for R/utils.R
 
 
 
@@ -45,26 +45,77 @@ test_that("head with preset length, empty", {
 
 
 
+## Tests for lenu
+
+test_that("lenu with basic input", {
+  expect_equal(lenu(letters), length(letters))
+  inrep = c("a", "b", "c", "b", "d", "b", "b", "c")
+  expect_equal(lenu(inrep), 4)
+})
+
+
+
+
+## Tests for creating new vectors/lists
+
+test_that("creation of new lists", {
+  ## lists of certain length
+  expected1 = vector("list", 2)
+  expect_equal(newv("list", 2), vector("list", 2))
+  expected2 = list(AA=c(NULL), BB=c(NULL))
+  expect_equal(newv("list", names=c("AA", "BB")), expected2)
+})
+
+test_that("creation of new vectors with integers", {
+  ## lists of certain length
+  expect_equal(newv("integer", 2), c(0, 0))
+  expect_equal(newv("logical", names=c("AA", "BB")), c("AA"=FALSE, "BB"=FALSE))
+})
+
+test_that("creation of new vectors (irregular inputs)", {
+  ## lists of certain length
+  expect_error(newv("integer", 2, names=letters[1:4]))
+})
+
+
+
+
+
 ## Tests for namesX family
 
 nvec1 = setNames(rep(c(1,2), 3), letters[1:6])
 nvec2 = setNames(1:6, letters[1:6])
 
-test_that("namesV", {
+test_that("use of namesV", {
   output = namesV(nvec1, 1)
   expect_equal(output, c("a", "c", "e"))
 })
 
-test_that("namesF", {
+test_that("use of namesF", {
   input = nvec2>3
   expect_equal(namesF(input), c("a", "b", "c"))
 })
 
-test_that("namesT", {
+test_that("use of namesT", {
   input  = setNames(nvec2 %in% c(1,5,6), names(nvec2))    
   expected = c("a", "e", "f")
   ## test when vector is actually logical
   expect_equal(namesT(input), expected)
+})
+
+test_that("use of namesNA", {
+  input  = nvec2
+  expected = c("a", "d")
+  input[expected] = NA
+  expect_equal(namesNA(input), expected)
+})
+
+test_that("names family gives errors", {
+  expect_error(namesT(nvec1))
+  expect_error(namesF(nvec1))
+  temp = nvec1
+  names(temp) = NULL
+  expect_error(namesV(temp, 2))
 })
 
 
@@ -100,6 +151,10 @@ test_that("df conversion (vector to df)" , {
   expect_equal(x2df(mat2b), df2b)
 })
 
+test_that("avoid df-conversion when not needed", {
+  expect_equal(x2df(df2a), df2a)
+})
+
 
 
 
@@ -111,20 +166,40 @@ plist2 = list(A=setNames(11:15, letters[1:5]),
 
 test_that("pluck element by integer 1", {
   expected1 = setNames(c(1, 101), c("A", "B"))
-  expect_equal( sapply(plist1, pluck1), expected1)
+  expect_equal(sapply(plist1, pluck1), expected1)
   expected2 = setNames(c(2, 102), c("A", "B"))
-  expect_equal( sapply(plist1, pluck2), expected2)
+  expect_equal(sapply(plist1, pluck2), expected2)
 })
 test_that("pluck element by integer 2", {
   expected1 = setNames(c(11, 201), c("A.a", "B.c"))
-  expect_equal( sapply(plist2, pluck1), expected1)
+  expect_equal(sapply(plist2, pluck1), expected1)
   expected2 = setNames(c(12, 202), c("A.b", "B.d"))
-  expect_equal( sapply(plist2, pluck2), expected2)
+  expect_equal(sapply(plist2, pluck2), expected2)
 })
 test_that("pluck element by name", {
   expected1 = setNames(c(13, 201), c("A.c", "B.c"))
-  expect_equal( sapply(plist2, pluck, "c"), expected1)
+  expect_equal(sapply(plist2, pluck, "c"), expected1)
   expected2 = setNames(c(14, 202), c("A.d", "B.d"))
-  expect_equal( sapply(plist2, pluck, "d"), expected2)
+  expect_equal(sapply(plist2, pluck, "d"), expected2)
+})
+test_that("pluck from list", {
+  expected1 = plist1[[1]]
+  expect_equal(pluck1(plist1), plist1[[1]])
+  expect_equal(pluck2(plist1), plist1[[2]])
+})
+test_that("pluck from unknown object type", {
+  somefunction = function(x) { x }
+  expect_error(pluck1(somefunction))
 })
 
+
+
+
+## Tests for today string
+
+test_that("today is a string", {
+  output = today()
+  ## it is hard to test the value given by today, but it must be a string
+  expect_equal(class(output), "character")
+  expect_gt(nchar(output), 4)
+})
