@@ -6,6 +6,9 @@
 \usage{
 today(sep = "")
 }
+\arguments{
+\item{sep}{character - separating character between year, month, day}
+}
 \description{
 Get a string with today's date, e.g. 20171126
 }

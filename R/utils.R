@@ -341,6 +341,8 @@ pluck2 = function(x, type=class(x)) {
 
 ##' Get a string with today's date, e.g. 20171126
 ##'
+##' @param sep character - separating character between year, month, day
+##'
 ##' @export
 today = function(sep="") {
   today.format = paste("%Y", "%m", "%d", sep=sep)
