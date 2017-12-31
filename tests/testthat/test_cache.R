@@ -31,6 +31,14 @@ test_that("set cache directory", {
 })
 
 
+test_that("construct cached filenames", {
+  cache(datadir)
+  expect_equal(cachefile("aa"), file.path(datadir, "aa.Rda"))
+  abcfac = as.factor(letters[1:3])
+  expect_equal(cachefile(abcfac[1]), file.path(datadir, "a.Rda"))
+  expect_error(cachefile(3))
+})
+
 test_that("file exists after save, not after remove", {
   cache(datadir)
   myvec = testvec

@@ -1,6 +1,15 @@
 ## Tests for R/utils.R
 
 
+## Tests for catv
+
+test_that("catv returns value silently", {
+  input = "Hello"
+  expect_equal(catv(input, verbose=FALSE), NULL)
+  verbose = FALSE
+  expect_equal(catv(input, verbose=NA), NULL)
+})
+
 
 ## Tests for grep family
 

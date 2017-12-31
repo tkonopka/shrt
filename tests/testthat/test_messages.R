@@ -1,3 +1,4 @@
+
 ## tests for R/messages.R
 
 
@@ -7,6 +8,7 @@ test_that("using basic msg", {
   expect_message(msg("one"), "one")
   expect_message(msg("two"), tt)
   expect_message(msg(action="show"))
+  expect_message(msg())
   out = msg(action="get")
   expect_equal(length(out), 2)
 })
