@@ -26,10 +26,28 @@ test_that("save and read using rownames", {
   expect_equal(output, mydata)
 })
 
+test_that("save and read using made-up rownames", {
+  ## create table without a numerical column
+  mydata = somedata[, c("AA", "BB")]
+  ## save and indicate a new column for ids
+  wtht(mydata, file=testtsv, rowid.column = "new.ids")
+  output = rtht(testtsv)
+  ## expected result should be like somedata but with a column called new.ids
+  expected = somedata
+  colnames(expected)[1] = "new.ids"
+  expect_equal(output, expected)
+})
+
 test_that("report wrong attempts to write tables", {
   mydata = somedata[, c("AA", "BB")]
   rownames(mydata) = somedata[, "a.id"]
   expect_error(wtht(mydata, file=testtsv, rowid.column = "AA"))
+})
+
+test_that("report wrong attempts to read tables", {
+  wtht(somedata, file=testtsv)
+  expect_error(rtht(testtsv, rowid.column="ZZ"))
+  unlink(testtsv)
 })
 
 
@@ -41,6 +59,7 @@ test_that("retrieve all data files in a directory with one command", {
   write(toJSON(somedata), file=testjson)
   wtht(somedata, file=testtsv)
   wtht(somedata, file=unsafetxt)
+
   ## retrieve all the data items
   output = loaddir(getwd())
   ## expected set is the somedata matrix multiple times, labeled with filenames
@@ -52,6 +71,12 @@ test_that("retrieve all data files in a directory with one command", {
   output = output[sort(names(output))]
   expected = expected[sort(names(expected))]
   expect_equal(output, expected)
+
+  ## retrieve only some types of data
+  output2 = loaddir(getwd(), extensions=c("txt", "tsv"))
+  expected2 = list("amatrix"=somedata, "a_txt"=somedata)
+  expect_equal(output, expected)
+  
   ## clean up after the test
   unlink(testrda)
   unlink(testjson)
@@ -60,4 +85,7 @@ test_that("retrieve all data files in a directory with one command", {
 })
 
 
+test_that("attempt to retrieve strange data from directory", {
+  expect_error(loaddir(getwd(), extensions=c("txt", "R")))
+})
 

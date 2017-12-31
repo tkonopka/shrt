@@ -7,7 +7,7 @@
 ##' Create new message logging object
 ##'
 ##' @param verbose logical, determines if message passed to the
-##' logging function are 'cat' back to console
+##' logging function are sent back to console via 'message'
 ##' @param date logical, determines if messages are recorded
 ##' with current date and time
 ##' 
@@ -31,7 +31,6 @@ newmsg = function(verbose=TRUE, date=TRUE) {
     if (length(list(...))>0) {
         x = paste(x, ..., collapse=" ")
     }
-    x = paste0(x, "\n")
     if (date) {
       x = paste0("[", Sys.time(), "]\t", x)
     }
@@ -43,19 +42,19 @@ newmsg = function(verbose=TRUE, date=TRUE) {
       }      
       history.i <<- history.i + 1;
       history[[history.i]] <<- x      
-      if (verbose) cat(x)      
+      if (verbose) message(x)      
     }
-
+    
     ## for retrieving log info
     if (action %in% c("get", "show") ) {
       temp <- unlist(history)
       if (action=="show") {
-        cat(paste0(temp, collapse=""))
+        message(paste0(temp, collapse=""))
       }
       if (action=="get") return(temp)
       invisible(temp)      
     }
-
+    
     ## for deleting logged messages
     if (action == "reset") {
       history.i <<- 1;

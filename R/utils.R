@@ -1,3 +1,4 @@
+
 ## Collection of functions with short names - general purpose
 ##
 ##
@@ -341,8 +342,9 @@ pluck2 = function(x, type=class(x)) {
 ##' Get a string with today's date, e.g. 20171126
 ##'
 ##' @export
-today = function() {
-  format(Sys.time(), "%Y%m%d")
+today = function(sep="") {
+  today.format = paste("%Y", "%m", "%d", sep=sep)
+  format(Sys.time(), today.format)
 }
 
 

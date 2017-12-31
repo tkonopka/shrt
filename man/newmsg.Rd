@@ -8,7 +8,7 @@ newmsg(verbose = TRUE, date = TRUE)
 }
 \arguments{
 \item{verbose}{logical, determines if message passed to the
-logging function are 'cat' back to console}
+logging function are sent back to console via 'message'}
 
 \item{date}{logical, determines if messages are recorded
 with current date and time}

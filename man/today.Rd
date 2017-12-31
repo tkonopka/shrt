@@ -4,7 +4,7 @@
 \alias{today}
 \title{Get a string with today's date, e.g. 20171126}
 \usage{
-today()
+today(sep = "")
 }
 \description{
 Get a string with today's date, e.g. 20171126

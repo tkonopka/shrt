@@ -45,6 +45,7 @@ to find the code and documentation. Column `Function` shows the function names.
  colors | x2hex | map values into a hex transparency code
  colors | x2col | map vectors or matrices onto a 2-color scale
  data | setsummary | summary of set membership
+ loops | apwi | apply with iterator index
  messages | msg | log and output a message 
  messages | newmsg | create message logger 
  files | load1 | load from Rdata file into one named object

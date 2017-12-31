@@ -37,22 +37,3 @@ apwi = function(x, fun, ...) {
     invisible(apwi.result)
 }
 
-
-
-
-##' Apply function with invisible output
-##'
-##' Performs a loop over a vector or a list, performing an action on each element.
-##' The output is not displayed in the terminal
-##'
-##' The name is short for: s(ap)ply with (i)invisible (o)utput
-##'
-##' @param x vector or list
-##' @param fun function
-##' @param ... parameters passed on to FUN
-##'
-##' @export
-apio = function(x, fun, ...) {
-    invisible(sapply(x, fun, ...))
-}
-

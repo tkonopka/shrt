@@ -55,6 +55,27 @@ test_that("lenu with basic input", {
 
 
 
+## Tests for matrix creation
+
+test_that("create matrix based on rownames and colnames", {
+  ## basic matrix without colnames
+  out1 = mtrx(0, ncol=3, nrow=5)
+  expected = matrix(0, ncol=3, nrow=5)
+  expect_equal(out1, expected)
+  ## create matrix with names
+  output = mtrx(0, col.names=LETTERS[1:3], row.names=letters[1:5])
+  colnames(expected) = LETTERS[1:3]
+  rownames(expected) = letters[1:5]
+  expect_equal(output, expected)
+})
+
+test_that("create matrix with mismatching size and names", {
+  expect_error(mtrx(0, ncol=3, col.names=letters[1:4], nrow=4))
+  expect_error(mtrx(0, ncol=3, row.names=letters[1:4], nrow=3))
+})
+
+
+
 
 ## Tests for creating new vectors/lists
 
@@ -121,7 +142,66 @@ test_that("names family gives errors", {
 
 
 
-## Tests for df conversions
+## Tests for pluck family
+
+plist1 = list(A=1:5, B=101:105)
+plist2 = list(A=setNames(11:15, letters[1:5]),
+              B=setNames(201:203, letters[3:5]))
+pmatrix = mtrx(1:8, col.names=c("A", "B"), row.names=letters[1:4])
+
+
+test_that("pluck element by integer 1", {
+  expected1 = setNames(c(1, 101), c("A", "B"))
+  expect_equal(sapply(plist1, pluck1), expected1)
+  expected2 = setNames(c(2, 102), c("A", "B"))
+  expect_equal(sapply(plist1, pluck2), expected2)
+})
+test_that("pluck element by integer 2", {
+  expected1 = setNames(c(11, 201), c("A.a", "B.c"))
+  expect_equal(sapply(plist2, pluck1), expected1)
+  expected2 = setNames(c(12, 202), c("A.b", "B.d"))
+  expect_equal(sapply(plist2, pluck2), expected2)
+})
+test_that("pluck element by name", {
+  expected1 = setNames(c(13, 201), c("A.c", "B.c"))
+  expect_equal(sapply(plist2, pluck, "c"), expected1)
+  expected2 = setNames(c(14, 202), c("A.d", "B.d"))
+  expect_equal(sapply(plist2, pluck, "d"), expected2)
+})
+test_that("pluck from list", {
+  expected1 = plist1[[1]]
+  expect_equal(pluck1(plist1), plist1[[1]])
+  expect_equal(pluck2(plist1), plist1[[2]])
+})
+test_that("pluck from matrix", {
+  expected1 = pmatrix["b", ]
+  expected2 = pmatrix["c", ]
+  expect_equal(pluck2(pmatrix), expected1)
+  expect_equal(pluck(pmatrix, "c"), expected2)
+})
+test_that("pluck from unknown object type", {
+  somefunction = function(x) { x }
+  expect_error(pluck1(somefunction))
+})
+
+
+
+
+## Tests for today string
+
+test_that("today is a string", {
+  output = today()
+  output.dash = today("-")
+  ## it is hard to test the value given by today, but it must be a string
+  expect_equal(class(output), "character")
+  expect_gt(nchar(output), 4)
+  expect_equal(nchar(output.dash)-nchar(output), 2)
+})
+
+
+
+
+## Tests for x2df conversions
 
 charmat = mtrx(letters[1:9], col.names=c("x", "y", "z"), nrow=3)
 chardf = data.frame(x=c("a", "b", "c"),
@@ -157,49 +237,3 @@ test_that("avoid df-conversion when not needed", {
 
 
 
-
-## Tests for pluck family
-
-plist1 = list(A=1:5, B=101:105)
-plist2 = list(A=setNames(11:15, letters[1:5]),
-              B=setNames(201:203, letters[3:5]))
-
-test_that("pluck element by integer 1", {
-  expected1 = setNames(c(1, 101), c("A", "B"))
-  expect_equal(sapply(plist1, pluck1), expected1)
-  expected2 = setNames(c(2, 102), c("A", "B"))
-  expect_equal(sapply(plist1, pluck2), expected2)
-})
-test_that("pluck element by integer 2", {
-  expected1 = setNames(c(11, 201), c("A.a", "B.c"))
-  expect_equal(sapply(plist2, pluck1), expected1)
-  expected2 = setNames(c(12, 202), c("A.b", "B.d"))
-  expect_equal(sapply(plist2, pluck2), expected2)
-})
-test_that("pluck element by name", {
-  expected1 = setNames(c(13, 201), c("A.c", "B.c"))
-  expect_equal(sapply(plist2, pluck, "c"), expected1)
-  expected2 = setNames(c(14, 202), c("A.d", "B.d"))
-  expect_equal(sapply(plist2, pluck, "d"), expected2)
-})
-test_that("pluck from list", {
-  expected1 = plist1[[1]]
-  expect_equal(pluck1(plist1), plist1[[1]])
-  expect_equal(pluck2(plist1), plist1[[2]])
-})
-test_that("pluck from unknown object type", {
-  somefunction = function(x) { x }
-  expect_error(pluck1(somefunction))
-})
-
-
-
-
-## Tests for today string
-
-test_that("today is a string", {
-  output = today()
-  ## it is hard to test the value given by today, but it must be a string
-  expect_equal(class(output), "character")
-  expect_gt(nchar(output), 4)
-})
