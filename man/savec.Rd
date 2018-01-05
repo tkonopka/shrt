@@ -14,5 +14,5 @@ full path to the saved object
 }
 \description{
 Wrapper for save(), which write an Rda representation of an
-object into a matched file in disk cache (see cache())
+object into a matched file in disk cache (see cachedir())
 }

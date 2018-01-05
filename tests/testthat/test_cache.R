@@ -1,5 +1,6 @@
 ## Tests for cache.R
 
+
 ## objects used during test save/load
 testvec = 1:10
 testobj = list(a=10, b=letters[1:4])
@@ -24,15 +25,15 @@ file.remove(list.files(datadir, pattern="Rda", full.names=T))
 
 
 test_that("set cache directory", {
-  cache(datadir)
+  cachedir(datadir)
   expected = datadir
-  output = cache()
+  output = cachedir()
   expect_equal(output, expected)
 })
 
 
 test_that("construct cached filenames", {
-  cache(datadir)
+  cachedir(datadir)
   expect_equal(cachefile("aa"), file.path(datadir, "aa.Rda"))
   abcfac = as.factor(letters[1:3])
   expect_equal(cachefile(abcfac[1]), file.path(datadir, "a.Rda"))
@@ -40,7 +41,7 @@ test_that("construct cached filenames", {
 })
 
 test_that("file exists after save, not after remove", {
-  cache(datadir)
+  cachedir(datadir)
   myvec = testvec
   savec(myvec)
   vecfile = file.path(datadir, "myvec.Rda")
@@ -52,7 +53,7 @@ test_that("file exists after save, not after remove", {
 
 
 test_that("remove warning when removing a file that is not there", {
-  cache(datadir)
+  cachedir(datadir)
   myvec = testvec
   savec(myvec)
   rmc(myvec)
@@ -62,7 +63,7 @@ test_that("remove warning when removing a file that is not there", {
 
 
 test_that("load cache object (without assign)", {
-  cache(datadir)
+  cachedir(datadir)
   myvec = testvec
   savec(myvec)
   rm(myvec)
@@ -75,7 +76,7 @@ test_that("load cache object (without assign)", {
 
 
 test_that("assign from simple cache object", {
-  cache(datadir)
+  cachedir(datadir)
   myvec = testvec
   savec(myvec)
   rm(myvec)
@@ -88,7 +89,7 @@ test_that("assign from simple cache object", {
 
 
 test_that("assign from larger cache object", {
-  cache(datadir)
+  cachedir(datadir)
   myobj = testobj
   savec(myobj)
   rm(myobj)
@@ -100,7 +101,7 @@ test_that("assign from larger cache object", {
 
 
 test_that("load error when object does not exist", {
-  cache(datadir)
+  cachedir(datadir)
   myobj = testobj
   savec(myobj)
   rmc(myobj)
@@ -110,7 +111,7 @@ test_that("load error when object does not exist", {
 
 
 test_that("assign from cache with/without overwrite", {
-  cache(datadir)
+  cachedir(datadir)
   myvec = testvec
   savec(myvec)
   rm(myvec)
@@ -138,7 +139,7 @@ test_that("assign with warning", {
 
 
 test_that("makec a simple object", {
-  cache(datadir)
+  cachedir(datadir)
 
   ## create an object
   mcode = makec("abc", abcfun)
@@ -153,7 +154,7 @@ test_that("makec a simple object", {
 
 
 test_that("makec when object exists in environment", {
-  cache(datadir)
+  cachedir(datadir)
   
   ## create an object
   myvec=testvec
@@ -169,7 +170,7 @@ test_that("makec when object exists in environment", {
 
 
 test_that("makec when object exists in cache", {
-  cache(datadir)
+  cachedir(datadir)
   
   ## create an object
   myvec=testvec

@@ -12,23 +12,23 @@ Unlike other vignettes in the package that demonstrate functions in a category i
 &nbsp;
 ## Setting up a disk cache
 
-A disk cache is a location on disk that holds computed objects so that they can be retrieved without requiring recomputing from scratch. The default location of the cache is the working directory and can be retrieved busing the function`cache()` without arguments,
+A disk cache is a location on disk that holds computed objects so that they can be retrieved without requiring recomputing from scratch. The default location of the cache is the working directory and can be retrieved busing the function`cachedir()` without arguments,
 
 
 ```r
-cache()
+cachedir()
 ```
 
 ```
-## [1] "/science/code/R-packages/shrt/vignettes/cachedata"
+## [1] "/science/code/R-packages/shrt/vignettes"
 ```
 
 Adding an argument sets up a new directory
 
 
 ```r
-cache("cachedata")
-cache()
+cachedir("cachedata")
+cachedir()
 ```
 
 ```

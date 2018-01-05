@@ -305,8 +305,6 @@ pluck = function(x, n, type=c("auto", "character", "integer", "numeric", "logica
         return(x[[n]])
     } else if (type=="matrix" | type=="data.frame") {
         return(x[n,])
-    } else {
-        stop("unsupported class of object x ", class(x), "\n")
     }
 }
 

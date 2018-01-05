@@ -64,20 +64,21 @@ initp = function(workdir,
 ##' @export
 reqvars = function(varnames, halt=TRUE) {
 
-    ## check that each variable exists in parent environment
-    varexists = sapply(as.character(varnames), function(x) {
-        xe = exists(x, parent.frame())
-        if (!xe) {
-            cat("Missing variable: ", x, "\n")
-        }
-        xe
-    })
-    
-    if (halt & sum(!varexists)>0) {
-        stop("Missing variables\n", call.=FALSE)
+  ## check that each variable exists in parent environment
+  varexists = sapply(as.character(varnames), function(x) {
+    ##xe = exists(x, parent.frame())
+    xe = exists(x, where=-1)
+    if (!xe) {
+      message("Missing variable: ", x, "\n")
     }
-
-    ## output is a vector with existence values for each variable
-    invisible(varexists)
+    xe
+  })
+  
+  if (halt & sum(!varexists)>0) {
+    stop("Missing variables\n", call.=FALSE)
+  }
+  
+  ## output is a vector with existence values for each variable
+  invisible(varexists)
 }
 

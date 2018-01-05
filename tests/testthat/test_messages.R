@@ -32,3 +32,20 @@ test_that("writing/retrieving/reseting messages in custom logger", {
   output2 = mymsg(action="get")
   expect_equal(output2, c())
 })
+
+
+test_that("writing long logs changes internal storage object", {
+  mymsg = newmsg(verbose=FALSE, date=FALSE)
+  ## write lots of messages
+  NN = 20
+  for (i in 1:NN) {
+    mymsg(paste0("message ", i))
+  }
+  ## write test message
+  mymsg("testmsg")
+  ## check that all messages were recorded
+  allmsg = mymsg(action="get")
+  expect_equal(length(allmsg), NN+1)
+  expect_equal(tail(allmsg, 1), "testmsg")
+})
+

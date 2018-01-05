@@ -36,7 +36,7 @@ to find the code and documentation. Column `Function` shows the function names.
  Group | Function | Description 
  --- | --- | ---
  cache | assignc | assign to variable using value from cache
- cache | cache | set a directory to act as a disk cache
+ cache | cachedir | set a directory to act as a disk cache
  cache | cachefile | get path to a file in cache
  cache | existsc | check if cache contains representation for a variable
  cache | loadc | load object from cache

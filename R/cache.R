@@ -51,7 +51,7 @@ assignc = function(x, overwrite=FALSE, warn=FALSE) {
 ##' not exists)
 ##'  
 ##' @export
-cache = function(dir=NULL) {
+cachedir = function(dir=NULL) {
   if (is.null(dir)) {
     cachedir = getOption("cachedir")
     if (is.null(cachedir)) {
@@ -65,7 +65,7 @@ cache = function(dir=NULL) {
     }
     options(cachedir=file.path(normalizePath(dir)))
   }
-  invisible(cache())
+  invisible(cachedir())
 }
 
 
@@ -87,7 +87,7 @@ cachefile = function(x) {
   if (class(x)!="character") {
     stop("x must be a character of factor\n")
   }
-  return(file.path(cache(), paste0(x, ".Rda")))
+  return(file.path(cachedir(), paste0(x, ".Rda")))
 }
 
 
@@ -167,7 +167,7 @@ makec = function(x, constructor, ...) {
 ##' Remove an object and its disk-cached match
 ##'
 ##' Wrapper for rm(), which in addition attempts to remove a matched
-##' file from disk cache (see cache())
+##' file from disk cache (see cachedir())
 ##'
 ##' WARNING: This function will remove files from the file system;
 ##' use with caution.
@@ -194,7 +194,7 @@ rmc = function(x) {
 ##' Save an object into disk-based cache
 ##'
 ##' Wrapper for save(), which write an Rda representation of an
-##' object into a matched file in disk cache (see cache())
+##' object into a matched file in disk cache (see cachedir())
 ##'
 ##' @param x object to save
 ##'

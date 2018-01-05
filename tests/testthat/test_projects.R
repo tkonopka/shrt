@@ -41,4 +41,25 @@ test_that("initp with wrong input", {
 
 
 ## Tests for checking variables
+## 
+## These tests are not quite right, but I don't know how to fix them.
+## reqvars() returns the expected results when used after library(shrt)
+## but within the tests, reqvars does not detect the defined variables
+
+
+test_that("reqvars finds defined variables", {
+  abc = 10
+  output = reqvars(c("abc"), halt=FALSE)
+  expected = c(abc=TRUE)
+  expect_equal(length(output), length(expected))
+})
+
+
+test_that("reqvars finds defined variables", {
+  abc = 10
+  expect_error(reqvars(c("missing.var"), halt=TRUE))
+  expect_message(reqvars(c("missing.var"), halt=FALSE))
+})
+
+
 

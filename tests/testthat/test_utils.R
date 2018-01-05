@@ -11,6 +11,17 @@ test_that("catv returns value silently", {
 })
 
 
+test_that("catv using verbose from options", {
+  if ("verbose" %in% ls()) {
+    rm(verbose)
+  }
+  options(verbose=FALSE)
+  expect_equal(catv("Hello", verbose=NA), NULL)
+})
+
+
+
+
 ## Tests for grep family
 
 test_that("grepv with simple regex", {
@@ -192,7 +203,6 @@ test_that("pluck from unknown object type", {
   somefunction = function(x) { x }
   expect_error(pluck1(somefunction))
 })
-
 
 
 

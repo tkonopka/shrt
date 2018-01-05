@@ -7,8 +7,13 @@ testrda = "anrda.Rda"
 testjson = "ajson.json"
 unsafetxt = "a-txt.txt"
 
-somedata = data.frame(a.id=1:4, AA=letters[1:4], BB=LETTERS[6:9], stringsAsFactors=F)
+somedata = data.frame(a.id=1:4, AA=letters[1:4], BB=LETTERS[6:9],
+                      stringsAsFactors=F)
 
+
+
+###############################################################################
+## Tests for rtht and wtht
 
 
 test_that("save and read standard matrix", {
@@ -18,17 +23,21 @@ test_that("save and read standard matrix", {
   unlink(testtsv)
 })
 
+
 test_that("save and read using rownames", {
   mydata = somedata[, c("AA", "BB")]
   rownames(mydata) = somedata[, "a.id"]
   wtht(mydata, file=testtsv, rowid.column = "id")
   output = rtht(testtsv, rowid.column="id")
   expect_equal(output, mydata)
+  unlink(testtsv)
 })
+
 
 test_that("save and read using made-up rownames", {
   ## create table without a numerical column
-  mydata = somedata[, c("AA", "BB")]
+  mydata = as.matrix(somedata[, c("AA", "BB")])
+  rownames(mydata) = NULL
   ## save and indicate a new column for ids
   wtht(mydata, file=testtsv, rowid.column = "new.ids")
   output = rtht(testtsv)
@@ -36,13 +45,17 @@ test_that("save and read using made-up rownames", {
   expected = somedata
   colnames(expected)[1] = "new.ids"
   expect_equal(output, expected)
+  unlink(testtsv)
 })
+
 
 test_that("report wrong attempts to write tables", {
   mydata = somedata[, c("AA", "BB")]
   rownames(mydata) = somedata[, "a.id"]
   expect_error(wtht(mydata, file=testtsv, rowid.column = "AA"))
+  unlink(testtsv)
 })
+
 
 test_that("report wrong attempts to read tables", {
   wtht(somedata, file=testtsv)
@@ -53,6 +66,10 @@ test_that("report wrong attempts to read tables", {
 
 
 
+###############################################################################
+## Tests for rtht and wtht
+
+
 test_that("retrieve all data files in a directory with one command", {
   ## write some files into local directory
   save(somedata, file=testrda)
@@ -60,6 +77,9 @@ test_that("retrieve all data files in a directory with one command", {
   wtht(somedata, file=testtsv)
   wtht(somedata, file=unsafetxt)
 
+  ## retrieve prints messages
+  expect_message(loaddir(getwd(), verbose=TRUE))
+  
   ## retrieve all the data items
   output = loaddir(getwd())
   ## expected set is the somedata matrix multiple times, labeled with filenames
@@ -72,9 +92,26 @@ test_that("retrieve all data files in a directory with one command", {
   expected = expected[sort(names(expected))]
   expect_equal(output, expected)
 
+  ## clean up after the test
+  unlink(testrda)
+  unlink(testjson)
+  unlink(testtsv)
+  unlink(unsafetxt)
+})
+
+
+test_that("retrieve several data files by extension filter", {
+  ## write some files into local directory
+  save(somedata, file=testrda)
+  write(toJSON(somedata), file=testjson)
+  wtht(somedata, file=testtsv)
+  wtht(somedata, file=unsafetxt)
+  
   ## retrieve only some types of data
-  output2 = loaddir(getwd(), extensions=c("txt", "tsv"))
-  expected2 = list("amatrix"=somedata, "a_txt"=somedata)
+  output = loaddir(getwd(), extensions=c("txt", "tsv"))
+  expected = list("amatrix"=somedata, "a_txt"=somedata)
+  output = output[sort(names(output))]
+  expected = expected[sort(names(expected))]
   expect_equal(output, expected)
   
   ## clean up after the test
@@ -88,4 +125,45 @@ test_that("retrieve all data files in a directory with one command", {
 test_that("attempt to retrieve strange data from directory", {
   expect_error(loaddir(getwd(), extensions=c("txt", "R")))
 })
+
+
+
+###############################################################################
+## Tests for load1
+
+
+test_that("load1 obtains one item", {
+  myobj = 1:4
+  save(myobj, file=testrda)
+  expect_true(file.exists(testrda))
+  rm(myobj)
+  objects.before = ls()
+  newobj = load1(testrda)
+  objects.after = ls()
+  expect_equal(sort(objects.after),
+               sort(c(objects.before, "objects.before", "newobj")))
+  unlink(testrda)
+})
+
+
+test_that("load1 gives error if object contains more than one item", {
+  obj1 = 1:4
+  obj2 = letters[1:4]
+  save(obj1, obj2, file=testrda)
+  expect_true(file.exists(testrda))
+  rm(obj1, obj2)
+  ## because file contains two separate objects, load1 should give error
+  expect_error(load1(testrda))
+  unlink(testrda)
+})
+
+
+
+###############################################################################
+## Cleanup, just in case
+
+unlink(testrda)
+unlink(testjson)
+unlink(testtsv)
+unlink(unsafetxt)
 

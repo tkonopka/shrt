@@ -11,7 +11,7 @@ rmc(x)
 }
 \description{
 Wrapper for rm(), which in addition attempts to remove a matched
-file from disk cache (see cache())
+file from disk cache (see cachedir())
 }
 \details{
 WARNING: This function will remove files from the file system;

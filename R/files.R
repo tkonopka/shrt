@@ -75,7 +75,7 @@ loaddir = function(dirpath, extensions=c("Rda", "txt", "txt.gz",
   for (onefile in allfiles) {
     x = basename(onefile)
     if (verbose) {
-      cat(x, "\n")
+      message(x, "\n")
     }
     if (endsWith(x, "Rda")) {
       xdata = load1(onefile)
