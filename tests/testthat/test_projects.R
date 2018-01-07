@@ -1,10 +1,11 @@
 ## Tests for R/projects.R
 
+cat("\ntest_projects.R ")
+
+
 
 
 testproj = "projectdir"
-
-
 
 
 ## Tests for creation of a project structure

@@ -47,7 +47,8 @@ to find the code and documentation. Column `Function` shows the function names.
  data | setsummary | summary of set membership
  loops | apwi | apply with iterator index
  messages | msg | log and output a message 
- messages | newmsg | create message logger 
+ messages | newmsg | create message logger
+ plot | widen | update an range to make wider
  files | load1 | load from Rdata file into one named object
  files | loaddir | load content from a directory
  files | rtht | read tables from files 

@@ -1,5 +1,9 @@
 ## Tests for data.R
 
+cat("\ntest_data.R ")
+
+
+
 
 # helper object, vector with zero length
 emptychars = newv("character", 0)

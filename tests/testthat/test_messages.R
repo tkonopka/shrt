@@ -1,6 +1,10 @@
 
 ## tests for R/messages.R
 
+cat("\ntest_messages.R ")
+
+
+
 
 test_that("using basic msg", {  
   ## write some messages

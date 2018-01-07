@@ -1,5 +1,7 @@
 ## Tests for colors.R
 
+cat("\ntest_colors.R ")
+
 
 
 ## Tests for hex numbers

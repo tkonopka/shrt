@@ -1,5 +1,10 @@
 ## tests for R/files.R
 
+cat("\ntest_files.R ")
+
+
+
+
 library(jsonlite)
 
 testtsv = "amatrix.tsv"

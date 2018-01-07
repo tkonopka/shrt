@@ -1,5 +1,9 @@
 ## Tests for cache.R
 
+cat("\ntest_cache.R ")
+
+
+
 
 ## objects used during test save/load
 testvec = 1:10

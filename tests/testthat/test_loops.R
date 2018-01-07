@@ -1,5 +1,9 @@
 ## test for R/loops.R
 
+cat("\ntest_loops.R ")
+
+
+
 
 ## functions used within tests of apply
 afun = function(i, x) {
