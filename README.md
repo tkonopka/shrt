@@ -38,6 +38,7 @@ to find the code and documentation. Column `Function` shows the function names.
  cache | assignc | assign to variable using value from cache
  cache | cachedir | set a directory to act as a disk cache
  cache | cachefile | get path to a file in cache
+ cache | cacheprefix | set a prefix for cache files
  cache | existsc | check if cache contains representation for a variable
  cache | loadc | load object from cache
  cache | rmc | remove an object from environment and from cache

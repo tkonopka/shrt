@@ -87,7 +87,29 @@ cachefile = function(x) {
   if (class(x)!="character") {
     stop("x must be a character of factor\n")
   }
-  return(file.path(cachedir(), paste0(x, ".Rda")))
+  prefix = cacheprefix()
+  return(file.path(cachedir(), paste0(prefix, x, ".Rda")))
+}
+
+
+
+
+##' Set or query a prefix for cache files
+##'
+##' @param prefix character, prefix for all cache files
+##'  
+##' @export
+cacheprefix = function(prefix=NULL) {
+  if (is.null(prefix)) {
+    cacheprefix = getOption("cacheprefix")
+    if (is.null(cacheprefix)) {
+      cacheprefix = ""
+    }
+    return (cacheprefix)
+  } else {
+    options(cacheprefix=prefix)
+  }
+  invisible(cacheprefix())
 }
 
 

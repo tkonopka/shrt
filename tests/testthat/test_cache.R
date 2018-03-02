@@ -36,6 +36,16 @@ test_that("set cache directory", {
 })
 
 
+test_that("set cache prefix", {
+  firstprefix = cacheprefix()
+  expect_equal(firstprefix, "")
+  cacheprefix("testing")
+  output = cacheprefix()
+  expect_equal(output, "testing")
+  cacheprefix("")
+})
+
+
 test_that("construct cached filenames", {
   cachedir(datadir)
   expect_equal(cachefile("aa"), file.path(datadir, "aa.Rda"))
@@ -43,6 +53,17 @@ test_that("construct cached filenames", {
   expect_equal(cachefile(abcfac[1]), file.path(datadir, "a.Rda"))
   expect_error(cachefile(3))
 })
+
+test_that("construct cached filenames with prefix", {
+  cachedir(datadir)
+  cacheprefix("testing.")
+  expect_equal(cachefile("aa"), file.path(datadir, "testing.aa.Rda"))
+  abcfac = as.factor(letters[1:3])
+  expect_equal(cachefile(abcfac[1]), file.path(datadir, "testing.a.Rda"))
+  expect_error(cachefile(3))
+  cacheprefix("")
+})
+
 
 test_that("file exists after save, not after remove", {
   cachedir(datadir)

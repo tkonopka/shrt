@@ -35,6 +35,30 @@ cachedir()
 ## [1] "/science/code/R-packages/shrt/vignettes/cachedata"
 ```
 
+It is also possible to include a prefix to each file of the cache directory.
+
+
+```r
+cacheprefix("testing")
+cacheprefix()
+```
+
+```
+## [1] "testing"
+```
+
+To stop using the prefix, set it to the empty string.
+
+
+```r
+cacheprefix("")
+cacheprefix()
+```
+
+```
+## [1] ""
+```
+
 
 
 
