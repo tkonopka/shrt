@@ -39,6 +39,22 @@ catv = function(..., verbose=NA) {
 
 
 
+##' evaluate if object is empty (length 0)
+##'
+##' The name is short for: object is (empty)
+##'
+##' @param x object, vector, list, matrix
+##'
+##' @return logical value, TRUE if object is of length zero
+##'
+##' @export
+empty = function(x) {
+  length(x)==0
+}
+
+
+
+
 ##' Pattern matching 
 ##'
 ##' This is a wrapper for grep. By default it returns the matching

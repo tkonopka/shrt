@@ -57,6 +57,7 @@ to find the code and documentation. Column `Function` shows the function names.
  projects | initp | initiate directories/folders for a project
  projects | reqvars | check whether variables are defined
  utils | catv | print to console, but only in verbose mode
+ utils | empty | evaluate if object is of zero length
  utils | grepv | pattern matching 
  utils | h1, h2, h3 | head with preset n
  utils | mtrx | creating matrices 

@@ -26,6 +26,25 @@ test_that("catv using verbose from options", {
 
 
 
+## Tests for empty
+
+test_that("empty returns true on non-trivial objects", {
+  expect_false(empty(4))
+  expect_false(empty(1:4))
+  expect_false(empty(NA))
+  expect_false(empty(list(a=4, b=1:3)))
+})
+
+
+test_that("empty returns false on NULL objects", {
+  expect_true(empty(NULL))
+  expect_true(empty(list()))
+  expect_true(empty(c()))
+})
+
+
+
+
 ## Tests for grep family
 
 test_that("grepv with simple regex", {
