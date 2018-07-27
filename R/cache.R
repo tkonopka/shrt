@@ -45,7 +45,7 @@ assignc = function(x, overwrite=FALSE, warn=FALSE, msgfun=msg) {
     result.msgs = c("0"="not found",
                     "1"="found in cache",
                     "2"="already exists")
-    msgfun(paste0("!! ", x, result.msgs[as.character(result)]))    
+    msgfun(paste0("!! '", x, "' ", result.msgs[as.character(result)]))    
   }
   
   invisible(result)

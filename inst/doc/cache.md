@@ -20,7 +20,7 @@ cachedir()
 ```
 
 ```
-## [1] "/science/code/R-packages/shrt/vignettes"
+## [1] "/science/code/R-packages/shrt/vignettes/cachedata"
 ```
 
 Adding an argument sets up a new directory
@@ -241,6 +241,38 @@ rev5
 ## [1] 5 4 3 2 1
 ```
 
+
+
+&nbsp;
+## Logging
+
+By default, function `assignc` does not produce any log messages. Thus, the following snippet is silent.
+
+
+```r
+abc = 5
+assignc("abc")
+```
+
+It is possible to activate messages by setting a verbosity level greater than 1.
+
+
+```r
+verbose = 2
+assignc("abc")
+```
+
+```
+## [2018-07-27 04:47:37]	!! 'abc' already exists
+```
+
+Turning off logging is achieved by resetting verbosity.
+
+
+```r
+verbose = FALSE
+assignc("abc")
+```
 
 
 
