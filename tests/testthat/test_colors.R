@@ -1,6 +1,6 @@
 ## Tests for colors.R
 
-cat("\ntest_colors.R ")
+cat("\ntest_colors.R\n")
 
 
 

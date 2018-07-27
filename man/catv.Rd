@@ -4,7 +4,7 @@
 \alias{catv}
 \title{Write a message to the console, but only if in verbose mode}
 \usage{
-catv(..., verbose = NA)
+catv(..., verbose = detect.verbose())
 }
 \arguments{
 \item{...}{arguments to write out}

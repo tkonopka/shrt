@@ -11,6 +11,7 @@
 ##' @param overwrite logical, when TRUE, load from cache occurs regardless
 ##' of whether object already exists; when FALSE, assign only happens
 ##' @param warn logical, determine if show warning when assignment fails
+##' @param msgfun function, used to output a message if verbosity is set >1
 ##'
 ##' @return integer code:
 ##' 0 when load failed;
@@ -18,7 +19,7 @@
 ##' 2 when assign was aborted because object already exists
 ##'
 ##' @export
-assignc = function(x, overwrite=FALSE, warn=FALSE) {
+assignc = function(x, overwrite=FALSE, warn=FALSE, msgfun=msg) {
   ## look up if object exists
   result = 0
   if (!overwrite) {
@@ -39,6 +40,14 @@ assignc = function(x, overwrite=FALSE, warn=FALSE) {
   if (result==0 & warn) {
     warning("object ", x, " does not exist in cache")
   }
+
+  if (detect.verbose()>1) {
+    result.msgs = c("0"="not found",
+                    "1"="found in cache",
+                    "2"="already exists")
+    msgfun(paste0("!! ", x, result.msgs[as.character(result)]))    
+  }
+  
   invisible(result)
 }
 

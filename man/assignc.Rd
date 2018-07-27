@@ -4,7 +4,7 @@
 \alias{assignc}
 \title{Assign value to a variable using value from cache}
 \usage{
-assignc(x, overwrite = FALSE, warn = FALSE)
+assignc(x, overwrite = FALSE, warn = FALSE, msgfun = msg)
 }
 \arguments{
 \item{x}{character, name of object to retrieve from cache}
@@ -13,6 +13,8 @@ assignc(x, overwrite = FALSE, warn = FALSE)
 of whether object already exists; when FALSE, assign only happens}
 
 \item{warn}{logical, determine if show warning when assignment fails}
+
+\item{msgfun}{function, used to output a message if verbosity is set >1}
 }
 \value{
 integer code:

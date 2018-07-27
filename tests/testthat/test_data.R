@@ -1,6 +1,6 @@
 ## Tests for data.R
 
-cat("\ntest_data.R ")
+cat("\ntest_data.R\n")
 
 
 

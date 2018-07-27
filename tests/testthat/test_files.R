@@ -1,6 +1,6 @@
 ## tests for R/files.R
 
-cat("\ntest_files.R ")
+cat("\ntest_files.R\n")
 
 
 

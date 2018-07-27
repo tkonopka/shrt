@@ -1,6 +1,6 @@
 ## Tests for cache.R
 
-cat("\ntest_cache.R ")
+cat("\ntest_cache.R\n")
 
 
 
@@ -53,6 +53,7 @@ test_that("construct cached filenames", {
   expect_equal(cachefile(abcfac[1]), file.path(datadir, "a.Rda"))
   expect_error(cachefile(3))
 })
+
 
 test_that("construct cached filenames with prefix", {
   cachedir(datadir)
@@ -211,4 +212,18 @@ test_that("makec when object exists in cache", {
   rmc(myvec)
 })
 
+
+test_that("assignc gives messges in verbose mode", {
+  cachedir(datadir)
+  verbose = 2
+  myvec = testvec
+  savec(myvec)
+  expect_message(assignc("myvec"), "exists")
+  rm(myvec)
+  expect_message(assignc("myvec"), "cache")
+  ## now only exists in cache
+  expect_message(assignc("not,in.cache"), "not")
+  rmc(myvec)
+  rm(verbose)
+})
 

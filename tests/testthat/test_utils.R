@@ -1,6 +1,6 @@
 ## Tests for R/utils.R
 
-cat("\ntest_utils.R ")
+cat("\ntest_utils.R\n")
 
 
 
@@ -11,7 +11,10 @@ test_that("catv returns value silently", {
   input = "Hello"
   expect_equal(catv(input, verbose=FALSE), NULL)
   verbose = FALSE
-  expect_equal(catv(input, verbose=NA), NULL)
+  expect_equal(catv(input), NULL)
+  expect_silent(catv(input))
+  verbose = 2
+  expect_output(catv(input))
 })
 
 
@@ -20,7 +23,7 @@ test_that("catv using verbose from options", {
     rm(verbose)
   }
   options(verbose=FALSE)
-  expect_equal(catv("Hello", verbose=NA), NULL)
+  expect_equal(catv("Hello"), NULL)
 })
 
 

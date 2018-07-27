@@ -1,7 +1,7 @@
-
 ## Collection of functions with short names - general purpose
 ##
 ##
+
 
 
 
@@ -17,22 +17,10 @@
 ##' options.
 ##'
 ##' @export
-catv = function(..., verbose=NA) {
-
-  if (is.na(verbose)) {
-    if (exists("verbose", envir=parent.frame(n=1))) {
-      verbose = get("verbose", envir=parent.frame(n=1))
-    } else {
-      verbose = getOption("verbose")
-    }
+catv = function(..., verbose=detect.verbose()) {
+  if (verbose) {
+    cat(...)
   }
-
-  if (!is.null(verbose)) {
-    if (verbose) {
-      cat(...)
-    }
-  }
-
   invisible()
 }
 

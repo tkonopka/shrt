@@ -1,6 +1,6 @@
 ## Tests for R/plot.R
 
-cat("\ntest_plot.R ")
+cat("\ntest_plot.R\n")
 
 
 ## Tests for widen

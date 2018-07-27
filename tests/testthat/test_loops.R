@@ -1,6 +1,6 @@
 ## test for R/loops.R
 
-cat("\ntest_loops.R ")
+cat("\ntest_loops.R\n")
 
 
 

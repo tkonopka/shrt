@@ -1,6 +1,6 @@
 ## Tests for R/projects.R
 
-cat("\ntest_projects.R ")
+cat("\ntest_projects.R\n")
 
 
 

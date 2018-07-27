@@ -1,7 +1,7 @@
 
 ## tests for R/messages.R
 
-cat("\ntest_messages.R ")
+cat("\ntest_messages.R\n")
 
 
 
@@ -9,6 +9,7 @@ cat("\ntest_messages.R ")
 test_that("using basic msg", {  
   ## write some messages
   tt = today("-")
+  msg(action="reset")
   expect_message(msg("one"), "one")
   expect_message(msg("two"), tt)
   expect_message(msg(action="show"))
