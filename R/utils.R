@@ -112,6 +112,22 @@ h3 = function(x, ...) {
 
 
 
+##' length of grep result
+##'
+##' @param pattern character string with a grep pattern
+##' @param x character vector to search in
+##' @param ... any other arguments passed on to grep()
+##'
+##' @return integer, length of grep result
+##'
+##' @export
+lengrep = function(pattern, x, ...) {
+  length(grep(pattern, x, ...))
+}
+
+
+
+
 ##' Creates a matrix with row and column names
 ##'
 ##' Compared to matrix(), this function has simpler syntax

@@ -127,6 +127,24 @@ h3(letters)
 
 
 
+&nbsp;
+## lengrep
+
+`lengrep` is equivalent to `grep` followed by `length`. It returns the number
+of hits in a grep query.
+
+
+```r
+items = c("foo1", "foo2", "bar")
+lengrep("foo", items)
+```
+
+```
+## [1] 2
+```
+
+
+
 
 &nbsp;
 ## lenu
@@ -423,7 +441,7 @@ today()
 ```
 
 ```
-## [1] "20171206"
+## [1] "20180815"
 ```
 
 

@@ -91,6 +91,16 @@ test_that("head with preset length, empty", {
 
 
 
+## Tests for lengrep
+
+test_that("lengrep returns integer", {
+  abc = c("hello", "hero", "bob")
+  expect_equal(lengrep("he", abc), 2)
+})
+
+
+
+
 ## Tests for lenu
 
 test_that("lenu with basic input", {
