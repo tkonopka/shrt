@@ -1,4 +1,11 @@
-# `shrt`: Input and output with files 
+---
+title: Input and output with files
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Input and output with files}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 This vignette demonstrates functions in the `files` range.
 
@@ -17,7 +24,8 @@ d1
 
 
 
-&nbsp;	
+&nbsp;
+
 ## wtht	
 
 `wtht` is a wrapper for `write.table` which by default has `row.names=FALSE`, `col.names=TRUE`, `quote=FALSE`, and `sep='\t'`. The basic usage save a table into a specified file
@@ -38,6 +46,7 @@ Refer to the next section to see the result from these commands.
 
 
 &nbsp;
+
 ## rtht
 
 `rtht` is a wrapper for `read.table` which by default sets `header=TRUE`, `sep='\t'`, and `stringsAsFactors=FALSE`. 
@@ -77,6 +86,7 @@ unlink("test.2.tsv")
 
 
 &nbsp;
+
 ## load1
 
 `load1` retrieves data from a file on disk in a similar way to `load`. However, `load1` is specialized to loading single objects from a file. This is handy in situations such as demonstrated below.
@@ -90,7 +100,7 @@ save(d1, file="test.Rda")
 The best way to check that the data is really saved would be to load it into
 a new R session. Here, we can achieve a similar effect by removing the variable from the environment and then loading it from the file. 
 
-```{r}
+```{r, error=TRUE}
 rm(d1)
 d1
 ```
@@ -132,3 +142,4 @@ unlink("test.Rda")
 
 
 
+&nbsp;

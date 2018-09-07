@@ -1,4 +1,11 @@
-# `shrt`: General-purpose functions
+---
+title: General-purpose utlity functions
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{General-purpose utility functions}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 This vignette demonstrates functions in the `utils` range.
 
@@ -9,7 +16,6 @@ library(shrt)
 
 
 
-&nbsp;
 ## catv
 
 `catv` is a wrapper for `cat` that prints messages to the console. Unlike the original, this wrapper can be active or silent depending on the value of a verbose setting.
@@ -47,7 +53,6 @@ Future `catv` statements will also produce output on the console.
 
 
 
-&nbsp;
 ## grepv
 
 `grepv` is a pattern matching function, a wrapper for `grep`, that returns the actual matching values. For example, let's start with a vector of strings
@@ -71,7 +76,6 @@ grepv("a[lm]", greek)
 
 
 
-&nbsp;
 ## h1, h2, h3
 
 These three functions are wrappers for `head` with preset values for `n`. For example
@@ -84,7 +88,6 @@ h3(letters)
 
 
 
-&nbsp;
 ## lengrep
 
 `lengrep` is equivalent to `grep` followed by `length`. It returns the number
@@ -98,7 +101,6 @@ lengrep("foo", items)
 
 
 
-&nbsp;
 ## lenu
 
 `lenu` is equivalent to `unique` followed by `length`. It returns the
@@ -112,7 +114,6 @@ lenu(foo)
 
 
 
-&nbsp;
 ## mtrx
 
 `mtrx` creates a matrix from input data. Compared to the usual `matrix`, it provides some new possibilities in naming rows and columns.
@@ -145,7 +146,6 @@ Note how the number of columns is automatically determined by the specified name
 
 
 
-&nbsp;
 ## namesF, namesNA, namesT, namesV
 
 The four functions `namesF`, `namesNA`, `namesT`, and `namesV` are variations on a theme. They act on a vector and provide the names of elements that match particular values. 
@@ -201,7 +201,6 @@ namesNA(foo.integer)
 
 
 
-&nbsp;
 ## newv
 
 `newv` creates a new vector of specified length, possibly containing names. 
@@ -238,7 +237,6 @@ Note that the length of the output object is determined by the names.
 
 
 
-&nbsp;
 ## p0
 
 `p0` is equivalent to `paste0`. It concatenates its input without adding any spaces or other characters.
@@ -251,7 +249,6 @@ p0(greek[1], greek[2])
 
 
 
-&nbsp;
 ## today
 
 `today` returns a current date in a compact character string. 
@@ -263,7 +260,6 @@ today()
 
 
 
-&nbsp;
 ## x2df
 
 `x2df` is a conversion function that coerces an input object into a data frame. It is shorthand notations for calls to `data.frame`. For example, let's start with a matrix of characters.
@@ -295,3 +291,5 @@ In addition to such simple conversion, the function can also convert vectors int
 myvec = setNames(1:4, letters[1:4])
 x2df(myvec)
 ```
+
+

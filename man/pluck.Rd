@@ -4,8 +4,8 @@
 \alias{pluck}
 \title{Extract a component from an object}
 \usage{
-pluck(x, n, type = c("auto", "character", "integer", "numeric", "logical",
-  "list", "matrix", "data.frame"))
+pluck(x, n, type = c("auto", "character", "integer", "numeric",
+  "logical", "list", "matrix", "data.frame"))
 }
 \arguments{
 \item{x}{object - either vector, list, matrix, etc}

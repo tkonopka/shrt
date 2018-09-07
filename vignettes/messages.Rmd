@@ -1,4 +1,11 @@
-# `shrt`: Logging and messaging functions
+---
+title: Messages
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Messages}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 This vignette demonstrate functions in the `messages` range. 
 
@@ -10,7 +17,6 @@ msg(action="reset")
 
 
 
-&nbsp;
 ## msg
 
 `msg` displays messages on the console and records them for later use. In contrast to many other function in the `shrt` package, this function provides interesting functionality that is not directly provided by base R functions. 
@@ -55,7 +61,6 @@ The output from the last command is now empty.
 
 
 
-&nbsp;
 ## newmsg
 
 `newmsg` creates a new message log/logger. For example, we can create a silent log that does not include the call date. 
@@ -68,8 +73,8 @@ class(silent.msg)
 The new object is a function that works analogously to `msg` above. 
 
 ```{r}
-silent.msg("hi")
-silent.msg("hi again")
+silent.msg("one")
+silent.msg("two")
 ```
 
 The messages can again be displayed as above. 

@@ -1,4 +1,11 @@
-# `shrt`: Plot-related functions
+---
+title: Plot-related 
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Plot-related}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 This vignette demonstrates functions in the `plot` range.
 

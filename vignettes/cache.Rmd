@@ -1,4 +1,11 @@
-#`shrt`: managing cache objects and files
+---
+title: Managing cache objects
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Managing cache objects}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 The `cache` collection of functions streamlines use of save() and load() to manage objects during scripting. 
 
@@ -11,7 +18,6 @@ library(shrt)
 
 
 
-&nbsp;
 ## Setting up a disk cache
 
 A disk cache is a location on disk that holds computed objects so that they can be retrieved without requiring recomputing from scratch. The default location of the cache is the working directory and can be retrieved busing the function`cachedir()` without arguments,
@@ -44,7 +50,7 @@ cacheprefix()
 
 
 
-&nbsp;
+
 ## Writing to and loading from a cache
 
 Consider a simple test object `abc`,
@@ -106,7 +112,6 @@ Again, the interface to `rmc` requires specifying the object, but not the file p
 
 
 
-&nbsp;
 ## Pipelines with cache
 
 Cached objects can be useful to speed-up a long-running script or pipeline. Functions `assignc` and `makec` provide tools for this purpose. For this use case, consider generating an object using a function.
@@ -169,7 +174,7 @@ rev5
 
 
 
-&nbsp;
+
 ## Logging
 
 By default, function `assignc` does not produce any log messages. Thus, the following snippet is silent.
@@ -195,7 +200,7 @@ assignc("abc")
 
 
 
-&nbsp;
+
 ## Notes
 
 It is worth stressing that `assignc` and `makec` perform different actions depending on the state of the current environment. The default order of preference is as follows:

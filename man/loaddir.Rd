@@ -4,8 +4,8 @@
 \alias{loaddir}
 \title{Load contents of directory (from multiple files of different types)}
 \usage{
-loaddir(dirpath, extensions = c("Rda", "txt", "txt.gz", "json", "json.gz",
-  "tsv", "tsv.gz", "csv", "csv.gz"), verbose = FALSE, ...)
+loaddir(dirpath, extensions = c("Rda", "txt", "txt.gz", "json",
+  "json.gz", "tsv", "tsv.gz", "csv", "csv.gz"), verbose = FALSE, ...)
 }
 \arguments{
 \item{dirpath}{path for input directory}

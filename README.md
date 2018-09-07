@@ -80,7 +80,7 @@ to find the code and documentation. Column `Function` shows the function names.
 ## Documentation
 
 Documentation on each function (or each family of functions) is available through 
-markdown [vignettes](https://github.com/tkonopka/shrt/tree/master/inst/doc).
+markdown [vignettes](https://github.com/tkonopka/shrt/tree/master/vignettes).
 
 
 ## License

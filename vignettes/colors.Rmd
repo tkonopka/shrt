@@ -1,4 +1,11 @@
-# `shrt`: manipulations related to colors
+---
+title: Colors
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Colors}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 This vignette demonstrates functions in the `colors` range.
 
@@ -22,7 +29,6 @@ y
 
 
 
-&nbsp;	
 ## x2hex	
 
 `x2hex` converts numbers in a [0,1] range into hexadecimal strings that can be used as transparency values
@@ -54,7 +60,6 @@ Note the column and row names are preserved under the transformation.
 
 
 
-&nbsp;	
 ## x2col	
 
 `x2col` converts numbers into colors on a two-color scale. Intermediate colors are created using transparency codes.

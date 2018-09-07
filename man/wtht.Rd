@@ -4,8 +4,8 @@
 \alias{wtht}
 \title{Write a table to disk}
 \usage{
-wtht(x, file, rowid.column = NULL, row.names = FALSE, col.names = TRUE,
-  quote = FALSE, sep = "\\t", ...)
+wtht(x, file, rowid.column = NULL, row.names = FALSE,
+  col.names = TRUE, quote = FALSE, sep = "\\t", ...)
 }
 \arguments{
 \item{x}{data frame or matrix}

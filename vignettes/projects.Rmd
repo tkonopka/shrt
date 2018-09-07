@@ -1,4 +1,11 @@
-# `shrt`: Project management
+---
+title: Project management
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Project management}
+  %\usepackage[UTF-8]{inputenc}
+---
+
 
 This vignette demonstrates function in the `projects` range.
 
@@ -10,7 +17,6 @@ msg(action="reset")
 
 
 
-&nbsp;
 ## initp
 
 `initp` creates a new directory and some subdirectories. 
@@ -37,12 +43,11 @@ unlink("MyProjects", recursive=TRUE)
 
 
 
-&nbsp;
 ## reqvars
 
 `reqvars` checks that a set of variable names are defined.
 
-```{r}
+```{r, error=TRUE}
 a1 = 3
 a4 = 0
 reqvars(c("a1", "a2", "a3", "a4"))

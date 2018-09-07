@@ -42,10 +42,10 @@ assignc = function(x, overwrite=FALSE, warn=FALSE, msgfun=msg) {
   }
 
   if (detect.verbose()>1) {
-    result.msgs = c("0"="not found",
+    result.msgs = c("0"="does not exist",
                     "1"="found in cache",
-                    "2"="already exists")
-    msgfun(paste0("!! '", x, "' ", result.msgs[as.character(result)]))    
+                    "2"="exists")
+    msgfun(paste0("'", x, "' ", result.msgs[as.character(result)]))    
   }
   
   invisible(result)
