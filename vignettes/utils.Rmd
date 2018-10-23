@@ -237,6 +237,31 @@ Note that the length of the output object is determined by the names.
 
 
 
+## nvec
+
+`nvec` creates a named vector using two columns from a data frame.
+
+The usual way to use matrix/data-frame to create a named vector is a two-step process: first extract values, then assign names.
+
+```{r}
+my.data.frame = data.frame(id=c("A", "B"), val=c(2, 6))
+myvec = my.data.frame[, "val"]
+names(myvec) = my.data.frame[, "id"]
+myvec
+```
+
+The assignment can be written on one line with `setNames`, but still requires identifying the data frame twice. The `nvec` function is shortcut that requires writing the name of the data frame only once.
+
+```{r}
+myvec = nvec(my.data.frame, "val", "id")
+myvec
+```
+
+The function also checks existence of columns and ensures that the names of the vector are unique.
+
+
+
+
 ## p0
 
 `p0` is equivalent to `paste0`. It concatenates its input without adding any spaces or other characters.

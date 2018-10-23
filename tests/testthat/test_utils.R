@@ -160,39 +160,66 @@ test_that("creation of new vectors (irregular inputs)", {
 
 ## Tests for namesX family
 
-nvec1 = setNames(rep(c(1,2), 3), letters[1:6])
-nvec2 = setNames(1:6, letters[1:6])
+vec1 = setNames(rep(c(1,2), 3), letters[1:6])
+vec2 = setNames(1:6, letters[1:6])
 
 test_that("use of namesV", {
-  output = namesV(nvec1, 1)
+  output = namesV(vec1, 1)
   expect_equal(output, c("a", "c", "e"))
 })
 
 test_that("use of namesF", {
-  input = nvec2>3
+  input = vec2>3
   expect_equal(namesF(input), c("a", "b", "c"))
 })
 
 test_that("use of namesT", {
-  input  = setNames(nvec2 %in% c(1,5,6), names(nvec2))    
+  input  = setNames(vec2 %in% c(1,5,6), names(vec2))    
   expected = c("a", "e", "f")
   ## test when vector is actually logical
   expect_equal(namesT(input), expected)
 })
 
 test_that("use of namesNA", {
-  input  = nvec2
+  input  = vec2
   expected = c("a", "d")
   input[expected] = NA
   expect_equal(namesNA(input), expected)
 })
 
 test_that("names family gives errors", {
-  expect_error(namesT(nvec1))
-  expect_error(namesF(nvec1))
-  temp = nvec1
+  expect_error(namesT(vec1))
+  expect_error(namesF(vec1))
+  temp = vec1
   names(temp) = NULL
   expect_error(namesV(temp, 2))
+})
+
+
+
+
+## Tests for nvec - named vector
+
+test_that("nvec generates errors with bad inputs", {
+  df = cbind(A=letters[1:4], B=1:4)
+  expect_error(nvec(df, "C", "B"))
+  expect_error(nvec(df, "A", "G"))
+  expect_error(nvec(df, NULL, "B"))
+  expect_error(nvec(df, NA, "B"))
+  expect_error(nvec(df, "B", NULL))
+  expect_error(nvec(df, "B", NA))
+})
+
+test_that("nvec creates vectors", {
+  df = data.frame(A=letters[1:4], B=1:4)
+  result = nvec(df, "B", "A")
+  expected = c(a=1, b=2, c=3, d=4)
+  expect_equal(result, expected)
+})
+
+test_that("nvec assigns unique names", {
+  df = data.frame(A=letters[1:3], B=1:6)
+  expect_error(nvec(df, "B", "A"), "unique")
 })
 
 

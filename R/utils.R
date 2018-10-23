@@ -128,6 +128,20 @@ lengrep = function(pattern, x, ...) {
 
 
 
+##' Get number of unique elements in a vector
+##'
+##' The name is short for: (len)th of (u)nique(x)
+##' 
+##' @param x vector
+##'
+##' @export
+lenu = function(x) {    
+    length(unique(x))
+}
+
+
+
+
 ##' Creates a matrix with row and column names
 ##'
 ##' Compared to matrix(), this function has simpler syntax
@@ -279,15 +293,34 @@ namesNA = function(x) {
 
 
 
-##' Get number of unique elements in a vector
+##' Create a named vector using two columns in a data-frame
 ##'
-##' The name is short for: (len)th of (u)nique(x)
+##' The name is short for: (n)amed (vec)tor
+##'
+##' @param df data frame
+##' @param values.col character, column in df used for vector values
+##' @param names.col character, column in df used for vector names
 ##' 
-##' @param x vector
+##' @examples
+##' df = data.frame(A=letters[1:4], B=c(4,2,3,1))
+##' nvec(df, "B", "A")
 ##'
 ##' @export
-lenu = function(x) {    
-    length(unique(x))
+nvec = function(df, values.col=NULL, names.col=NULL) {
+  # check that relevant columns exist
+  check.col = function(x) {
+    if (is.null(x) | !(x %in% colnames(df))) {
+      stop("nvec: invalid column name ", x, "\n")
+    }
+  }
+  check.col(values.col)
+  check.col(names.col)
+  # check that names are unique
+  if (length(unique(df[, names.col])) != nrow(df)) {
+    stop("nvec: names are not unique\n")
+  }
+  # the proper calculation
+  setNames(df[, values.col], df[, names.col])
 }
 
 
