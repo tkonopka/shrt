@@ -14,6 +14,33 @@ library(shrt)
 ```
 
 
+## ji
+
+`ji` computes the Jaccard index of two sets. The Jaccard index is a commonly used metrics in data science. It is defined as the size of the set intersection, normalized by the size of the union.
+
+```{r}
+setA = c("alpha", "beta")
+setB = c("beta", "gamma", "delta")
+ji(setA, setB)
+```
+
+
+## oi
+
+`oi` computes the overlap index of two sets. This index normalizes the size of set intersection by the size of the first set only. (This is in contrast with the Jaccard index, which normalizes the size of the union of the two sets).
+
+```{r}
+setA = c("alpha", "beta")
+setB = c("beta", "gamma", "delta")
+oi(setA, setB)
+```
+
+Note that the overlap index is not symmetrical.
+
+```{r}
+oi(setB, setA)
+```
+
 
 
 ## setsummary

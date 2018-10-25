@@ -8,9 +8,7 @@ Functions for shorter R code
 ## Introduction
 
 Some commands or sequences of commands occur so often that one can wish for
-shorthand notation. This package is a collection of such shorthand functions
-that streamline such common sequences, in some cases trading some expressivity
-in function names for typing convenience.
+shorthand notation. This package is a collection of such shorthand functions.
 
 For example, writing tab-separated tables with headers requires calling `write.table()` 
 with options `quote=F, col.names=T, row.names=F, sep='\t'`. This package 
@@ -45,6 +43,8 @@ to find the code and documentation. Column `Function` shows the function names.
  cache | savec | save an oject into disk cache
  colors | x2hex | map values into a hex transparency code
  colors | x2col | map vectors or matrices onto a 2-color scale
+ data | ji | jaccard index of two sets
+ data | oi | overlap index of two sets
  data | setsummary | summary of set membership
  loops | apwi | apply with iterator index
  messages | msg | log and output a message 

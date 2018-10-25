@@ -5,6 +5,48 @@
 
 
 
+##' compute Jaccard Index of two sets
+##'
+##' The Jaccard Index of two sets is defined as the ratio of the
+##' size of the set intersection (common element) and the
+##' size of the set union (all elements).
+##'
+##' The name is short for: (j)accard (i)ndex
+##'
+##' @param a vector of set elements
+##' @param b vector of set elements
+##'
+##' @examples
+##' ji(c(1,2,3), c(1,4,5)) # one common element out of five, JI=0.2 
+##'
+##' @export
+ji = function(a, b) {
+  length(intersect(a,b)) / length(union(a, b))
+}
+
+
+
+
+##' compute Overlap Index of two sets
+##'
+##' The Overlap Index of two sets is defined as the ratio of the
+##' size of the set intersection (common elements) and the size
+##' of the primary set.
+##'
+##' @param a vector of set elements
+##' @param b vector of set elements
+##'
+##' @examples
+##' oi(c(1,2), c(2,3,4,5)) # one element out of two in "a" is present in "b"
+##'
+##' @export
+oi = function(a, b) {
+  length(intersect(a, b)) / length(unique(a))
+}
+
+
+
+
 ##' Characterize memberships in two sets
 ##'
 ##' @param a vector (character, numeric, etc.) with members of set a
