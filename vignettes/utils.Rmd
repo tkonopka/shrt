@@ -237,6 +237,28 @@ Note that the length of the output object is determined by the names.
 
 
 
+## nlist
+
+`nlist` creates a named list using an existing vector or data frame.
+
+The usual way to create a named list is a two-step process: first create the list using `as.list` and then set names for its elements.
+
+```{r}
+mylist = setNames(as.list(letters[1:2]), letters[1:2])
+mylist
+```
+
+Function `nlist` simplifies this to a single command
+
+```{r}
+mylist = nlist(letters[1:2])
+mylist
+```
+
+The function also allows other uses that start from a data frame or a matrix. That functionality works similarly as `nvec` described below.
+
+
+
 ## nvec
 
 `nvec` creates a named vector using two columns from a data frame.

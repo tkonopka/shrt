@@ -65,7 +65,8 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | namesNA | get elements with value NA
  utils | namesT | get elements with value TRUE
  utils | namesV | get elements with given value(s)
- utils | newv | creating empty, named vectors
+ utils | newv | create empty, named vectors
+ utils | nlist | create a named list from a vector or data frame
  utils | nvec | create named vector from a data frame
  utils | lengrep | number of hits in a grep search
  utils | lenu | number of unique elements

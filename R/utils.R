@@ -293,6 +293,61 @@ namesNA = function(x) {
 
 
 
+##' Create a named list using an existing object or data frame
+##'
+##' The name is short for: (n)amed (list)
+##'
+##' @param df object, can be vector, matrix, or data.frame
+##' @param values.col character, identifies source of values for the list
+##' @param names.col charcter, identifies source of names for the list
+##'
+##' @return named list
+##'
+##' @examples
+##' nlist(c("a", "b", "c"))
+##' nlist(values=c(1,2,3), names=c("x", "y", "z"))
+##'
+##' @export
+nlist = function(df=NULL, values.col=NULL, names.col=NULL) {
+  xnames = xval = NULL
+  if (!is.null(df)) {
+    ## handle when first input is matrix-like
+    if (class(df)=="matrix" | class(df)=="data.frame") {
+      if (is.null(names.col)) {
+        names.col=values.col
+      }
+      # check that relevant columns exist
+      check.col = function(x) {
+        if (is.null(x) | !(x %in% colnames(df))) {
+          stop("nvec: invalid column name ", x, "\n")
+        }
+      }
+      check.col(values.col)
+      check.col(names.col)
+      xnames = df[, names.col]
+      xval = df[, values.col]
+    } else {
+      xval = df
+      xnames = df
+    }
+  } else {
+    ## handle using values and names separately
+    if (is.null(values.col)) {
+      stop("df and values cannot both be null\n")
+    } else {
+      if (is.null(names.col)) {
+        names.col = values.col
+      }
+      xval = values.col
+      xnames = names.col
+    }    
+  }
+  setNames(as.list(xval), xnames)
+}
+
+
+
+
 ##' Create a named vector using two columns in a data-frame
 ##'
 ##' The name is short for: (n)amed (vec)tor
@@ -300,7 +355,9 @@ namesNA = function(x) {
 ##' @param df data frame
 ##' @param values.col character, column in df used for vector values
 ##' @param names.col character, column in df used for vector names
-##' 
+##'
+##' @return named vector
+##'
 ##' @examples
 ##' df = data.frame(A=letters[1:4], B=c(4,2,3,1))
 ##' nvec(df, "B", "A")

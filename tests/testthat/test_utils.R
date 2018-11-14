@@ -198,6 +198,44 @@ test_that("names family gives errors", {
 
 
 
+## Tests for nlist - named list
+
+test_that("nlist creates list from a character vector", {
+  result = nlist(letters[1:2])
+  expected = list(a="a", b="b")
+  expect_equal(result, expected)
+})
+
+test_that("nlist generates list from values and names", {
+  result = nlist(values=c(4,5,6), names=c("x", "y", "z"))
+  expected = list(x=4, y=5, z=6)
+  expect_equal(result, expected)
+})
+
+test_that("nlist creates list from a data frame", {
+  df = data.frame(A=letters[1:4], B=1:4, stringsAsFactors=F)
+  result = nlist(df, "B", "A")
+  expected = list(a=1, b=2, c=3, d=4)
+  expect_equal(result, expected)
+})
+
+test_that("nlist creates list from a data frame based on values only", {
+  df = cbind(A=letters[1:2], B=1:2)
+  result = nlist(df, "A")
+  expected = list(a="a", b="b")
+  expect_equal(result, expected)
+})
+
+test_that("nlist generates errors", {
+  df = cbind(A=letters[1:4], B=1:4)
+  expect_error(nlist(df, "B", "C"))
+  expect_error(nlist(df, "C", "A"))
+  expect_error(names.col=letters[1:3])
+})
+
+
+
+
 ## Tests for nvec - named vector
 
 test_that("nvec generates errors with bad inputs", {

@@ -1,6 +1,6 @@
 Package: shrt
 Title: short R code
-Version: 0.1.0.4
+Version: 0.1.0.5
 Authors@R: person("Tomasz", "Konopka", , "tokonopka@gmail.com", role = c("aut", "cre"))
 Author: Tomasz Konopka [aut, cre]
 Maintainer: Tomasz Konopka <tokonopka@gmail.com>

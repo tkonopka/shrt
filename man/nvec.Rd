@@ -13,6 +13,9 @@ nvec(df, values.col = NULL, names.col = NULL)
 
 \item{names.col}{character, column in df used for vector names}
 }
+\value{
+named vector
+}
 \description{
 The name is short for: (n)amed (vec)tor
 }
