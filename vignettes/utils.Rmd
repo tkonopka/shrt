@@ -114,6 +114,29 @@ lenu(foo)
 
 
 
+## lst
+
+`lst` creates a new list object and automatically attaches names to its components.
+
+Consider outputing several data objects from a function. The usual way to do that would be to create a named list, often by repeating the components names that are already defined within the function. 
+
+```{r}
+a = 1
+b = 2
+list(a=a, b=b)
+```
+
+The `lst` command simplifies the syntax.
+
+```{r}
+lst(a, b)
+```
+
+The function also takes named arguments, e.g. `lst(a, b, z=3)`.
+
+
+
+
 ## mtrx
 
 `mtrx` creates a matrix from input data. Compared to the usual `matrix`, it provides some new possibilities in naming rows and columns.

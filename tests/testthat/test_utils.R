@@ -111,6 +111,24 @@ test_that("lenu with basic input", {
 
 
 
+## Tests for lst
+
+test_that("lst creates a named list", {
+  a = 10; b = 4
+  result = lst(a, b)
+  expected = list(a=a, b=b)
+  expect_equal(result, expected)
+})
+
+test_that("lst can accept named and unnamed data", {
+  a = 10; b = 4
+  result = lst(a, b, z=10)
+  expected = list(a=10, b=4, z=10)
+  expect_equal(result, expected)
+})
+
+
+
 ## Tests for matrix creation
 
 test_that("create matrix based on rownames and colnames", {
@@ -206,6 +224,12 @@ test_that("nlist creates list from a character vector", {
   expect_equal(result, expected)
 })
 
+test_that("nlist creates list from a values vector", {
+  result = nlist(values=letters[1:2])
+  expected = list(a="a", b="b")
+  expect_equal(result, expected)
+})
+
 test_that("nlist generates list from values and names", {
   result = nlist(values=c(4,5,6), names=c("x", "y", "z"))
   expected = list(x=4, y=5, z=6)
@@ -230,6 +254,7 @@ test_that("nlist generates errors", {
   df = cbind(A=letters[1:4], B=1:4)
   expect_error(nlist(df, "B", "C"))
   expect_error(nlist(df, "C", "A"))
+  expect_error(nlist())
   expect_error(names.col=letters[1:3])
 })
 
@@ -317,6 +342,7 @@ test_that("today is a string", {
   expect_gt(nchar(output), 4)
   expect_equal(nchar(output.dash)-nchar(output), 2)
 })
+
 
 
 

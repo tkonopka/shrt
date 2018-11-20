@@ -4,14 +4,14 @@
 \alias{nvec}
 \title{Create a named vector using two columns in a data-frame}
 \usage{
-nvec(df, values.col = NULL, names.col = NULL)
+nvec(x, values.col = NULL, names.col = NULL)
 }
 \arguments{
-\item{df}{data frame}
+\item{x}{data frame}
 
-\item{values.col}{character, column in df used for vector values}
+\item{values.col}{character, column in x used for vector values}
 
-\item{names.col}{character, column in df used for vector names}
+\item{names.col}{character, column in x used for vector names}
 }
 \value{
 named vector

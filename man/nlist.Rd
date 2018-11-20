@@ -4,10 +4,10 @@
 \alias{nlist}
 \title{Create a named list using an existing object or data frame}
 \usage{
-nlist(df = NULL, values.col = NULL, names.col = NULL)
+nlist(x = NULL, values.col = NULL, names.col = NULL)
 }
 \arguments{
-\item{df}{object, can be vector, matrix, or data.frame}
+\item{x}{object, can be vector, matrix, or data.frame}
 
 \item{values.col}{character, identifies source of values for the list}
 

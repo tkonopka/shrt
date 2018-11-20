@@ -60,6 +60,9 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | empty | evaluate if object is of zero length
  utils | grepv | pattern matching 
  utils | h1, h2, h3 | head with preset n
+ utils | lengrep | number of hits in a grep search
+ utils | lenu | number of unique elements
+ utils | lst | collect objects into a named list
  utils | mtrx | creating matrices 
  utils | namesF | get elements with value FALSE
  utils | namesNA | get elements with value NA
@@ -68,8 +71,6 @@ to find the code and documentation. Column `Function` shows the function names.
  utils | newv | create empty, named vectors
  utils | nlist | create a named list from a vector or data frame
  utils | nvec | create named vector from a data frame
- utils | lengrep | number of hits in a grep search
- utils | lenu | number of unique elements
  utils | p0 | paste0
  utils | pluck | extract a component from an object or list
  utils | pluck1 | extract first components from a list of objects

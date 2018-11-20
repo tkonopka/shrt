@@ -142,6 +142,37 @@ lenu = function(x) {
 
 
 
+##' Collect objects into a named list
+##'
+##' The names is short for: (l)i(st) from named entities
+##'
+##' @param ... several arguments
+##'
+##' @return a named list holding to input objects
+##'
+##' @examples
+##' a = 4
+##' b = 3
+##' lst(a, b)
+##'
+##' @export
+lst = function(...) {
+  # fetch the arguments as a list
+  result = list(...)
+  # identify all the labels
+  labels = as.character(substitute(list(...)))[-1]
+  # transfer the labels that are not present in "data"
+  if (length(names(result))==0) {
+    wolabs = rep(TRUE, length(result))
+  } else {
+    wolabs = names(result)==""
+  }
+  names(result)[wolabs] = labels[wolabs]
+  result
+}
+
+
+
 ##' Creates a matrix with row and column names
 ##'
 ##' Compared to matrix(), this function has simpler syntax
@@ -297,7 +328,7 @@ namesNA = function(x) {
 ##'
 ##' The name is short for: (n)amed (list)
 ##'
-##' @param df object, can be vector, matrix, or data.frame
+##' @param x object, can be vector, matrix, or data.frame
 ##' @param values.col character, identifies source of values for the list
 ##' @param names.col charcter, identifies source of names for the list
 ##'
@@ -308,32 +339,32 @@ namesNA = function(x) {
 ##' nlist(values=c(1,2,3), names=c("x", "y", "z"))
 ##'
 ##' @export
-nlist = function(df=NULL, values.col=NULL, names.col=NULL) {
+nlist = function(x=NULL, values.col=NULL, names.col=NULL) {
   xnames = xval = NULL
-  if (!is.null(df)) {
+  if (!is.null(x)) {
     ## handle when first input is matrix-like
-    if (class(df)=="matrix" | class(df)=="data.frame") {
+    if (class(x)=="matrix" | class(x)=="data.frame") {
       if (is.null(names.col)) {
         names.col=values.col
       }
       # check that relevant columns exist
-      check.col = function(x) {
-        if (is.null(x) | !(x %in% colnames(df))) {
-          stop("nvec: invalid column name ", x, "\n")
+      check.col = function(z) {
+        if (is.null(z) | !(z %in% colnames(x))) {
+          stop("nvec: invalid column name ", z, "\n")
         }
       }
       check.col(values.col)
       check.col(names.col)
-      xnames = df[, names.col]
-      xval = df[, values.col]
+      xnames = x[, names.col]
+      xval = x[, values.col]
     } else {
-      xval = df
-      xnames = df
+      xval = x
+      xnames = x
     }
   } else {
     ## handle using values and names separately
     if (is.null(values.col)) {
-      stop("df and values cannot both be null\n")
+      stop("x and values cannot both be null\n")
     } else {
       if (is.null(names.col)) {
         names.col = values.col
@@ -352,9 +383,9 @@ nlist = function(df=NULL, values.col=NULL, names.col=NULL) {
 ##'
 ##' The name is short for: (n)amed (vec)tor
 ##'
-##' @param df data frame
-##' @param values.col character, column in df used for vector values
-##' @param names.col character, column in df used for vector names
+##' @param x data frame
+##' @param values.col character, column in x used for vector values
+##' @param names.col character, column in x used for vector names
 ##'
 ##' @return named vector
 ##'
@@ -363,21 +394,21 @@ nlist = function(df=NULL, values.col=NULL, names.col=NULL) {
 ##' nvec(df, "B", "A")
 ##'
 ##' @export
-nvec = function(df, values.col=NULL, names.col=NULL) {
+nvec = function(x, values.col=NULL, names.col=NULL) {
   # check that relevant columns exist
-  check.col = function(x) {
-    if (is.null(x) | !(x %in% colnames(df))) {
-      stop("nvec: invalid column name ", x, "\n")
+  check.col = function(z) {
+    if (is.null(z) | !(z %in% colnames(x))) {
+      stop("nvec: invalid column name ", z, "\n")
     }
   }
   check.col(values.col)
   check.col(names.col)
   # check that names are unique
-  if (length(unique(df[, names.col])) != nrow(df)) {
+  if (length(unique(x[, names.col])) != nrow(x)) {
     stop("nvec: names are not unique\n")
   }
   # the proper calculation
-  setNames(df[, values.col], df[, names.col])
+  setNames(x[, values.col], x[, names.col])
 }
 
 
