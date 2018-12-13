@@ -46,14 +46,15 @@ to find the code and documentation. Column `Function` shows the function names.
  data | ji | jaccard index of two sets
  data | oi | overlap index of two sets
  data | setsummary | summary of set membership
- loops | apwi | apply with iterator index
- messages | msg | log and output a message 
- messages | newmsg | create message logger
- plot | widen | update an range to make wider
  files | load1 | load from Rdata file into one named object
  files | loaddir | load content from a directory
  files | rtht | read tables from files 
  files | wtht | write tables to files 
+ loops | apwi | apply with iterator index
+ messages | msg | log and output a message 
+ messages | newmsg | create message logger
+ plot | limq | evaluate pretty limits for axes using quantiles
+ plot | widen | update an range to make wider
  projects | initp | initiate directories/folders for a project
  projects | reqvars | check whether variables are defined
  utils | catv | print to console, but only in verbose mode
