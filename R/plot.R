@@ -9,7 +9,7 @@
 ##' The name is short for: (lim)its to capture (q)uantiles
 ##'
 ##' @param data list, data-frame, or matrix with input data
-##' @param q numeric of length 2, used in quantiles()
+##' @param quantiles numeric of length 2, used in quantiles()
 ##' @param lim numeric of length 2, starting interval, values with NA are filled in
 ##'            and positions with non-NA are left alone.
 ##' @param column identifier for column 

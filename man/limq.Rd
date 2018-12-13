@@ -10,14 +10,14 @@ limq(data, quantiles = c(0.01, 0.99), lim = c(NA, NA), column = NA,
 \arguments{
 \item{data}{list, data-frame, or matrix with input data}
 
+\item{quantiles}{numeric of length 2, used in quantiles()}
+
 \item{lim}{numeric of length 2, starting interval, values with NA are filled in
 and positions with non-NA are left alone.}
 
 \item{column}{identifier for column}
 
 \item{pretty}{numeric of length 2, ensures that limits are multiples of these values}
-
-\item{q}{numeric of length 2, used in quantiles()}
 }
 \value{
 numeric vector of length 2 with (min, max) values for limits
