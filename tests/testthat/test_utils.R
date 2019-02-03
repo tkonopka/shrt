@@ -48,7 +48,34 @@ test_that("empty returns false on NULL objects", {
 
 
 
-## Tests for grep family
+## Tests for grepf
+
+test_that("grepf that produces multiple hits", {
+  result = grepf("test")
+  expect_equal(class(result), "list")
+  expect_gt(length(result), 4)
+})
+
+
+test_that("grepf that does not produce any hits", {
+  ## this pattern will not match itself because [012] will be interpreted
+  ## as a regex in the pattern and as a string in the loaded file
+  result = grepf("abcdefgh[012]") 
+  expect_equal(length(result), 0)
+})
+
+
+test_that("grepf that does not find any files to process", {
+  ## none of the files in this directory will have filenames with q1q2q3q4
+  result = grepf("abcd", path=".", file.pattern="q1q2q3q4")
+  expect_equal(class(result), "list")
+  expect_equal(length(result), 0)
+})
+
+
+
+
+## Tests for grepv
 
 test_that("grepv with simple regex", {
   input = c("abc", "bcde", "cdef", "def", "efgh")

@@ -53,6 +53,18 @@ Future `catv` statements will also produce output on the console.
 
 
 
+## grepf
+
+`grepf` is a search utility looking for patterns within files.
+It reads files within a directory and finds patterns within each of them, returning the position of the match within each file.
+
+```{r}
+grepf("search", path=".", file.pattern="Rmd$")
+```
+
+
+
+
 ## grepv
 
 `grepv` is a pattern matching function, a wrapper for `grep`, that returns the actual matching values. For example, let's start with a vector of strings

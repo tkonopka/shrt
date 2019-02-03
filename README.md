@@ -59,7 +59,8 @@ to find the code and documentation. Column `Function` shows the function names.
  projects | reqvars | check whether variables are defined
  utils | catv | print to console, but only in verbose mode
  utils | empty | evaluate if object is of zero length
- utils | grepv | pattern matching 
+ utils | grepf | pattern matching inside text files (file search)
+ utils | grepv | pattern matching returning values
  utils | h1, h2, h3 | head with preset n
  utils | lengrep | number of hits in a grep search
  utils | lenu | number of unique elements

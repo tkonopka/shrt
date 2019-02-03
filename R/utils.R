@@ -43,6 +43,39 @@ empty = function(x) {
 
 
 
+##' Pattern matching inside text files
+##'
+##' Reads contents of all files in a directory and matches a pattern line-by-line.
+##'
+##' The name is short for: (grep) inside (f)iles
+##'
+##' @param pattern character, pattern to look for
+##' @param path directory to look in
+##' @param file.pattern pattern to consider among the files
+##' @param ... other parameters passed on to list.files()
+##'
+##' @export
+grepf = function(pattern, path=".", file.pattern=NULL, ...) {
+  allfiles = list.files(path, full.names=TRUE, pattern=file.pattern, ...)
+  if (length(allfiles)==0) {
+    return(list())
+  }
+  result = setNames(as.list(allfiles), allfiles)
+  result = lapply(result, function(filepath) {
+    filedata = readLines(filepath)
+    hits = grep(pattern, filedata)
+    if (length(hits)==0) {
+      return (NA)
+    }
+    data.frame(line.number=hits, line.content=filedata[hits],
+               stringsAsFactors=FALSE)
+  })
+  result[sapply(result, function(x) { !identical(NA, x) })]
+}
+
+
+
+
 ##' Pattern matching 
 ##'
 ##' This is a wrapper for grep. By default it returns the matching
