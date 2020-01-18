@@ -4,8 +4,12 @@
 \alias{initp}
 \title{Initialize a directory structure for a project}
 \usage{
-initp(workdir, subdirs = c("notes", "figures", "tables", "Rda", "data",
-  "code"), verbose = TRUE, ...)
+initp(
+  workdir,
+  subdirs = c("notes", "figures", "tables", "Rda", "data", "code"),
+  verbose = TRUE,
+  ...
+)
 }
 \arguments{
 \item{workdir}{directory path, root directory for new project}

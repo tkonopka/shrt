@@ -4,8 +4,13 @@
 \alias{limq}
 \title{create an interval to catch a set proportion of input data based on quantiles}
 \usage{
-limq(data, quantiles = c(0.01, 0.99), lim = c(NA, NA), column = NA,
-  pretty = c(NA, NA))
+limq(
+  data,
+  quantiles = c(0.01, 0.99),
+  lim = c(NA, NA),
+  column = NA,
+  pretty = c(NA, NA)
+)
 }
 \arguments{
 \item{data}{list, data-frame, or matrix with input data}

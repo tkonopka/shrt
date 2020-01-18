@@ -4,8 +4,15 @@
 \alias{rtht}
 \title{Read table from file}
 \usage{
-rtht(f, rowid.column = NULL, header = TRUE, sep = "\\t",
-  comment.char = "#", stringsAsFactors = FALSE, ...)
+rtht(
+  f,
+  rowid.column = NULL,
+  header = TRUE,
+  sep = "\\t",
+  comment.char = "#",
+  stringsAsFactors = FALSE,
+  ...
+)
 }
 \arguments{
 \item{f}{filename}

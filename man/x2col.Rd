@@ -4,8 +4,7 @@
 \alias{x2col}
 \title{Convert numbers or matrices into colors with transparency}
 \usage{
-x2col(x, col = c("#0000ff", "#ff0000"), maxval = 1,
-  bgcol = "#ffffff")
+x2col(x, col = c("#0000ff", "#ff0000"), maxval = 1, bgcol = "#ffffff")
 }
 \arguments{
 \item{x}{numeric vector or matrix.}

@@ -57,6 +57,7 @@ empty = function(x) {
 ##' @export
 grepf = function(pattern, path=".", file.pattern=NULL, ...) {
   allfiles = list.files(path, full.names=TRUE, pattern=file.pattern, ...)
+  allfiles = allfiles[!dir.exists(allfiles)]
   if (length(allfiles)==0) {
     return(list())
   }

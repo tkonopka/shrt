@@ -4,8 +4,14 @@
 \alias{mtrx}
 \title{Creates a matrix with row and column names}
 \usage{
-mtrx(data = NA, row.names = NULL, col.names = NULL, nrow = NULL,
-  ncol = NULL, byrow = FALSE)
+mtrx(
+  data = NA,
+  row.names = NULL,
+  col.names = NULL,
+  nrow = NULL,
+  ncol = NULL,
+  byrow = FALSE
+)
 }
 \arguments{
 \item{data}{data vector, contents of the matrix}
