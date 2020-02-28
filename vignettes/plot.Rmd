@@ -18,24 +18,31 @@ library(shrt)
 
 ## limq
 
-`limq` provides intervals for defining limits for axes such that the resulting plot capture data within given quantiles. The basic usage takes in a single data vector and quantile delimiters.
+`limq` provides intervals for defining limits for axes such that the resulting
+plot capture data within given quantiles. The basic usage takes in a single
+data vector and quantile delimiters.
 
 ```{r}
 data.100 = seq(0, 100)
 limq(data.100, quantiles=c(0.01, 0.99))
 ```
 
-The resulting range captures data from the 1% quantile to the 99% quantile. In this case, the result is just the output from function `quantiles`. But `limq` provides useful functionality through its custom arguments.
+The resulting range captures data from the 1% quantile to the 99% quantile. In
+this case, the result is just the output from function `quantiles`. But `limq`
+provides useful functionality through its custom arguments.
 
-Setting argument `lim` can request the output limit to respect a preset lower or upper limit.
+Setting argument `lim` can request the output limit to respect a preset lower
+or upper limit.
 
 ```{r}
 limq(data.100, quantiles=c(0.05, 0.95), lim=c(0, NA))
 ```
 
-In this case, the lower quantile is ignored and the function fills in only the value of the missing upper limit. 
+In this case, the lower quantile is ignored and the function fills in only the
+value of the missing upper limit. 
 
-The function also accepts lists of data and can evaluate liits based on columns in matrices.
+The function also accepts lists of data and can evaluate liits based on columns
+in matrices.
 
 ```{r}
 data.list = list(M=data.frame(A=0:50, B=-(0:50)),
@@ -50,26 +57,34 @@ It is also possible to prettify the output limits via argument `pretty`.
 limq(seq(3.2, 18.6, by=0.2), quantiles=c(0.05, 0.95), pretty=c(2, 10))
 ```
 
-In this case, the lower limit is lowered to the nearest multiple of 2. The upper limit is raised to the nearest multiple of 10. Overall, the interval includes at least the data in the (0.05, 0.95) interval.
+In this case, the lower limit is lowered to the nearest multiple of 2. The
+upper limit is raised to the nearest multiple of 10. Overall, the interval
+includes at least the data in the (0.05, 0.95) interval.
 
 
 &nbsp;
 
 ## widen
 
-Creating a plot often starts by specifying a plot range interval. The function `widen` starts from an existing interval and calculates a related-but-wider one. The default action is to update the interval on both sides by 5%.
+Creating a plot often starts by specifying a plot range interval. The function
+`widen` starts from an existing interval and calculates a related-but-wider
+one. The default action is to update the interval on both sides by 5%.
 
 ```{r}
 widen(c(0, 100))
 ```
 
-It is also possible to update the intervals by different amounts on each side, for example keeping it fixed on the left and expanding by large fraction on the right,
+It is also possible to update the intervals by different amounts on each side,
+for example keeping it fixed on the left and expanding by large fraction on the
+right,
 
 ```{r}
 widen(c(0, 100), by=c(0, 0.2))
 ```
 
-When data is meant to be plotted on a logarithmic scale, the widening of the axes by a percentage is meant to be perceived after a log transformation. The `widen` function conveniently can calculate the required numerics,
+When data is meant to be plotted on a logarithmic scale, the widening of the
+axes by a percentage is meant to be perceived after a log transformation. The
+`widen` function conveniently can calculate the required numerics,
 
 ```{r}
 widen(c(1, 100), by=c(0, 0.2), log=TRUE)

@@ -1,9 +1,9 @@
-## Initialization file, defines package dependencies
-##
-##
+# Initialization file, defines package dependencies
+#
+#
 
 
-## Package imports
+# Package imports
 #' @import stats
 #' @import utils
 #' @import jsonlite

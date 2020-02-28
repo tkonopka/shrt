@@ -19,7 +19,9 @@ msg(action="reset")
 
 ## msg
 
-`msg` displays messages on the console and records them for later use. In contrast to many other function in the `shrt` package, this function provides interesting functionality that is not directly provided by base R functions. 
+`msg` displays messages on the console and records them for later use. In
+contrast to many other function in the `shrt` package, this function provides
+interesting functionality that is not directly provided by base R functions. 
 
 A common way to output a message onto the console is with `cat`
 
@@ -27,27 +29,31 @@ A common way to output a message onto the console is with `cat`
 cat("hello world")
 ```
 
-The `msg` function performs a similar role, except that it also outputs a date and time
+The `msg` function performs a similar role, except that it also outputs a date
+and time
 
 ```{r}
 msg("hello")
 msg("hello again")
 ```
 
-An interesting feature is that `msg` internally records all the messages so that they can be retrieved later. 
+An interesting feature is that `msg` internally records all the messages so
+that they can be retrieved later. 
 
 ```{r}
 msg(action="show")
 ```
 
-Note the output here consists of all the previous `msg` messages. It is also possible to retrieve the messages without displaying them
+Note the output here consists of all the previous `msg` messages. It is also
+possible to retrieve the messages without displaying them
 
 ```{r}
 mm = msg(action="get")
 mm
 ```
 
-This is handy if the messages require further processing, for example saving into a log file. 
+This is handy if the messages require further processing, for example saving
+into a log file. 
 
 When the log is no longer needed, it can be reset 
 
@@ -63,7 +69,8 @@ The output from the last command is now empty.
 
 ## newmsg
 
-`newmsg` creates a new message log/logger. For example, we can create a silent log that does not include the call date. 
+`newmsg` creates a new message log/logger. For example, we can create a silent
+log that does not include the call date. 
 
 ```{r}
 silent.msg = newmsg(verbose=FALSE, date=FALSE)
@@ -83,8 +90,6 @@ The messages can again be displayed as above.
 silent.msg(action="show")
 ```
 
-We see all the recorded messages, here without date because of `date=FALSE` in the constructor. 
-
-
-
+We see all the recorded messages, here without date because of `date=FALSE` in
+the constructor. 
 

@@ -16,7 +16,9 @@ library(shrt)
 
 ## ji
 
-`ji` computes the Jaccard index of two sets. The Jaccard index is a commonly used metrics in data science. It is defined as the size of the set intersection, normalized by the size of the union.
+`ji` computes the Jaccard index of two sets. The Jaccard index is a commonly
+used metrics in data science. It is defined as the size of the set
+intersection, normalized by the size of the union.
 
 ```{r}
 setA = c("alpha", "beta")
@@ -27,7 +29,10 @@ ji(setA, setB)
 
 ## oi
 
-`oi` computes the overlap index of two sets. This index normalizes the size of set intersection by the size of the first set only. (This is in contrast with the Jaccard index, which normalizes the size of the union of the two sets).
+`oi` computes the overlap index of two sets. This index normalizes the size
+of set intersection by the size of the first set only. (This is in contrast
+with the Jaccard index, which normalizes the size of the union of the two
+sets).
 
 ```{r}
 setA = c("alpha", "beta")
@@ -45,7 +50,10 @@ oi(setB, setA)
 
 ## setsummary
 
-`setsummary` computes an overview of set membership. It takes two vectors that represent sets of objects. It outputs a list with summary statistics: the set of private members in each of the two inputs, the set of common objects, and a vector with the element counts. 
+`setsummary` computes an overview of set membership. It takes two vectors
+that represent sets of objects. It outputs a list with summary statistics:
+the set of private members in each of the two inputs, the set of common
+objects, and a vector with the element counts. 
 
 ```{r}
 setA = c("alpha", "beta")

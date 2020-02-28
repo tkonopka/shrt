@@ -18,9 +18,12 @@ library(shrt)
 
 ## catv
 
-`catv` is a wrapper for `cat` that prints messages to the console. Unlike the original, this wrapper can be active or silent depending on the value of a verbose setting.
+`catv` is a wrapper for `cat` that prints messages to the console. Unlike the
+original, this wrapper can be active or silent depending on the value of a
+verbose setting.
 
-The usual way to control output depending on the value of a `verbose` variable is through an `if` statement, for example,
+The usual way to control output depending on the value of a `verbose` variable
+is through an `if` statement, for example,
 
 ```{r}
 verbose = TRUE
@@ -37,8 +40,8 @@ catv("yes, verbose\n", verbose=TRUE)
 ```
 
 When the `verbose` argument is not specified, the verbosity status is inferred
-from parent environment or from the global options. Thus, it is possible to toggle
-verbosity independently of the function call to produce output.
+from parent environment or from the global options. Thus, it is possible to
+toggle verbosity independently of the function call to produce output.
 
 ```{r}
 verbose=FALSE
@@ -56,7 +59,8 @@ Future `catv` statements will also produce output on the console.
 ## grepf
 
 `grepf` is a search utility looking for patterns within files.
-It reads files within a directory and finds patterns within each of them, returning the position of the match within each file.
+It reads files within a directory and finds patterns within each of them,
+returning the position of the match within each file.
 
 ```{r}
 grepf("search", path=".", file.pattern="Rmd$")
@@ -67,7 +71,8 @@ grepf("search", path=".", file.pattern="Rmd$")
 
 ## grepv
 
-`grepv` is a pattern matching function, a wrapper for `grep`, that returns the actual matching values. For example, let's start with a vector of strings
+`grepv` is a pattern matching function, a wrapper for `grep`, that returns
+the actual matching values. For example, let's start with a vector of strings
 
 ```{r}
 greek = c("alpha", "beta", "gamma", "delta")
@@ -90,7 +95,8 @@ grepv("a[lm]", greek)
 
 ## h1, h2, h3
 
-These three functions are wrappers for `head` with preset values for `n`. For example
+These three functions are wrappers for `head` with preset values for `n`.
+For example
 
 ```{r}
 h1(letters)
@@ -126,11 +132,31 @@ lenu(foo)
 
 
 
+## linechars
+
+`linechars` reads the contents of text files and counts the number of character
+per line.
+
+This is useful during code development to identify long lines in code. The
+function can process all text files, or a subset defined by a regex pattern.
+It can report all line numbers, or use a threshold.
+
+```{r, eval="FALSE"}
+linechars("directory", file.pattern="Rmd", min.chars=80)
+```
+
+
+
+
+
 ## lst
 
-`lst` creates a new list object and automatically attaches names to its components.
+`lst` creates a new list object and automatically attaches names to its
+components.
 
-Consider outputing several data objects from a function. The usual way to do that would be to create a named list, often by repeating the components names that are already defined within the function. 
+Consider outputing several data objects from a function. The usual way to do
+that would be to create a named list, often by repeating the components names
+that are already defined within the function. 
 
 ```{r}
 a = 1
@@ -151,9 +177,11 @@ The function also takes named arguments, e.g. `lst(a, b, z=3)`.
 
 ## mtrx
 
-`mtrx` creates a matrix from input data. Compared to the usual `matrix`, it provides some new possibilities in naming rows and columns.
+`mtrx` creates a matrix from input data. Compared to the usual `matrix`, it
+provides some new possibilities in naming rows and columns.
 
-There are two ways to create a matrix with two rows and four named columns. The first is multi-step
+There are two ways to create a matrix with two rows and four named columns.
+The first is multi-step
 
 ```{r}
 mm = matrix(0, nrow=2, ncol=4)
@@ -167,7 +195,9 @@ A second way achieves the same in a single line
 matrix(0, nrow=2, ncol=4, dimnames=list(rep(NULL, 2), greek))
 ```
 
-However, this last expression is not very elegant. It requires a null component in the `dimnames` list and the lengths of the row and column names must match the integers specified by `nrow` and `ncol`.
+However, this last expression is not very elegant. It requires a null component
+in the `dimnames` list and the lengths of the row and column names must match
+the integers specified by `nrow` and `ncol`.
 
 The new `mtrx` function achieves in a slightly more compact form
 
@@ -175,7 +205,9 @@ The new `mtrx` function achieves in a slightly more compact form
 mtrx(0, nrow=2, col.names=greek)
 ```
 
-Note how the number of columns is automatically determined by the specified names (this is not possible using `matrix`). Besides this usage, `mtrx` also accepts names for rows.
+Note how the number of columns is automatically determined by the specified
+names (this is not possible using `matrix`). Besides this usage, `mtrx` also
+accepts names for rows.
 
 
 
@@ -183,7 +215,9 @@ Note how the number of columns is automatically determined by the specified name
 
 ## namesF, namesNA, namesT, namesV
 
-The four functions `namesF`, `namesNA`, `namesT`, and `namesV` are variations on a theme. They act on a vector and provide the names of elements that match particular values. 
+The four functions `namesF`, `namesNA`, `namesT`, and `namesV` are variations
+on a theme. They act on a vector and provide the names of elements that match
+particular values. 
 
 Consider a named vector with boolean values
 
@@ -192,7 +226,8 @@ foo.boolean = setNames((1:10)%%2==0, letters[1:10])
 foo.boolean
 ```
 
-If we want to know which of letters is associated with a true value, we can match the pattern and fetch the names.
+If we want to know which of letters is associated with a true value, we can
+match the pattern and fetch the names.
 
 ```{r}
 names(foo.boolean)[foo.boolean==TRUE]
@@ -204,7 +239,8 @@ With the `namesT` function, we can instead write
 namesT(foo.boolean)
 ```
 
-Note how we avoid writing the vector twice! The function `namesF` behaves similarly but returns the names of elements that are marked as false. 
+Note how we avoid writing the vector twice! The function `namesF` behaves
+similarly but returns the names of elements that are marked as false. 
 
 Consider now that the vector contains numbers or strings.
 
@@ -213,7 +249,8 @@ foo.integer = setNames(c(2,4,NA,0,-1,3,NA,7,3,NA), LETTERS[1:10])
 foo.integer
 ```
 
-Suppose we want to know the names that match a certain value, say 3. Finding these is not hard, but it is important to handle NAs carefully. 
+Suppose we want to know the names that match a certain value, say 3. Finding
+these is not hard, but it is important to handle NAs carefully. 
 
 ```{r}
 names(foo.integer)[foo.integer==3]
@@ -240,7 +277,8 @@ namesNA(foo.integer)
 
 `newv` creates a new vector of specified length, possibly containing names. 
 
-For some data types like integers or characters, we can create a small vector with `rep` and then name the elements with `names`. For example
+For some data types like integers or characters, we can create a small vector
+with `rep` and then name the elements with `names`. For example
 
 ```{r}
 v = rep(0, 4)
@@ -254,7 +292,8 @@ The new function can create the same object in a single line.
 newv("integer", names=greek)
 ```
 
-The new function is also handy for creating lists. The traditional way to create a list of a known size is
+The new function is also handy for creating lists. The traditional way to
+create a list of a known size is
 
 ```{r}
 mylist = vector("list", length=4)
@@ -276,7 +315,8 @@ Note that the length of the output object is determined by the names.
 
 `nlist` creates a named list using an existing vector or data frame.
 
-The usual way to create a named list is a two-step process: first create the list using `as.list` and then set names for its elements.
+The usual way to create a named list is a two-step process: first create the
+list using `as.list` and then set names for its elements.
 
 ```{r}
 mylist = setNames(as.list(letters[1:2]), letters[1:2])
@@ -290,7 +330,8 @@ mylist = nlist(letters[1:2])
 mylist
 ```
 
-The function also allows other uses that start from a data frame or a matrix. That functionality works similarly as `nvec` described below.
+The function also allows other uses that start from a data frame or a matrix.
+That functionality works similarly as `nvec` described below.
 
 
 
@@ -298,7 +339,8 @@ The function also allows other uses that start from a data frame or a matrix. Th
 
 `nvec` creates a named vector using two columns from a data frame.
 
-The usual way to use matrix/data-frame to create a named vector is a two-step process: first extract values, then assign names.
+The usual way to use matrix/data-frame to create a named vector is a two-step
+process: first extract values, then assign names.
 
 ```{r}
 my.data.frame = data.frame(id=c("A", "B"), val=c(2, 6))
@@ -307,21 +349,25 @@ names(myvec) = my.data.frame[, "id"]
 myvec
 ```
 
-The assignment can be written on one line with `setNames`, but still requires identifying the data frame twice. The `nvec` function is shortcut that requires writing the name of the data frame only once.
+The assignment can be written on one line with `setNames`, but still requires
+identifying the data frame twice. The `nvec` function is shortcut that
+requires writing the name of the data frame only once.
 
 ```{r}
 myvec = nvec(my.data.frame, "val", "id")
 myvec
 ```
 
-The function also checks existence of columns and ensures that the names of the vector are unique.
+The function also checks existence of columns and ensures that the names of
+the vector are unique.
 
 
 
 
 ## p0
 
-`p0` is equivalent to `paste0`. It concatenates its input without adding any spaces or other characters.
+`p0` is equivalent to `paste0`. It concatenates its input without adding any
+spaces or other characters.
 
 ```{r}
 paste0(greek[1], greek[2])
@@ -344,7 +390,9 @@ today()
 
 ## x2df
 
-`x2df` is a conversion function that coerces an input object into a data frame. It is shorthand notations for calls to `data.frame`. For example, let's start with a matrix of characters.
+`x2df` is a conversion function that coerces an input object into a data frame.
+It is shorthand notations for calls to `data.frame`. For example, let's start
+with a matrix of characters.
 
 ```{r}
 charmat = mtrx(letters[1:9], col.names=c("x", "y", "z"), nrow=3)
@@ -365,13 +413,14 @@ class(chardf)
 apply(chardf, 2, class)
 ```
 
-The default behavior is to convert characters into characters, but it is also possible to set `stringsAsFactors` to true during the function call.
+The default behavior is to convert characters into characters, but it is also
+possible to set `stringsAsFactors` to true during the function call.
 
-In addition to such simple conversion, the function can also convert vectors into a data frame.
+In addition to such simple conversion, the function can also convert vectors
+into a data frame.
 
 ```{r}
 myvec = setNames(1:4, letters[1:4])
 x2df(myvec)
 ```
-
 

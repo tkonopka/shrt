@@ -31,7 +31,8 @@ y
 
 ## x2hex	
 
-`x2hex` converts numbers in a [0,1] range into hexadecimal strings that can be used as transparency values
+`x2hex` converts numbers in a [0,1] range into hexadecimal strings that can be
+used as transparency values
 
 ```{r}
 x
@@ -62,7 +63,8 @@ Note the column and row names are preserved under the transformation.
 
 ## x2col	
 
-`x2col` converts numbers into colors on a two-color scale. Intermediate colors are created using transparency codes.
+`x2col` converts numbers into colors on a two-color scale. Intermediate colors
+are created using transparency codes.
 
 ```{r}
 x
@@ -77,7 +79,9 @@ The function provides the following behavior:
  - the numeric values that saturate the color scales can be set by `maxval`
  - `NA` and other non-numbers are preserved 
  - names associated with the input data are preserved
- - values of exactly zero are output as white color. This background color can be changed using argument `bgcol`. This behavior can also be turned off by setting `bgcol` to `NULL`. 
+ - values of exactly zero are output as white color. This background color can
+ be changed using argument `bgcol`. This behavior can also be turned off by
+ setting `bgcol` to `NULL`. 
 
 The function also works on matrices
 
